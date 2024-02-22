@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "44602318578",
+    "project_id": "colormuscle",
+    "storage_bucket": "colormuscle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:44602318578:android:b29415bac97ce8d3b03a6b",
+        "android_client_info": {
+          "package_name": "com.potipoti.color_muscle"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCc7MzswYUlr4zUwc9JNBPcQxMOCGMH_jc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
