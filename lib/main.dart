@@ -1,3 +1,4 @@
+import 'package:color_muscle/features/top/page/top.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,11 @@ class MyApp extends ConsumerWidget {
           fontFamily: 'MPLUS',
           useMaterial3: false,
         ),
-        home: const TopPage(),
+        home: TopPage(
+          questionNumberState: 5,
+          questionFormatState: 1,
+          questionGradeState: 1,
+          key: key,
+        ),
       );
 }
