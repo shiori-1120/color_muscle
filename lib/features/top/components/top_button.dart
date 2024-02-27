@@ -1,4 +1,4 @@
-import 'package:color_muscle/components/primary_butten.dart';
+import 'package:color_muscle/components/primary_button.dart';
 import 'package:color_muscle/features/question/page/question.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:color_muscle/features/top/view_model.dart';
@@ -21,7 +21,7 @@ class TopButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) => PrimaryButton(
         onPressed: () async {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const QuestionPage()));
+              context, MaterialPageRoute(builder: (context) => QuestionPage()));
         },
         width: MediaQuery.of(context).size.width * 0.8,
         height: MediaQuery.of(context).size.height * 0.07,

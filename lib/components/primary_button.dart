@@ -57,7 +57,6 @@ class PrimaryButton extends StatelessWidget {
             elevation: elevation,
             backgroundColor: backgroundColor,
             foregroundColor: foregroundColor,
-            shape: const StadiumBorder(),
             padding: padding ??
                 const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
             side: side,
