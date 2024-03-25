@@ -7,8 +7,8 @@ class ColorName {
   static const Color whiteBase = Color(0xFFFFFFFF);
 
   /// Grey
-  static const Color greyBase = Color(0xFFECECEC);
-  static const Color greySecondary = Color(0xFFD9D9D9);
+  static const Color greyBase = Color(0xFFECECEC);//濃い
+  static const Color greySecondary = Color(0xFFD9D9D9);//薄い
 
   /// Red
   static const Color trueRed = Color(0xFFB53C3C);

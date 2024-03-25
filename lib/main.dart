@@ -32,11 +32,6 @@ class MyApp extends ConsumerWidget {
           fontFamily: 'MPLUS',
           useMaterial3: false,
         ),
-        home: TopPage(
-          questionNumberState: 5,
-          questionFormatState: 1,
-          questionGradeState: 1,
-          key: key,
-        ),
+        home: TopPage(),
       );
 }

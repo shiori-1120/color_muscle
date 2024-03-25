@@ -2,29 +2,30 @@ import 'package:color_muscle/style/colors.dart';
 import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatelessWidget {
-  const PrimaryButton({
-    required this.onPressed,
-    super.key,
-    this.style,
-    this.height,
-    this.width,
-    this.circularSize,
-    this.backgroundColor = ColorName.greySecondary,
-    this.foregroundColor,
-    this.side = BorderSide.none,
-    this.isWithWidget = false,
-    this.text,
-    this.padding,
-    this.elevation,
-    this.shadowColor,
-    this.isMini = false,
-    this.isBottomNavigationBar = false,
-    this.circularColor,
-    this.isCircular = false,
-    this.isFittedBox = false,
-    this.isViewInsetsBottom = false,
-    this.childWidget,
-  });
+  const PrimaryButton(
+      {required this.onPressed,
+      super.key,
+      this.style,
+      this.height,
+      this.width,
+      this.circularSize,
+      this.backgroundColor = ColorName.greySecondary,
+      this.foregroundColor,
+      this.textColor,
+      this.side = BorderSide.none,
+      this.isWithWidget = false,
+      this.text,
+      this.padding,
+      this.elevation,
+      this.shadowColor,
+      this.isMini = false,
+      this.isBottomNavigationBar = false,
+      this.circularColor,
+      this.isCircular = false,
+      this.isFittedBox = false,
+      this.isViewInsetsBottom = false,
+      this.childWidget,
+      this.borderRaius});
 
   final String? text;
   final TextStyle? style;
@@ -32,10 +33,12 @@ class PrimaryButton extends StatelessWidget {
   final double? width;
   final double? circularSize;
   final double? elevation;
+  final double? borderRaius;
   final Color? backgroundColor;
   final Color? foregroundColor;
   final Color? shadowColor;
   final Color? circularColor;
+  final Color? textColor;
   final BorderSide side;
   final VoidCallback? onPressed;
   final EdgeInsetsGeometry? padding;
@@ -61,6 +64,8 @@ class PrimaryButton extends StatelessWidget {
                 const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
             side: side,
             shadowColor: shadowColor,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(borderRaius!)),
           ),
           child: isWithWidget
               ? childWidget
@@ -71,6 +76,7 @@ class PrimaryButton extends StatelessWidget {
                         TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: isMini ? 14 : 16,
+                          color: textColor,
                         ),
                     textAlign: TextAlign.center,
                   ),

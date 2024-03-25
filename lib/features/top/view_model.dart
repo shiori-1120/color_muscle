@@ -1,38 +1,55 @@
-// import 'dart:async';
+import 'package:color_muscle/domain/color/domain.dart';
+import 'package:color_muscle/domain/color/repository.dart';
+import 'package:color_muscle/features/question/page/question.dart';
+import 'package:color_muscle/features/top/grade_type.dart';
+import 'package:color_muscle/features/top/question_type.dart';
+import 'package:color_muscle/features/top/state.dart';
+import 'package:flutter/material.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+// 追加
 
-// import 'package:color_muscle/features/question/page/question.dart';
-// import 'package:color_muscle/features/top/state.dart';
-// import 'package:flutter/material.dart';
-// import 'package:riverpod_annotation/riverpod_annotation.dart';
-// import 'package:flutter_riverpod/flutter_riverpod.dart'; // 追加
+part 'view_model.g.dart';
 
-// part 'view_model.g.dart';
+@riverpod
+class TopViewModel extends _$TopViewModel {
+  ColorRepo get colorRepo => ref.read(colorRepoProvider.notifier);
+  @override
+  FutureOr<TopState> build() async {
+    const state = TopState(
+        questionNumber: 3,
+        questionType: QuestionType.originToColor,
+        gradeType: GradeType.gradeThird);
+    return state;
+  }
 
-// final topViewModelProvider = Provider<TopViewModel>((ref) => TopViewModel()); // 追加
+  Future<void> changeQuestionType(QuestionType questionType) async {
+    final List<ColorClass> colors =
+        await colorRepo.getColorWithGradeFilter('1');
+    state = AsyncData(state.requireValue.copyWith(questionType: questionType));
+  }
 
-// @riverpod
-// class TopViewModel extends _$TopViewModel {
+  void incrementQuestionNumber(int questionNumber) {
+    if (state.value!.questionNumber < 5) {
+      state = AsyncData(
+        state.requireValue.copyWith(
+          questionNumber: state.value!.questionNumber + 1,
+        ),
+      );
+    }
+  }
 
-//   @override
-//   FutureOr<TopState> build() async {
-//     final state =
-//         TopState(questionNumber: '', questionFormat: '', questionGrade: '');
-//     return state;
-//   }
+  Future<void> decrementQuestionNumber(int questionNumber) async {
+    if (state.value!.questionNumber > 1) {
+      state = AsyncData(
+        state.requireValue.copyWith(
+          questionNumber: state.value!.questionNumber-1,
+        ),
+      );
+    }
+  }
 
-//   /// 詳細ページへ
-//   Future<void> navigateToQuestionPage(
-//           BuildContext context,
-//           String questionNumber,
-//           String questionFormat,
-//           String questionGrade) async =>
-//       Navigator.push(
-//         context,
-//         MaterialPageRoute(
-//           builder: (context) => QuestionPage(
-//               questionNumber: questionNumber,
-//               questionFormat: questionFormat,
-//               questionGrade: questionGrade),
-//         ),
-//       );
-// }
+  Future<void> navigateToQuestionPage(BuildContext context)async{
+    await Navigator.push(
+              context, MaterialPageRoute(builder: (context) => QuestionPage()),);  
+  }
+}
