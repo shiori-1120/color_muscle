@@ -1,5 +1,6 @@
 import 'package:color_muscle/features/top/grade_type.dart';
 import 'package:color_muscle/features/top/question_type.dart';
+import 'package:color_muscle/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -12,11 +13,11 @@ class QuestionState with _$QuestionState {
   // withの後には「_$[class name]」の形式で記述
 
   // プロパティを指定
-  factory QuestionState({
+  const factory QuestionState({
     required int questionNumber,
     QuestionType? questionType,
     GradeType? gradeType,
-    @Default(null) Color backgroundcolor, 
+    @Default(ColorName.whiteBase) Color backgroundcolor, 
     @Default(true) bool screenEnabled, // デフォルト値を指定
     @Default(false) bool isTrue,
     @Default(false) bool isFalse,

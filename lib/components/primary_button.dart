@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton(
-      {required this.onPressed,
+      {
       super.key,
+      this.onPressed,
       this.style,
       this.height,
       this.width,
@@ -55,7 +56,7 @@ class PrimaryButton extends StatelessWidget {
         width: width,
         height: height,
         child: ElevatedButton(
-          onPressed: onPressed,
+          onPressed: onPressed ?? (){},
           style: ElevatedButton.styleFrom(
             elevation: elevation,
             backgroundColor: backgroundColor,
@@ -65,7 +66,7 @@ class PrimaryButton extends StatelessWidget {
             side: side,
             shadowColor: shadowColor,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(borderRaius!)),
+                borderRadius: BorderRadius.circular(borderRaius ?? 0)),
           ),
           child: isWithWidget
               ? childWidget

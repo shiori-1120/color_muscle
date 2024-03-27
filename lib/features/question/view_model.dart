@@ -1,26 +1,26 @@
-import 'package:flutter/material.dart';
-import 'package:riverpod/riverpod.dart';
-import 'package:color_muscle/features/question/state.dart';
-import 'package:color_muscle/features/result/page/result.dart';
 import 'package:color_muscle/features/top/grade_type.dart';
 import 'package:color_muscle/features/top/question_type.dart';
+import 'package:flutter/material.dart';
+import 'package:color_muscle/features/question/state.dart';
+import 'package:color_muscle/features/result/page/result.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class QuestionViewModel extends StateNotifier<QuestionState> {
-  final BuildContext context;
+part 'view_model.g.dart';
 
-  QuestionViewModel(this.context)
-      : super(QuestionState(
-          questionNumber: 3,
-          questionType: QuestionType.colorToName,
-          gradeType: GradeType.gradeThird,
-          screenEnabled: true,
-          isTrue: false,
-          isFalse: false,
-          backgroundcolor: Colors.white,
-        ));
+@riverpod
+class QuestionViewModel extends _$QuestionViewModel {
+  @override
+  FutureOr<QuestionState> build() async {
+    const state = QuestionState(
+        questionNumber: 3,
+        questionType: QuestionType.colorToName,
+        gradeType: GradeType.gradeThird);
+    return state;
+  }
 
-  Future<void> showIconAndPopup() async {
-    state = state.copyWith(isTrue: true, screenEnabled: false);
+  Future<void> showIconAndPopup(BuildContext context) async {
+    final data = state.requireValue;
+    state = AsyncData(data.copyWith(isTrue: true, screenEnabled: false));
     await Future.delayed(const Duration(seconds: 1), () {
       showDialog(
         context: context,

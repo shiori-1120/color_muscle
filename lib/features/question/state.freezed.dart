@@ -172,11 +172,11 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$QuestionStateImpl implements _QuestionState {
-  _$QuestionStateImpl(
+  const _$QuestionStateImpl(
       {required this.questionNumber,
       this.questionType,
       this.gradeType,
-      this.backgroundcolor = null,
+      this.backgroundcolor = ColorName.whiteBase,
       this.screenEnabled = true,
       this.isTrue = false,
       this.isFalse = false});
@@ -237,7 +237,7 @@ class _$QuestionStateImpl implements _QuestionState {
 }
 
 abstract class _QuestionState implements QuestionState {
-  factory _QuestionState(
+  const factory _QuestionState(
       {required final int questionNumber,
       final QuestionType? questionType,
       final GradeType? gradeType,

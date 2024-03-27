@@ -20,7 +20,7 @@ class SelectButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) => PrimaryButton(
         isCircular: false,
         backgroundColor: ColorName.greyBase,
-        onPressed: onPressed,
+        onPressed: onPressed ?? (){},
         width: MediaQuery.of(context).size.width * 0.8,
         height: MediaQuery.of(context).size.height * 0.07,
         text: text,
