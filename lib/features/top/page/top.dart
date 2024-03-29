@@ -28,7 +28,7 @@ class TopPage extends ConsumerWidget {
             const SelectBox(),
             const SizedBox(height: 30),
             // const Positioned(bottom: 100, child: TopButton()),
-            const TopButton(),
+            TopButton(questionNumber: data.questionNumber,questionType:data.questionType,gradeType:data.gradeType),
           ],
         ),
       ),

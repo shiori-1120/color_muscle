@@ -17,8 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$QuestionState {
   int get questionNumber => throw _privateConstructorUsedError;
-  QuestionType? get questionType => throw _privateConstructorUsedError;
-  GradeType? get gradeType => throw _privateConstructorUsedError;
+  QuestionType get questionType => throw _privateConstructorUsedError;
+  GradeType get gradeType => throw _privateConstructorUsedError;
   Color get backgroundcolor => throw _privateConstructorUsedError;
   bool get screenEnabled => throw _privateConstructorUsedError; // デフォルト値を指定
   bool get isTrue => throw _privateConstructorUsedError;
@@ -37,8 +37,8 @@ abstract class $QuestionStateCopyWith<$Res> {
   @useResult
   $Res call(
       {int questionNumber,
-      QuestionType? questionType,
-      GradeType? gradeType,
+      QuestionType questionType,
+      GradeType gradeType,
       Color backgroundcolor,
       bool screenEnabled,
       bool isTrue,
@@ -59,8 +59,8 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
   @override
   $Res call({
     Object? questionNumber = null,
-    Object? questionType = freezed,
-    Object? gradeType = freezed,
+    Object? questionType = null,
+    Object? gradeType = null,
     Object? backgroundcolor = null,
     Object? screenEnabled = null,
     Object? isTrue = null,
@@ -71,14 +71,14 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
           ? _value.questionNumber
           : questionNumber // ignore: cast_nullable_to_non_nullable
               as int,
-      questionType: freezed == questionType
+      questionType: null == questionType
           ? _value.questionType
           : questionType // ignore: cast_nullable_to_non_nullable
-              as QuestionType?,
-      gradeType: freezed == gradeType
+              as QuestionType,
+      gradeType: null == gradeType
           ? _value.gradeType
           : gradeType // ignore: cast_nullable_to_non_nullable
-              as GradeType?,
+              as GradeType,
       backgroundcolor: null == backgroundcolor
           ? _value.backgroundcolor
           : backgroundcolor // ignore: cast_nullable_to_non_nullable
@@ -109,8 +109,8 @@ abstract class _$$QuestionStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {int questionNumber,
-      QuestionType? questionType,
-      GradeType? gradeType,
+      QuestionType questionType,
+      GradeType gradeType,
       Color backgroundcolor,
       bool screenEnabled,
       bool isTrue,
@@ -129,8 +129,8 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? questionNumber = null,
-    Object? questionType = freezed,
-    Object? gradeType = freezed,
+    Object? questionType = null,
+    Object? gradeType = null,
     Object? backgroundcolor = null,
     Object? screenEnabled = null,
     Object? isTrue = null,
@@ -141,14 +141,14 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
           ? _value.questionNumber
           : questionNumber // ignore: cast_nullable_to_non_nullable
               as int,
-      questionType: freezed == questionType
+      questionType: null == questionType
           ? _value.questionType
           : questionType // ignore: cast_nullable_to_non_nullable
-              as QuestionType?,
-      gradeType: freezed == gradeType
+              as QuestionType,
+      gradeType: null == gradeType
           ? _value.gradeType
           : gradeType // ignore: cast_nullable_to_non_nullable
-              as GradeType?,
+              as GradeType,
       backgroundcolor: null == backgroundcolor
           ? _value.backgroundcolor
           : backgroundcolor // ignore: cast_nullable_to_non_nullable
@@ -172,10 +172,10 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$QuestionStateImpl implements _QuestionState {
-  const _$QuestionStateImpl(
+  _$QuestionStateImpl(
       {required this.questionNumber,
-      this.questionType,
-      this.gradeType,
+      required this.questionType,
+      required this.gradeType,
       this.backgroundcolor = ColorName.whiteBase,
       this.screenEnabled = true,
       this.isTrue = false,
@@ -184,9 +184,9 @@ class _$QuestionStateImpl implements _QuestionState {
   @override
   final int questionNumber;
   @override
-  final QuestionType? questionType;
+  final QuestionType questionType;
   @override
-  final GradeType? gradeType;
+  final GradeType gradeType;
   @override
   @JsonKey()
   final Color backgroundcolor;
@@ -237,10 +237,10 @@ class _$QuestionStateImpl implements _QuestionState {
 }
 
 abstract class _QuestionState implements QuestionState {
-  const factory _QuestionState(
+  factory _QuestionState(
       {required final int questionNumber,
-      final QuestionType? questionType,
-      final GradeType? gradeType,
+      required final QuestionType questionType,
+      required final GradeType gradeType,
       final Color backgroundcolor,
       final bool screenEnabled,
       final bool isTrue,
@@ -249,9 +249,9 @@ abstract class _QuestionState implements QuestionState {
   @override
   int get questionNumber;
   @override
-  QuestionType? get questionType;
+  QuestionType get questionType;
   @override
-  GradeType? get gradeType;
+  GradeType get gradeType;
   @override
   Color get backgroundcolor;
   @override

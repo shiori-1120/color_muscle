@@ -1,8 +1,5 @@
 import 'package:color_muscle/components/primary_button.dart';
-import 'package:color_muscle/features/question/page/question.dart';
 import 'package:color_muscle/style/colors.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:color_muscle/features/top/view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -21,7 +18,7 @@ class SelectButton extends ConsumerWidget {
         isCircular: false,
         backgroundColor: ColorName.greyBase,
         onPressed: onPressed ?? (){},
-        width: MediaQuery.of(context).size.width * 0.8,
+        width: MediaQuery.of(context).size.width * 0.9,
         height: MediaQuery.of(context).size.height * 0.07,
         text: text,
       );

@@ -1,16 +1,26 @@
 import 'package:color_muscle/components/secondary_app_bar.dart';
 import 'package:color_muscle/features/question/components/select_button.dart';
+import 'package:color_muscle/features/top/grade_type.dart';
+import 'package:color_muscle/features/top/question_type.dart';
 import 'package:color_muscle/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:color_muscle/features/question/view_model.dart';
 
 class QuestionPage extends ConsumerWidget {
-  const QuestionPage({super.key});
+  final int questionNumber;
+  final QuestionType questionType;
+  final GradeType gradeType;
+
+  const QuestionPage(
+      {required this.questionNumber,
+      required this.questionType,
+      required this.gradeType,
+      super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(questionViewModelProvider);
+    final state = ref.watch(questionViewModelProvider(context,questionNumber,questionType,gradeType));
     return state.when(
         data: (data) => PopScope(
               canPop: false,
@@ -21,28 +31,29 @@ class QuestionPage extends ConsumerWidget {
                   Column(
                     children: [
                       const SizedBox(height: 20),
-                      const Text(
-                        '1問/5問',
-                        textAlign: TextAlign.center,
+                      const SizedBox(
+                        height: 20,
+                        child: Text(
+                          '1問/5問',
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                       const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                              height: 100, width: 100, color: Colors.amber),
+                              height: MediaQuery.of(context).size.height * 0.3,
+                              width: MediaQuery.of(context).size.width * 0.9,
+                              color: Colors.amber),
                         ],
                       ),
-                      const SizedBox(height: 20),
-                      const SizedBox(
-                        height: 100,
-                        width: 800,
-                      ),
+                      const SizedBox(height: 50),
                       SelectButton(
                         data.screenEnabled
                             ? () async {
                                 await ref
-                                    .read(questionViewModelProvider.notifier)
+                                    .read(questionViewModelProvider(context,questionNumber,questionType,gradeType).notifier)
                                     .showIconAndPopup(context);
                               }
                             : null,
@@ -55,7 +66,7 @@ class QuestionPage extends ConsumerWidget {
                         data.screenEnabled
                             ? () async {
                                 await ref
-                                    .read(questionViewModelProvider.notifier)
+                                    .read(questionViewModelProvider(context,questionNumber,questionType,gradeType).notifier)
                                     .showIconAndPopup(context);
                               }
                             : null,
@@ -68,7 +79,7 @@ class QuestionPage extends ConsumerWidget {
                         data.screenEnabled
                             ? () async {
                                 await ref
-                                    .read(questionViewModelProvider.notifier)
+                                    .read(questionViewModelProvider(context,questionNumber,questionType,gradeType).notifier)
                                     .showIconAndPopup(context);
                               }
                             : null,
@@ -81,7 +92,7 @@ class QuestionPage extends ConsumerWidget {
                         data.screenEnabled
                             ? () async {
                                 await ref
-                                    .read(questionViewModelProvider.notifier)
+                                    .read(questionViewModelProvider(context,questionNumber,questionType,gradeType).notifier)
                                     .showIconAndPopup(context);
                               }
                             : null,

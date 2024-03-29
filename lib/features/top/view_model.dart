@@ -15,20 +15,66 @@ class TopViewModel extends _$TopViewModel {
   ColorRepo get colorRepo => ref.read(colorRepoProvider.notifier);
   @override
   FutureOr<TopState> build() async {
+    const questionNumber = 1;
+    const questionType = QuestionType.originToColor;
+    const gradeType = GradeType.gradeThird;
     const state = TopState(
-        questionNumber: 3,
-        questionType: QuestionType.originToColor,
-        gradeType: GradeType.gradeThird);
+        questionNumber: questionNumber,
+        questionType: questionType,
+        gradeType: gradeType);
     return state;
   }
 
-  Future<void> changeQuestionType(QuestionType questionType) async {
-    final List<ColorClass> colors =
-        await colorRepo.getColorWithGradeFilter('1');
-    state = AsyncData(state.requireValue.copyWith(questionType: questionType));
+  // final List<ColorClass> colors =
+  //     await colorRepo.getColorWithGradeFilter('1');
+
+  Future<void> changeQuestionTypeRight(QuestionType questionType) async {
+    if (questionType == QuestionType.colorToName) {
+      state = AsyncData(
+          state.requireValue.copyWith(questionType: QuestionType.nameToColor));
+    } else if (questionType == QuestionType.nameToColor) {
+      state = AsyncData(state.requireValue
+          .copyWith(questionType: QuestionType.originToColor));
+    } else if (questionType == QuestionType.originToColor) {
+      state = AsyncData(
+          state.requireValue.copyWith(questionType: QuestionType.colorToName));
+    }
   }
 
-  void incrementQuestionNumber(int questionNumber) {
+  Future<void> changeQuestionTypeLeft(QuestionType questionType) async {
+    if (questionType == QuestionType.colorToName) {
+      state = AsyncData(state.requireValue
+          .copyWith(questionType: QuestionType.originToColor));
+    } else if (questionType == QuestionType.nameToColor) {
+      state = AsyncData(
+          state.requireValue.copyWith(questionType: QuestionType.colorToName));
+    } else if (questionType == QuestionType.originToColor) {
+      state = AsyncData(
+          state.requireValue.copyWith(questionType: QuestionType.nameToColor));
+    }
+  }
+
+  Future<void> upGradeType(GradeType gradeType) async {
+    if (gradeType == GradeType.gradeThird) {
+      state =
+          AsyncData(state.requireValue.copyWith(gradeType: GradeType.gradeTwo));
+    } else if (gradeType == GradeType.gradeTwo) {
+      state =
+          AsyncData(state.requireValue.copyWith(gradeType: GradeType.gradeOne));
+    }
+  }
+
+  Future<void> downGradeTypeRight(GradeType gradeType) async {
+    if (gradeType == GradeType.gradeOne) {
+      state =
+          AsyncData(state.requireValue.copyWith(gradeType: GradeType.gradeTwo));
+    } else if (gradeType == GradeType.gradeTwo) {
+      state = AsyncData(
+          state.requireValue.copyWith(gradeType: GradeType.gradeThird));
+    }
+  }
+
+  Future<void> incrementQuestionNumber(int questionNumber) async {
     if (state.value!.questionNumber < 5) {
       state = AsyncData(
         state.requireValue.copyWith(
@@ -42,14 +88,22 @@ class TopViewModel extends _$TopViewModel {
     if (state.value!.questionNumber > 1) {
       state = AsyncData(
         state.requireValue.copyWith(
-          questionNumber: state.value!.questionNumber-1,
+          questionNumber: state.value!.questionNumber - 1,
         ),
       );
     }
   }
 
-  Future<void> navigateToQuestionPage(BuildContext context)async{
-    await Navigator.push(
-              context, MaterialPageRoute(builder: (context) => QuestionPage()),);  
+  Future<void> navigateToQuestionPage(BuildContext context, int questionNumber,
+      QuestionType questionType, GradeType gradeType) async {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => QuestionPage(
+                questionNumber: questionNumber,
+                questionType: questionType,
+                gradeType: gradeType,
+              )),
+    );
   }
 }

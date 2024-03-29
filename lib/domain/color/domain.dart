@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+///////// a. パッケージをインポートし、自動生成されるファイルを記述 /////////
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // 生成されるdartファイルを記述

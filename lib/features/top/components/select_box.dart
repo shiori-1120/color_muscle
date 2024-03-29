@@ -62,7 +62,7 @@ class SelectBox extends ConsumerWidget {
                 IconButtonPart(
                   onPressed: () => ref
                       .read(topViewModelProvider.notifier)
-                      .changeQuestionType(QuestionType.originToColor),
+                      .changeQuestionTypeRight(data.questionType),
                   icon: const FaIcon(FontAwesomeIcons.arrowLeft),
                 ),
                 const SizedBox(
@@ -75,7 +75,7 @@ class SelectBox extends ConsumerWidget {
                 IconButtonPart(
                   onPressed: () => ref
                       .read(topViewModelProvider.notifier)
-                      .changeQuestionType(QuestionType.originToColor),
+                      .changeQuestionTypeLeft(data.questionType),
                   icon: const FaIcon(FontAwesomeIcons.arrowRight),
                 ),
               ],
@@ -89,7 +89,7 @@ class SelectBox extends ConsumerWidget {
                 IconButtonPart(
                   onPressed: () => ref
                       .read(topViewModelProvider.notifier)
-                      .changeQuestionType(QuestionType.originToColor),
+                      .downGradeTypeRight(data.gradeType),
                   icon: const FaIcon(FontAwesomeIcons.arrowLeft),
                 ),
                 const SizedBox(
@@ -102,7 +102,7 @@ class SelectBox extends ConsumerWidget {
                 IconButtonPart(
                   onPressed: () => ref
                       .read(topViewModelProvider.notifier)
-                      .changeQuestionType(QuestionType.originToColor),
+                      .upGradeType(data.gradeType),
                   icon: const FaIcon(FontAwesomeIcons.arrowRight),
                 ),
               ],
