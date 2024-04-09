@@ -9,20 +9,22 @@ part 'domain.g.dart';
 // freezedでコード生成するために「@freezed」を記述
 
 @freezed
-class ColorClass with _$ColorClass {
+class QuizClass with _$QuizClass {
   // withの後には「_$[class name]」の形式で記述
 
   // プロパティを指定
-  const factory ColorClass({
-    required String colorId,
-    String? colorName,
-    String? colorCode,
-    String? tags,
-    String? pccs,
-    String? grade,
-    String? origin,
-  }) = _ColorClass;
-  factory ColorClass.fromJson(Map<String, dynamic> json) => _$ColorClassFromJson(json);
+  const factory QuizClass({
+    required String id,
+    String? explanation,
+    String? quizStatement,
+    String? trueChoice,
+    String? falseChoice1,
+    String? falseChoice2,
+    String? falseChoice3,
+  
+  }) = _QuizClass;
+  factory QuizClass.fromJson(Map<String, dynamic> json) => _$QuizClassFromJson(json);
 
-  static String collectionName = 'color';
+  static String collectionName = 'quiz';
 }
+

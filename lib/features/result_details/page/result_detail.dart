@@ -1,7 +1,7 @@
-import 'package:color_muscle/components/primary_button.dart';
-import 'package:color_muscle/components/secondary_app_bar.dart';
-import 'package:color_muscle/features/result_details/view_model.dart';
-import 'package:color_muscle/style/colors.dart';
+import 'package:mottaina_eat/components/primary_button.dart';
+import 'package:mottaina_eat/components/secondary_app_bar.dart';
+import 'package:mottaina_eat/features/result_details/view_model.dart';
+import 'package:mottaina_eat/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

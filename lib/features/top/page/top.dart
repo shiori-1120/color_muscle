@@ -1,8 +1,8 @@
-import 'package:color_muscle/features/top/components/select_box.dart';
-import 'package:color_muscle/features/top/view_model.dart';
+import 'package:mottaina_eat/features/top/components/select_box.dart';
+import 'package:mottaina_eat/features/top/view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:color_muscle/components/primary_app_bar.dart';
-import 'package:color_muscle/features/top/components/top_button.dart';
+import 'package:mottaina_eat/components/primary_app_bar.dart';
+import 'package:mottaina_eat/features/top/components/top_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class TopPage extends ConsumerWidget {

@@ -1,26 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'view_model.dart';
+part of 'repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$questionViewModelHash() => r'1128f54706822343d669a9be717c78576cc815d8';
+String _$quizRepoHash() => r'6cefb41f6cb7c2700a23e244d2ee21923efea4c4';
 
-/// See also [QuestionViewModel].
-@ProviderFor(QuestionViewModel)
-final questionViewModelProvider =
-    AutoDisposeAsyncNotifierProvider<QuestionViewModel, QuestionState>.internal(
-  QuestionViewModel.new,
-  name: r'questionViewModelProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$questionViewModelHash,
+/// See also [QuizRepo].
+@ProviderFor(QuizRepo)
+final quizRepoProvider = NotifierProvider<QuizRepo, void>.internal(
+  QuizRepo.new,
+  name: r'quizRepoProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$quizRepoHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$QuestionViewModel = AutoDisposeAsyncNotifier<QuestionState>;
+typedef _$QuizRepo = Notifier<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter

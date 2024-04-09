@@ -1,26 +1,16 @@
-import 'package:color_muscle/components/secondary_app_bar.dart';
-import 'package:color_muscle/features/question/components/select_button.dart';
-import 'package:color_muscle/features/top/grade_type.dart';
-import 'package:color_muscle/features/top/question_type.dart';
-import 'package:color_muscle/style/colors.dart';
+import 'package:mottaina_eat/components/secondary_app_bar.dart';
+import 'package:mottaina_eat/features/question/components/select_button.dart';
+import 'package:mottaina_eat/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:color_muscle/features/question/view_model.dart';
+import 'package:mottaina_eat/features/question/view_model.dart';
 
 class QuestionPage extends ConsumerWidget {
-  final int questionNumber;
-  final QuestionType questionType;
-  final GradeType gradeType;
-
-  const QuestionPage(
-      {required this.questionNumber,
-      required this.questionType,
-      required this.gradeType,
-      super.key});
+  const QuestionPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(questionViewModelProvider(context,questionNumber,questionType,gradeType));
+    final state = ref.watch(questionViewModelProvider);
     return state.when(
         data: (data) => PopScope(
               canPop: false,
@@ -53,7 +43,7 @@ class QuestionPage extends ConsumerWidget {
                         data.screenEnabled
                             ? () async {
                                 await ref
-                                    .read(questionViewModelProvider(context,questionNumber,questionType,gradeType).notifier)
+                                    .read(questionViewModelProvider.notifier)
                                     .showIconAndPopup(context);
                               }
                             : null,
@@ -66,7 +56,7 @@ class QuestionPage extends ConsumerWidget {
                         data.screenEnabled
                             ? () async {
                                 await ref
-                                    .read(questionViewModelProvider(context,questionNumber,questionType,gradeType).notifier)
+                                    .read(questionViewModelProvider.notifier)
                                     .showIconAndPopup(context);
                               }
                             : null,
@@ -79,7 +69,7 @@ class QuestionPage extends ConsumerWidget {
                         data.screenEnabled
                             ? () async {
                                 await ref
-                                    .read(questionViewModelProvider(context,questionNumber,questionType,gradeType).notifier)
+                                    .read(questionViewModelProvider.notifier)
                                     .showIconAndPopup(context);
                               }
                             : null,
@@ -92,7 +82,7 @@ class QuestionPage extends ConsumerWidget {
                         data.screenEnabled
                             ? () async {
                                 await ref
-                                    .read(questionViewModelProvider(context,questionNumber,questionType,gradeType).notifier)
+                                    .read(questionViewModelProvider.notifier)
                                     .showIconAndPopup(context);
                               }
                             : null,

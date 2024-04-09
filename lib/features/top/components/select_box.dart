@@ -1,8 +1,8 @@
-import 'package:color_muscle/features/top/components/icon_bottun_part.dart';
-import 'package:color_muscle/features/top/components/text_part.dart';
-import 'package:color_muscle/features/top/question_type.dart';
-import 'package:color_muscle/features/top/view_model.dart';
-import 'package:color_muscle/style/colors.dart';
+import 'package:mottaina_eat/features/top/components/icon_bottun_part.dart';
+import 'package:mottaina_eat/features/top/components/text_part.dart';
+import 'package:mottaina_eat/features/top/question_type.dart';
+import 'package:mottaina_eat/features/top/view_model.dart';
+import 'package:mottaina_eat/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

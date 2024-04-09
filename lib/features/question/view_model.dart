@@ -1,27 +1,36 @@
-import 'package:color_muscle/domain/color/domain.dart';
-import 'package:color_muscle/domain/color/repository.dart';
-import 'package:color_muscle/features/top/grade_type.dart';
-import 'package:color_muscle/features/top/question_type.dart';
+import 'package:mottaina_eat/domain/quiz/domain.dart';
+import 'package:mottaina_eat/domain/quiz/repository.dart';
 import 'package:flutter/material.dart';
-import 'package:color_muscle/features/question/state.dart';
-import 'package:color_muscle/features/result/page/result.dart';
+import 'package:mottaina_eat/features/question/state.dart';
+import 'package:mottaina_eat/features/result/page/result.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
+import 'package:logger/logger.dart'; // ロガーパッケージをインポート
 part 'view_model.g.dart';
 
 @riverpod
 class QuestionViewModel extends _$QuestionViewModel {
-ColorRepo get colorRepo => ref.read(colorRepoProvider.notifier);
+  QuizRepo get quizRepo => ref.read(quizRepoProvider.notifier);
 
-  @override
-  FutureOr<QuestionState> build( BuildContext context, questionNumber,
-      QuestionType questionType, GradeType gradeType) async {
-    final state = QuestionState(
-        questionNumber: questionNumber,
-        questionType: questionType,
-        gradeType: gradeType);
-    return state;
+  final _logger = Logger();
+
+@override
+  FutureOr<QuestionState> build() async {
+    try {
+      final QuizClass quiz = await quizRepo.getFirstQuiz();
+      _logger.i('取得したQuizClass: $quiz'); // クイズデータをログ出力
+
+      final state = QuestionState(
+        quiz: quiz,
+      );
+
+      _logger.i('生成したQuestionState: $state'); // 生成したステートをログ出力
+      return state;
+    } catch (e) {
+      _logger.e('エラー発生: $e'); // 例外発生時のログ出力
+      rethrow;
+    }
   }
+  
 
   Future<void> showIconAndPopup(BuildContext context) async {
     final data = state.requireValue;
@@ -35,7 +44,7 @@ ColorRepo get colorRepo => ref.read(colorRepoProvider.notifier);
             canPop: false,
             child: AlertDialog(
               title: const Text('ポップアップ'),
-              content: const Text('ここに答えの詳細が表示されます'),
+              content: const Text('1'),
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
@@ -55,4 +64,5 @@ ColorRepo get colorRepo => ref.read(colorRepoProvider.notifier);
       );
     });
   }
+
 }

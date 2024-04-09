@@ -16,9 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$QuestionState {
-  int get questionNumber => throw _privateConstructorUsedError;
-  QuestionType get questionType => throw _privateConstructorUsedError;
-  GradeType get gradeType => throw _privateConstructorUsedError;
+  QuizClass get quiz => throw _privateConstructorUsedError;
   Color get backgroundcolor => throw _privateConstructorUsedError;
   bool get screenEnabled => throw _privateConstructorUsedError; // デフォルト値を指定
   bool get isTrue => throw _privateConstructorUsedError;
@@ -36,13 +34,13 @@ abstract class $QuestionStateCopyWith<$Res> {
       _$QuestionStateCopyWithImpl<$Res, QuestionState>;
   @useResult
   $Res call(
-      {int questionNumber,
-      QuestionType questionType,
-      GradeType gradeType,
+      {QuizClass quiz,
       Color backgroundcolor,
       bool screenEnabled,
       bool isTrue,
       bool isFalse});
+
+  $QuizClassCopyWith<$Res> get quiz;
 }
 
 /// @nodoc
@@ -58,27 +56,17 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? questionNumber = null,
-    Object? questionType = null,
-    Object? gradeType = null,
+    Object? quiz = null,
     Object? backgroundcolor = null,
     Object? screenEnabled = null,
     Object? isTrue = null,
     Object? isFalse = null,
   }) {
     return _then(_value.copyWith(
-      questionNumber: null == questionNumber
-          ? _value.questionNumber
-          : questionNumber // ignore: cast_nullable_to_non_nullable
-              as int,
-      questionType: null == questionType
-          ? _value.questionType
-          : questionType // ignore: cast_nullable_to_non_nullable
-              as QuestionType,
-      gradeType: null == gradeType
-          ? _value.gradeType
-          : gradeType // ignore: cast_nullable_to_non_nullable
-              as GradeType,
+      quiz: null == quiz
+          ? _value.quiz
+          : quiz // ignore: cast_nullable_to_non_nullable
+              as QuizClass,
       backgroundcolor: null == backgroundcolor
           ? _value.backgroundcolor
           : backgroundcolor // ignore: cast_nullable_to_non_nullable
@@ -97,6 +85,14 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
               as bool,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $QuizClassCopyWith<$Res> get quiz {
+    return $QuizClassCopyWith<$Res>(_value.quiz, (value) {
+      return _then(_value.copyWith(quiz: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -108,13 +104,14 @@ abstract class _$$QuestionStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int questionNumber,
-      QuestionType questionType,
-      GradeType gradeType,
+      {QuizClass quiz,
       Color backgroundcolor,
       bool screenEnabled,
       bool isTrue,
       bool isFalse});
+
+  @override
+  $QuizClassCopyWith<$Res> get quiz;
 }
 
 /// @nodoc
@@ -128,27 +125,17 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? questionNumber = null,
-    Object? questionType = null,
-    Object? gradeType = null,
+    Object? quiz = null,
     Object? backgroundcolor = null,
     Object? screenEnabled = null,
     Object? isTrue = null,
     Object? isFalse = null,
   }) {
     return _then(_$QuestionStateImpl(
-      questionNumber: null == questionNumber
-          ? _value.questionNumber
-          : questionNumber // ignore: cast_nullable_to_non_nullable
-              as int,
-      questionType: null == questionType
-          ? _value.questionType
-          : questionType // ignore: cast_nullable_to_non_nullable
-              as QuestionType,
-      gradeType: null == gradeType
-          ? _value.gradeType
-          : gradeType // ignore: cast_nullable_to_non_nullable
-              as GradeType,
+      quiz: null == quiz
+          ? _value.quiz
+          : quiz // ignore: cast_nullable_to_non_nullable
+              as QuizClass,
       backgroundcolor: null == backgroundcolor
           ? _value.backgroundcolor
           : backgroundcolor // ignore: cast_nullable_to_non_nullable
@@ -173,20 +160,22 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
 
 class _$QuestionStateImpl implements _QuestionState {
   _$QuestionStateImpl(
-      {required this.questionNumber,
-      required this.questionType,
-      required this.gradeType,
+      {this.quiz = const QuizClass(
+          id: '1',
+          explanation: '',
+          quizStatement: '',
+          trueChoice: '',
+          falseChoice1: '',
+          falseChoice2: '',
+          falseChoice3: ''),
       this.backgroundcolor = ColorName.whiteBase,
       this.screenEnabled = true,
       this.isTrue = false,
       this.isFalse = false});
 
   @override
-  final int questionNumber;
-  @override
-  final QuestionType questionType;
-  @override
-  final GradeType gradeType;
+  @JsonKey()
+  final QuizClass quiz;
   @override
   @JsonKey()
   final Color backgroundcolor;
@@ -203,7 +192,7 @@ class _$QuestionStateImpl implements _QuestionState {
 
   @override
   String toString() {
-    return 'QuestionState(questionNumber: $questionNumber, questionType: $questionType, gradeType: $gradeType, backgroundcolor: $backgroundcolor, screenEnabled: $screenEnabled, isTrue: $isTrue, isFalse: $isFalse)';
+    return 'QuestionState(quiz: $quiz, backgroundcolor: $backgroundcolor, screenEnabled: $screenEnabled, isTrue: $isTrue, isFalse: $isFalse)';
   }
 
   @override
@@ -211,12 +200,7 @@ class _$QuestionStateImpl implements _QuestionState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$QuestionStateImpl &&
-            (identical(other.questionNumber, questionNumber) ||
-                other.questionNumber == questionNumber) &&
-            (identical(other.questionType, questionType) ||
-                other.questionType == questionType) &&
-            (identical(other.gradeType, gradeType) ||
-                other.gradeType == gradeType) &&
+            (identical(other.quiz, quiz) || other.quiz == quiz) &&
             (identical(other.backgroundcolor, backgroundcolor) ||
                 other.backgroundcolor == backgroundcolor) &&
             (identical(other.screenEnabled, screenEnabled) ||
@@ -226,8 +210,8 @@ class _$QuestionStateImpl implements _QuestionState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, questionNumber, questionType,
-      gradeType, backgroundcolor, screenEnabled, isTrue, isFalse);
+  int get hashCode => Object.hash(
+      runtimeType, quiz, backgroundcolor, screenEnabled, isTrue, isFalse);
 
   @JsonKey(ignore: true)
   @override
@@ -238,20 +222,14 @@ class _$QuestionStateImpl implements _QuestionState {
 
 abstract class _QuestionState implements QuestionState {
   factory _QuestionState(
-      {required final int questionNumber,
-      required final QuestionType questionType,
-      required final GradeType gradeType,
+      {final QuizClass quiz,
       final Color backgroundcolor,
       final bool screenEnabled,
       final bool isTrue,
       final bool isFalse}) = _$QuestionStateImpl;
 
   @override
-  int get questionNumber;
-  @override
-  QuestionType get questionType;
-  @override
-  GradeType get gradeType;
+  QuizClass get quiz;
   @override
   Color get backgroundcolor;
   @override

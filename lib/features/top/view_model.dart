@@ -1,9 +1,9 @@
-import 'package:color_muscle/domain/color/domain.dart';
-import 'package:color_muscle/domain/color/repository.dart';
-import 'package:color_muscle/features/question/page/question.dart';
-import 'package:color_muscle/features/top/grade_type.dart';
-import 'package:color_muscle/features/top/question_type.dart';
-import 'package:color_muscle/features/top/state.dart';
+import 'package:mottaina_eat/domain/quiz/domain.dart';
+import 'package:mottaina_eat/domain/quiz/repository.dart';
+import 'package:mottaina_eat/features/question/page/question.dart';
+import 'package:mottaina_eat/features/top/grade_type.dart';
+import 'package:mottaina_eat/features/top/question_type.dart';
+import 'package:mottaina_eat/features/top/state.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 // 追加
@@ -12,7 +12,7 @@ part 'view_model.g.dart';
 
 @riverpod
 class TopViewModel extends _$TopViewModel {
-  ColorRepo get colorRepo => ref.read(colorRepoProvider.notifier);
+  QuizRepo get colorRepo => ref.read(quizRepoProvider.notifier);
   @override
   FutureOr<TopState> build() async {
     const questionNumber = 1;
@@ -98,12 +98,7 @@ class TopViewModel extends _$TopViewModel {
       QuestionType questionType, GradeType gradeType) async {
     Navigator.push(
       context,
-      MaterialPageRoute(
-          builder: (context) => QuestionPage(
-                questionNumber: questionNumber,
-                questionType: questionType,
-                gradeType: gradeType,
-              )),
+      MaterialPageRoute(builder: (context) => QuestionPage()),
     );
   }
 }

@@ -1,7 +1,7 @@
-import 'package:color_muscle/features/top/page/top.dart';
+import 'package:mottaina_eat/features/top/page/top.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:color_muscle/style/colors.dart';
+import 'package:mottaina_eat/style/colors.dart';
 
 class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   const PrimaryAppBar({

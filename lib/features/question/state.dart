@@ -1,7 +1,7 @@
-import 'package:color_muscle/domain/color/domain.dart';
-import 'package:color_muscle/features/top/grade_type.dart';
-import 'package:color_muscle/features/top/question_type.dart';
-import 'package:color_muscle/style/colors.dart';
+import 'package:mottaina_eat/domain/quiz/domain.dart';
+import 'package:mottaina_eat/features/top/grade_type.dart';
+import 'package:mottaina_eat/features/top/question_type.dart';
+import 'package:mottaina_eat/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -15,10 +15,16 @@ class QuestionState with _$QuestionState {
 
   // プロパティを指定
   factory QuestionState({
-    required int questionNumber,
-    required QuestionType questionType,
-    required GradeType gradeType,
-    @Default(ColorName.whiteBase) Color backgroundcolor, 
+    @Default(QuizClass(
+        id: '1',
+        explanation: 'エラー',
+        quizStatement: 'エラー',
+        trueChoice: 'エラー',
+        falseChoice1: 'エラー',
+        falseChoice2: 'エラー',
+        falseChoice3: 'エラー'))
+    QuizClass quiz,
+    @Default(ColorName.whiteBase) Color backgroundcolor,
     @Default(true) bool screenEnabled, // デフォルト値を指定
     @Default(false) bool isTrue,
     @Default(false) bool isFalse,

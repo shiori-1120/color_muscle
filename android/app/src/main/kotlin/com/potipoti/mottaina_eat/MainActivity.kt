@@ -1,4 +1,4 @@
-package com.potipoti.color_muscle
+package com.potipoti.mottaina_eat
 
 import io.flutter.embedding.android.FlutterActivity
 
