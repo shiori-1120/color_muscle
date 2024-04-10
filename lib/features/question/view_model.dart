@@ -1,10 +1,15 @@
+import 'dart:js';
+import 'dart:math';
+
 import 'package:mottaina_eat/domain/quiz/domain.dart';
 import 'package:mottaina_eat/domain/quiz/repository.dart';
 import 'package:flutter/material.dart';
+import 'package:mottaina_eat/features/question/choice_class.dart';
 import 'package:mottaina_eat/features/question/state.dart';
 import 'package:mottaina_eat/features/result/page/result.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:logger/logger.dart'; // ロガーパッケージをインポート
+
 part 'view_model.g.dart';
 
 @riverpod
@@ -13,28 +18,40 @@ class QuestionViewModel extends _$QuestionViewModel {
 
   final _logger = Logger();
 
-@override
+  @override
   FutureOr<QuestionState> build() async {
-    try {
-      final QuizClass quiz = await quizRepo.getFirstQuiz();
-      _logger.i('取得したQuizClass: $quiz'); // クイズデータをログ出力
-
-      final state = QuestionState(
-        quiz: quiz,
-      );
-
-      _logger.i('生成したQuestionState: $state'); // 生成したステートをログ出力
-      return state;
-    } catch (e) {
-      _logger.e('エラー発生: $e'); // 例外発生時のログ出力
-      rethrow;
-    }
+    return _generateQuestionState();
   }
-  
 
-  Future<void> showIconAndPopup(BuildContext context) async {
+  FutureOr<QuestionState> _generateQuestionState() async {
+    final QuizClass quiz = await quizRepo.getFirstQuiz();
+
+    final List<ChoiceClass> choiceClass = [
+      ChoiceClass(quiz.falseChoice1, 1),
+      ChoiceClass(quiz.falseChoice2, 2),
+      ChoiceClass(quiz.falseChoice3, 3),
+      ChoiceClass(quiz.trueChoice, 4),
+    ];
+
+    Random random = Random();
+    choiceClass.shuffle(random);
+
+    final state = QuestionState(
+      quiz: quiz,
+      choiceClass: choiceClass,
+    );
+
+    return state;
+  }
+
+  Future<void> showIconAndPopup(BuildContext context, int order) async {
     final data = state.requireValue;
-    state = AsyncData(data.copyWith(isTrue: true, screenEnabled: false));
+    state = AsyncData(data.copyWith(screenEnabled: false));
+    if (order == 4) {
+      state = AsyncData(data.copyWith(isTrue: true));
+    } else {
+      state = AsyncData(data.copyWith(isFalse: true));
+    }
     await Future.delayed(const Duration(seconds: 1), () {
       showDialog(
         context: context,
@@ -43,11 +60,11 @@ class QuestionViewModel extends _$QuestionViewModel {
           return PopScope(
             canPop: false,
             child: AlertDialog(
-              title: const Text('ポップアップ'),
-              content: const Text('1'),
+              content: Text(data.quiz?.explanation ?? ''),
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
+                    ref.read(questionViewModelProvider.notifier).refresh();
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -63,6 +80,11 @@ class QuestionViewModel extends _$QuestionViewModel {
         },
       );
     });
+    state = AsyncData(data.copyWith(isTrue: false, isFalse: false));
   }
 
+  void refresh() async{
+    state = const AsyncLoading();
+    state = await AsyncValue.guard(() => _generateQuestionState());
+  }
 }

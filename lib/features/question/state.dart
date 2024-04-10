@@ -1,9 +1,10 @@
+import 'dart:html';
+
 import 'package:mottaina_eat/domain/quiz/domain.dart';
-import 'package:mottaina_eat/features/top/grade_type.dart';
-import 'package:mottaina_eat/features/top/question_type.dart';
 import 'package:mottaina_eat/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:mottaina_eat/features/question/choice_class.dart';
 
 // 生成されるdartファイルを記述
 part 'state.freezed.dart';
@@ -15,6 +16,7 @@ class QuestionState with _$QuestionState {
 
   // プロパティを指定
   factory QuestionState({
+
     @Default(QuizClass(
         id: '1',
         explanation: 'エラー',
@@ -23,10 +25,11 @@ class QuestionState with _$QuestionState {
         falseChoice1: 'エラー',
         falseChoice2: 'エラー',
         falseChoice3: 'エラー'))
-    QuizClass quiz,
-    @Default(ColorName.whiteBase) Color backgroundcolor,
+     QuizClass? quiz,
+    @Default(ColorName.whiteBase) Color? backgroundcolor,
     @Default(true) bool screenEnabled, // デフォルト値を指定
     @Default(false) bool isTrue,
     @Default(false) bool isFalse,
+    required List<ChoiceClass> choiceClass,
   }) = _QuestionState;
 }
