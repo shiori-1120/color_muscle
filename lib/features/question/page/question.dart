@@ -42,129 +42,37 @@ class QuestionPage extends ConsumerWidget {
                       Column(
                         children: [
                           SizedBox(
-                              height: MediaQuery.of(context).size.height *
-                                      0.07 *
-                                      4 +
-                                  100,
-                              child: ListView(
-                                children: <Widget>[
-                                  Column(
-                                    children: [
-                                      SelectButton(
-                                        data.choiceClass[0].number,
-                                        data.screenEnabled
-                                            ? () async {
-                                                await ref
-                                                    .read(
-                                                        questionViewModelProvider
-                                                            .notifier)
-                                                    .showIconAndPopup(
-                                                        context,  data.choiceClass[0].number);
-                                              }
-                                            : null,
-                                         data.choiceClass[0].text ?? '',
-                                      ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                    ],
-                                  ),
-                                   Column(
-                                    children: [
-                                      SelectButton(
-                                        data.choiceClass[1].number,
-                                        data.screenEnabled
-                                            ? () async {
-                                                await ref
-                                                    .read(
-                                                        questionViewModelProvider
-                                                            .notifier)
-                                                    .showIconAndPopup(
-                                                        context,  data.choiceClass[1].number);
-                                              }
-                                            : null,
-                                         data.choiceClass[1].text ?? '',
-                                      ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                    ],
-                                  ),
-                                   Column(
-                                    children: [
-                                      SelectButton(
-                                        data.choiceClass[2].number,
-                                        data.screenEnabled
-                                            ? () async {
-                                                await ref
-                                                    .read(
-                                                        questionViewModelProvider
-                                                            .notifier)
-                                                    .showIconAndPopup(
-                                                        context,  data.choiceClass[2].number);
-                                              }
-                                            : null,
-                                         data.choiceClass[2].text ?? '',
-                                      ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                    ],
-                                  ),
-                                   Column(
-                                    children: [
-                                      SelectButton(
-                                        data.choiceClass[3].number,
-                                        data.screenEnabled
-                                            ? () async {
-                                                await ref
-                                                    .read(
-                                                        questionViewModelProvider
-                                                            .notifier)
-                                                    .showIconAndPopup(
-                                                        context,  data.choiceClass[3].number);
-                                              }
-                                            : null,
-                                         data.choiceClass[3].text ?? '',
-                                      ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              )
-
-                              // ListView.builder(
-                              //   itemCount: 4,
-                              //   itemBuilder: (BuildContext context, int index) {
-                              //     int choiceIndex = data.order[index];
-                              //     String? choice = data.choices[choiceIndex];
-                              //     return Column(
-                              //       children: [
-                              //         SelectButton(
-                              //           choiceIndex,
-                              //           choice ?? '',
-                              //           data.screenEnabled
-                              //               ? () async {
-                              //                   await ref
-                              //                       .read(
-                              //                           questionViewModelProvider
-                              //                               .notifier)
-                              //                       .showIconAndPopup(
-                              //                           context, choiceIndex);
-                              //                 }
-                              //               : null,
-                              //           choice ?? '',
-                              //         ),
-                              //         const SizedBox(
-                              //           height: 20,
-                              //         ),
-                              //       ],
-                              //     );
-                              //   },
-                              // ),
-                              ),
+                            height:
+                                MediaQuery.of(context).size.height * 0.07 * 4 +
+                                    100,
+                            child: Column(
+                              children:
+                                  List.generate(data.choices.length, (index) {
+                                final choice = data.choices[index];
+                                return Column(
+                                  children: [
+                                    SelectButton(
+                                      choice.number,
+                                      data.screenEnabled
+                                          ? () async {
+                                              await ref
+                                                  .read(
+                                                      questionViewModelProvider
+                                                          .notifier)
+                                                  .showIconAndPopup(
+                                                      context, choice.number);
+                                            }
+                                          : null,
+                                      data.quiz.explanation ?? '',
+                                    ),
+                                    const SizedBox(
+                                      height: 20,
+                                    ),
+                                  ],
+                                );
+                              }),
+                            ),
+                          ),
                         ],
                       ),
                     ],
@@ -188,7 +96,14 @@ class QuestionPage extends ConsumerWidget {
                 ]),
               ),
             ),
-        error: (error, StackTrace) => const SizedBox(),
+        error: (error, stackTrace) {
+          // エラーログを出力する
+          print('Error occurred: $error');
+          print('Stack trace: $stackTrace');
+
+          // エラーログが表示されるSizedBoxを返す
+          return const SizedBox();
+        },
         loading: () => const Center(
               child: CircularProgressIndicator(),
             ));

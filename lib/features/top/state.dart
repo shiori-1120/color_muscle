@@ -1,5 +1,3 @@
-import 'package:mottaina_eat/features/top/grade_type.dart';
-import 'package:mottaina_eat/features/top/question_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // 生成されるdartファイルを記述
@@ -12,9 +10,6 @@ class TopState with _$TopState {
 
   // プロパティを指定
   const factory TopState({
-    required int questionNumber,
-    required QuestionType questionType,
-    required GradeType gradeType,
-
+    @Default(0) int index,
   }) = _TopState;
 }

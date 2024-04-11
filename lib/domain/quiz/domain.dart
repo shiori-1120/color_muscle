@@ -1,5 +1,6 @@
 ///////// a. パッケージをインポートし、自動生成されるファイルを記述 /////////
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:mottaina_eat/features/question/choice_class.dart';
 
 // 生成されるdartファイルを記述
 part 'domain.freezed.dart';
@@ -21,7 +22,6 @@ class QuizClass with _$QuizClass {
     String? falseChoice1,
     String? falseChoice2,
     String? falseChoice3,
-  
   }) = _QuizClass;
   factory QuizClass.fromJson(Map<String, dynamic> json) => _$QuizClassFromJson(json);
 
