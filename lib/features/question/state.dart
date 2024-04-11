@@ -1,4 +1,5 @@
 import 'package:mottaina_eat/domain/quiz/domain.dart';
+import 'package:mottaina_eat/features/question/result_class.dart';
 import 'package:mottaina_eat/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,6 +19,9 @@ class QuestionState with _$QuestionState {
     required QuizClass quiz,
     required List<ChoiceClass> choices,
     required int indexSecond,
+    int? quizLength,
+    String? nextText,
+    List<ResultClass>? results,
     @Default(ColorName.whiteBase) Color? backgroundcolor,
     @Default(true) bool screenEnabled, // デフォルト値を指定
     @Default(false) bool isTrue,

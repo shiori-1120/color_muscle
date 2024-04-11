@@ -58,6 +58,16 @@ class QuizRepo extends _$QuizRepo {
     return quiz;
   }
 
+  Future<int> getQuizLength() async {
+    final List<QuizClass> quizList = [
+      ...await collection
+          .get()
+          .then((value) => value.docs.map((e) => e.data()).toList()),
+    ];
+    final int  quizLength = quizList.length;
+    return quizLength;
+  }
+
   Future<List<ChoiceClass>> getChoices(int index) async {
     final List<QuizClass> quizList = [
       ...await collection

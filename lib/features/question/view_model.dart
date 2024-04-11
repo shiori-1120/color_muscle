@@ -3,6 +3,7 @@ import 'package:mottaina_eat/domain/quiz/domain.dart';
 import 'package:mottaina_eat/domain/quiz/repository.dart';
 import 'package:mottaina_eat/features/question/choice_class.dart';
 import 'package:mottaina_eat/features/question/page/question.dart';
+import 'package:mottaina_eat/features/question/result_class.dart';
 import 'package:mottaina_eat/features/question/state.dart';
 import 'package:mottaina_eat/features/result/page/result.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -15,15 +16,15 @@ class QuestionViewModel extends _$QuestionViewModel {
 
   @override
   FutureOr<QuestionState> build(int index) async {
-    print('indexの値$index');
     final int indexSecond = index;
-    print('indexSecondの値$index');
+    final int quizLength = await quizRepo.getQuizLength();
     final QuizClass quiz = await getQuiz();
     final List<ChoiceClass> choices = await getChoices();
     final state = QuestionState(
       indexSecond: indexSecond,
       quiz: quiz,
       choices: choices,
+      quizLength: quizLength,
     );
     return state;
   }
@@ -38,18 +39,35 @@ class QuestionViewModel extends _$QuestionViewModel {
     return choices;
   }
 
+  Future<void> selected(BuildContext context, int number, int index) async {
+    final data = state.requireValue;
+    state = AsyncData(data.copyWith(screenEnabled: false));
+    final List<ResultClass> results = [];
+    if (number == 0) {
+      results.add(ResultClass(data.quiz.id, true));
+      state = AsyncData(data.copyWith(results: results));
+    } else {
+      results.add(ResultClass(data.quiz.id, false));
+    }
+    state = AsyncData(data.copyWith(results: results));
+    print('$state');
+    if (index == data.quizLength) {
+      state = AsyncData(data.copyWith(nextText: '結果を見る'));
+    } else {
+      state = AsyncData(data.copyWith(nextText: '次の問題へ'));
+    }
+  }
+
+  Future<void> showIconTF(BuildContext context, int index) async {}
+
   Future<void> showIconAndPopup(
       BuildContext context, int number, int index) async {
     final data = state.requireValue;
-    final int index2 = data.indexSecond;
-    state = AsyncData(data.copyWith(indexSecond: index + 1));
-    print('画面遷移中のindex$index');
-    print('画面遷移中のindex$index2');
     state = AsyncData(data.copyWith(screenEnabled: false));
     if (number == 0) {
-      state = AsyncData(data.copyWith(isTrue: true));
+      state = await AsyncData(data.copyWith(isTrue: true));
     } else {
-      state = AsyncData(data.copyWith(isFalse: true));
+      state = await AsyncData(data.copyWith(isFalse: true));
     }
     await Future.delayed(const Duration(seconds: 1), () {
       showDialog(
@@ -75,13 +93,12 @@ class QuestionViewModel extends _$QuestionViewModel {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              QuestionPage(index: data.indexSecond),
+                          builder: (context) => QuestionPage(index: index),
                         ),
                       );
                     }
                   },
-                  child: Text('次の問題へ進む$index'),
+                  child: Text(data.nextText ?? ''),
                 ),
               ],
             ),
@@ -89,6 +106,5 @@ class QuestionViewModel extends _$QuestionViewModel {
         },
       );
     });
-    state = AsyncData(data.copyWith(isTrue: false, isFalse: false));
   }
 }
