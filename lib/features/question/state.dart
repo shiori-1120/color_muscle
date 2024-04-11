@@ -17,7 +17,7 @@ class QuestionState with _$QuestionState {
     // required List<SubQuizClass> subQuizClass,
     required QuizClass quiz,
     required List<ChoiceClass> choices,
-    required int index,
+    required int indexSecond,
     @Default(ColorName.whiteBase) Color? backgroundcolor,
     @Default(true) bool screenEnabled, // デフォルト値を指定
     @Default(false) bool isTrue,

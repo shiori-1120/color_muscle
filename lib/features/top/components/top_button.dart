@@ -18,7 +18,7 @@ class TopButton extends ConsumerWidget {
         onPressed: () =>  Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) =>  QuestionPage(),
+        builder: (context) =>  const QuestionPage(index: 0,),
       ),
     ),
         width: MediaQuery.of(context).size.width * 0.8,

@@ -12,63 +12,40 @@ part 'view_model.g.dart';
 @riverpod
 class QuestionViewModel extends _$QuestionViewModel {
   QuizRepo get quizRepo => ref.read(quizRepoProvider.notifier);
+
   @override
-  FutureOr<QuestionState> build() async {
-        print('あああああああああああああああああああああああああああああ');
-
-        // Stateの取得
-  final stateAsync = ref.watch(questionViewModelProvider);
-  // StateがAsyncLoading状態でないことを確認し、requireValueを呼び出す
-  if (stateAsync is AsyncData<QuestionState>) {
-    final data = stateAsync.requireValue;
-
+  FutureOr<QuestionState> build(int index) async {
+    print('indexの値$index');
+    final int indexSecond = index;
+    print('indexSecondの値$index');
     final QuizClass quiz = await getQuiz();
-    print('$quiz');
     final List<ChoiceClass> choices = await getChoices();
-    print('$choices');
-    final index = await getindex();
-    print('$index');
     final state = QuestionState(
-      index: index,
+      indexSecond: indexSecond,
       quiz: quiz,
       choices: choices,
     );
-    print('$state');
     return state;
-  }
-  else {
-    // StateがAsyncLoading状態でない場合の処理
-    // 例えばローディング中のUIを表示するなど
-    return QuestionState(
-      index: 0, // Set appropriate initial values for index, quiz, and choices
-      quiz: const QuizClass(id: '1'), // Example: Create a new QuizClass instance
-      choices: [], // Example: Initialize choices as an empty list
-    );
-  }
-}
-
-  FutureOr<int> getindex() async {
-    final data = state.requireValue;
-    final int index = data.index;
-    return index;
   }
 
   FutureOr<QuizClass> getQuiz() async {
-    final data = state.requireValue;
-    final QuizClass quiz = await quizRepo.getQuiz(data.index);
+    final QuizClass quiz = await quizRepo.getQuiz(index);
     return quiz;
   }
 
   FutureOr<List<ChoiceClass>> getChoices() async {
-    final data = state.requireValue;
-    final List<ChoiceClass> choices = await quizRepo.getChoices(data.index);
+    final List<ChoiceClass> choices = await quizRepo.getChoices(index);
     return choices;
   }
 
-  Future<void> showIconAndPopup(BuildContext context, int number) async {
+  Future<void> showIconAndPopup(
+      BuildContext context, int number, int index) async {
     final data = state.requireValue;
-    state =
-        AsyncData(data.copyWith(screenEnabled: false, index: data.index + 1));
+    final int index2 = data.indexSecond;
+    state = AsyncData(data.copyWith(indexSecond: index + 1));
+    print('画面遷移中のindex$index');
+    print('画面遷移中のindex$index2');
+    state = AsyncData(data.copyWith(screenEnabled: false));
     if (number == 0) {
       state = AsyncData(data.copyWith(isTrue: true));
     } else {
@@ -86,7 +63,7 @@ class QuestionViewModel extends _$QuestionViewModel {
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
-                    if (data.index == 2) {
+                    if (data.indexSecond == 1) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -94,15 +71,17 @@ class QuestionViewModel extends _$QuestionViewModel {
                         ),
                       );
                     } else {
+                      build(data.indexSecond);
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => QuestionPage(),
+                          builder: (context) =>
+                              QuestionPage(index: data.indexSecond),
                         ),
                       );
                     }
                   },
-                  child: const Text('次の問題へ進む'),
+                  child: Text('次の問題へ進む$index'),
                 ),
               ],
             ),
