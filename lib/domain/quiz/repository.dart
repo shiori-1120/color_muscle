@@ -29,32 +29,22 @@ class QuizRepo extends _$QuizRepo {
   @override
   void build() {}
 
-  Future<List<SubQuizClass>> getQuizes() async {
-    final List<QuizClass> quizList = [
+  Future<List<QuizClass>> getQuizzes() async {
+    final List<QuizClass> quizzes = [
       ...await collection
           .get()
           .then((value) => value.docs.map((e) => e.data()).toList()),
     ];
-    final List<SubQuizClass> subQuizClass = [];
-
-    for (int i = 0; i < quizList.length; i++) {
-      final quiz = quizList[i];
-      subQuizClass.add(SubQuizClass(
-        quizList[i].id,
-        quizList[i].explanation ?? 'エラー',
-        quizList[i].quizStatement ?? '',
-      ));
-    }
-    return subQuizClass;
+    return quizzes;
   }
 
   Future<QuizClass> getQuiz(int index) async {
-    final List<QuizClass> quizList = [
+    final List<QuizClass> quizzes = [
       ...await collection
           .get()
           .then((value) => value.docs.map((e) => e.data()).toList()),
     ];
-    final quiz = quizList[index];
+    final quiz = quizzes[index];
     return quiz;
   }
 

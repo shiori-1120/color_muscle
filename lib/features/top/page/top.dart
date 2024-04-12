@@ -1,4 +1,3 @@
-import 'package:mottaina_eat/features/top/components/select_box.dart';
 import 'package:mottaina_eat/features/top/view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mottaina_eat/components/primary_app_bar.dart';

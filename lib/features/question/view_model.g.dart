@@ -6,7 +6,7 @@ part of 'view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$questionViewModelHash() => r'b1cadfd643458189b9147931ef87d164c486b224';
+String _$questionViewModelHash() => r'9f24aa9d85cab032ccc307b44e77b43e6b4a154b';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -32,9 +32,11 @@ class _SystemHash {
 abstract class _$QuestionViewModel
     extends BuildlessAutoDisposeAsyncNotifier<QuestionState> {
   late final int index;
+  late final List<ResultClass> results;
 
   FutureOr<QuestionState> build(
     int index,
+    List<ResultClass> results,
   );
 }
 
@@ -50,9 +52,11 @@ class QuestionViewModelFamily extends Family<AsyncValue<QuestionState>> {
   /// See also [QuestionViewModel].
   QuestionViewModelProvider call(
     int index,
+    List<ResultClass> results,
   ) {
     return QuestionViewModelProvider(
       index,
+      results,
     );
   }
 
@@ -63,6 +67,7 @@ class QuestionViewModelFamily extends Family<AsyncValue<QuestionState>> {
   ) {
     return call(
       provider.index,
+      provider.results,
     );
   }
 
@@ -87,8 +92,11 @@ class QuestionViewModelProvider extends AutoDisposeAsyncNotifierProviderImpl<
   /// See also [QuestionViewModel].
   QuestionViewModelProvider(
     int index,
+    List<ResultClass> results,
   ) : this._internal(
-          () => QuestionViewModel()..index = index,
+          () => QuestionViewModel()
+            ..index = index
+            ..results = results,
           from: questionViewModelProvider,
           name: r'questionViewModelProvider',
           debugGetCreateSourceHash:
@@ -99,6 +107,7 @@ class QuestionViewModelProvider extends AutoDisposeAsyncNotifierProviderImpl<
           allTransitiveDependencies:
               QuestionViewModelFamily._allTransitiveDependencies,
           index: index,
+          results: results,
         );
 
   QuestionViewModelProvider._internal(
@@ -109,9 +118,11 @@ class QuestionViewModelProvider extends AutoDisposeAsyncNotifierProviderImpl<
     required super.debugGetCreateSourceHash,
     required super.from,
     required this.index,
+    required this.results,
   }) : super.internal();
 
   final int index;
+  final List<ResultClass> results;
 
   @override
   FutureOr<QuestionState> runNotifierBuild(
@@ -119,6 +130,7 @@ class QuestionViewModelProvider extends AutoDisposeAsyncNotifierProviderImpl<
   ) {
     return notifier.build(
       index,
+      results,
     );
   }
 
@@ -127,13 +139,16 @@ class QuestionViewModelProvider extends AutoDisposeAsyncNotifierProviderImpl<
     return ProviderOverride(
       origin: this,
       override: QuestionViewModelProvider._internal(
-        () => create()..index = index,
+        () => create()
+          ..index = index
+          ..results = results,
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
         index: index,
+        results: results,
       ),
     );
   }
@@ -146,13 +161,16 @@ class QuestionViewModelProvider extends AutoDisposeAsyncNotifierProviderImpl<
 
   @override
   bool operator ==(Object other) {
-    return other is QuestionViewModelProvider && other.index == index;
+    return other is QuestionViewModelProvider &&
+        other.index == index &&
+        other.results == results;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
     hash = _SystemHash.combine(hash, index.hashCode);
+    hash = _SystemHash.combine(hash, results.hashCode);
 
     return _SystemHash.finish(hash);
   }
@@ -162,6 +180,9 @@ mixin QuestionViewModelRef
     on AutoDisposeAsyncNotifierProviderRef<QuestionState> {
   /// The parameter `index` of this provider.
   int get index;
+
+  /// The parameter `results` of this provider.
+  List<ResultClass> get results;
 }
 
 class _QuestionViewModelProviderElement
@@ -171,6 +192,9 @@ class _QuestionViewModelProviderElement
 
   @override
   int get index => (origin as QuestionViewModelProvider).index;
+  @override
+  List<ResultClass> get results =>
+      (origin as QuestionViewModelProvider).results;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter

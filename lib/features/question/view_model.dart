@@ -15,13 +15,12 @@ class QuestionViewModel extends _$QuestionViewModel {
   QuizRepo get quizRepo => ref.read(quizRepoProvider.notifier);
 
   @override
-  FutureOr<QuestionState> build(int index) async {
-    final int indexSecond = index;
+  FutureOr<QuestionState> build(int index, List<ResultClass> results) async {
     final int quizLength = await quizRepo.getQuizLength();
     final QuizClass quiz = await getQuiz();
     final List<ChoiceClass> choices = await getChoices();
+
     final state = QuestionState(
-      indexSecond: indexSecond,
       quiz: quiz,
       choices: choices,
       quizLength: quizLength,
@@ -39,35 +38,42 @@ class QuestionViewModel extends _$QuestionViewModel {
     return choices;
   }
 
-  Future<void> selected(BuildContext context, int number, int index) async {
+  Future<void> next(int index) async {
     final data = state.requireValue;
-    state = AsyncData(data.copyWith(screenEnabled: false));
-    final List<ResultClass> results = [];
-    if (number == 0) {
-      results.add(ResultClass(data.quiz.id, true));
-      state = AsyncData(data.copyWith(results: results));
-    } else {
-      results.add(ResultClass(data.quiz.id, false));
-    }
-    state = AsyncData(data.copyWith(results: results));
-    print('$state');
     if (index == data.quizLength) {
       state = AsyncData(data.copyWith(nextText: '結果を見る'));
     } else {
       state = AsyncData(data.copyWith(nextText: '次の問題へ'));
     }
+    // makeResultList(number);
   }
 
-  Future<void> showIconTF(BuildContext context, int index) async {}
+  Future<void> addResult(int number) async {
+    final data = state.requireValue;
+    List<ResultClass> list = [];
+    if (number == 0) {
+      list.add(ResultClass('$index', true));
+    } else {
+      list.add(ResultClass('$index', false));
+    }
+    print('リスト$list');
+    state = AsyncData(data.copyWith(resultsState: list));
+
+    print('あああああああああああああああああああああああああ追加する結果${data.resultsState}');
+  }
 
   Future<void> showIconAndPopup(
-      BuildContext context, int number, int index) async {
+    BuildContext context,
+    int number,
+    int index,
+  ) async {
     final data = state.requireValue;
     state = AsyncData(data.copyWith(screenEnabled: false));
+
     if (number == 0) {
-      state = await AsyncData(data.copyWith(isTrue: true));
+      state = AsyncData(data.copyWith(isTrue: true));
     } else {
-      state = await AsyncData(data.copyWith(isFalse: true));
+      state = AsyncData(data.copyWith(isFalse: true));
     }
     await Future.delayed(const Duration(seconds: 1), () {
       showDialog(
@@ -81,19 +87,23 @@ class QuestionViewModel extends _$QuestionViewModel {
               actions: <Widget>[
                 TextButton(
                   onPressed: () {
-                    if (data.indexSecond == 1) {
+                    if (index == data.quizLength) {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ResultPage(),
+                          builder: (context) => ResultPage(
+                            results: results,
+                          ),
                         ),
                       );
                     } else {
-                      build(data.indexSecond);
+                      build(index, results);
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => QuestionPage(index: index),
+                          builder: (context) => QuestionPage(
+                              index: index, results: data.resultsState ?? []),
                         ),
                       );
                     }
@@ -106,5 +116,14 @@ class QuestionViewModel extends _$QuestionViewModel {
         },
       );
     });
+  }
+
+  FutureOr<void> selected(
+    BuildContext context,
+    int number,
+    int index,
+  ) async {
+    await next(index);
+    await showIconAndPopup(context, number, index);
   }
 }

@@ -1,16 +1,25 @@
 import 'package:mottaina_eat/components/primary_button.dart';
 import 'package:mottaina_eat/components/secondary_app_bar.dart';
+import 'package:mottaina_eat/features/question/result_class.dart';
+import 'package:mottaina_eat/features/result/components/result_detail.dart';
 import 'package:mottaina_eat/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mottaina_eat/features/result/view_model.dart';
 
 class ResultPage extends ConsumerWidget {
-  const ResultPage({super.key});
+  const ResultPage({required this.results, this.idList, super.key});
+
+  final List<ResultClass> results;
+  final List<int>? idList;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(resultViewModelProvider);
+    for (int i = 0; i < results.length; i++) {
+      final int id = int.parse(results[i].id ?? '0');
+      idList?.add(id);
+    }
     return state.when(
         data: (data) => PopScope(
               canPop: false,
@@ -62,7 +71,7 @@ class ResultPage extends ConsumerWidget {
                                     .read(resultViewModelProvider.notifier)
                                     .navigateToTopPage(context),
                                 text: 'ホームに戻る',
-                                width: MediaQuery.of(context).size.width*0.8,
+                                width: MediaQuery.of(context).size.width * 0.8,
                                 textColor: ColorName.black2,
                                 borderRaius: 30,
                               ),
@@ -74,54 +83,26 @@ class ResultPage extends ConsumerWidget {
                     const SizedBox(height: 50),
 
                     //Listviewの使い方見直す
-
-                    SingleChildScrollView(
-                      child: Container(
-                        height: 100,
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        color: Colors.blueAccent,
-                        child: Padding(
-                          padding: const EdgeInsets.all(10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Center(
-                                child: PrimaryButton(
-                                  padding: const EdgeInsets.all(0),
-                                  height: 80,
-                                  width: 80,
-                                  text: '詳細',
-                                  borderRaius: 40,
-                                  backgroundColor: ColorName.whiteBase,
-                                  textColor: ColorName.black2,
-                                  onPressed: () => ref
-                                      .read(resultViewModelProvider.notifier)
-                                      .navigateToResultDetailPage(context),
-                                ),
-                              ),
-                              const Text(
-                                'サックスブルー',
-                                style: TextStyle(
-                                    color: ColorName.whiteBase, fontSize: 20),
-                              ),
-                              Container(
-                                alignment: Alignment.centerRight,
-                                height: 80,
-                                width: 80,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    border: Border.all(
-                                      color: const Color(0xFF000000),
-                                      width: 2.0,
-                                      style: BorderStyle.solid,
-                                      strokeAlign: BorderSide.strokeAlignInside,
-                                    )),
-                              ),
-                            ],
+                    Column(
+                      children: [
+                        Expanded(
+                          child: SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.6,
+                            child: ListView(
+                              children: [
+                                for (int i = 0; i < results.length; i++) ...{
+                                  ResultDetail(
+                                      true, data.quizzes[idList?[0] ?? 0]),
+                                  const SizedBox(height: 20)
+                                },
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ) //コンポーネント化
+                      ],
+                    ),
+
+                    //コンポーネント化
                   ],
                 ),
               ),

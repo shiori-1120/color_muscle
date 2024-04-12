@@ -1,18 +1,20 @@
 import 'package:mottaina_eat/components/secondary_app_bar.dart';
 import 'package:mottaina_eat/features/question/components/select_button.dart';
+import 'package:mottaina_eat/features/question/result_class.dart';
 import 'package:mottaina_eat/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mottaina_eat/features/question/view_model.dart';
 
 class QuestionPage extends ConsumerWidget {
-  const QuestionPage({required this.index, super.key});
+  const QuestionPage({required this.index, required this.results, super.key});
 
   final int index;
+  final List<ResultClass> results;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(questionViewModelProvider(index));
+    final state = ref.watch(questionViewModelProvider(index, results));
     final int nowIndex = index + 1;
     return state.when(
       data: (data) => PopScope(
@@ -57,24 +59,28 @@ class QuestionPage extends ConsumerWidget {
                                     data.choices[i].number,
                                     data.screenEnabled
                                         ? () async {
+                                            // await ref
+                                            //     .read(
+                                            //       questionViewModelProvider(
+                                            //               index, results)
+                                            //           .notifier,
+                                            //     )
+                                            //     .selected(index + 1);
                                             await ref
                                                 .read(
                                                   questionViewModelProvider(
-                                                          index)
+                                                          index, results)
+                                                      .notifier,
+                                                )
+                                                .addResult(
+                                                    data.choices[i].number);
+                                            await ref
+                                                .read(
+                                                  questionViewModelProvider(
+                                                          index, results)
                                                       .notifier,
                                                 )
                                                 .selected(
-                                                  context,
-                                                  data.choices[i].number,
-                                                  index + 1,
-                                                );
-                                            await ref
-                                                .read(
-                                                  questionViewModelProvider(
-                                                          index)
-                                                      .notifier,
-                                                )
-                                                .showIconAndPopup(
                                                   context,
                                                   data.choices[i].number,
                                                   index + 1,

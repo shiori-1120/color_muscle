@@ -6,7 +6,7 @@ part of 'repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$quizRepoHash() => r'15a446575292bce3c13fbb5fd53de2b2b442e7ee';
+String _$quizRepoHash() => r'e94779b6916ffc64c087bb6d2a380e0f9b995614';
 
 /// See also [QuizRepo].
 @ProviderFor(QuizRepo)

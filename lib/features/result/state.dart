@@ -1,5 +1,4 @@
-import 'package:mottaina_eat/features/top/grade_type.dart';
-import 'package:mottaina_eat/features/top/question_type.dart';
+import 'package:mottaina_eat/domain/quiz/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // 生成されるdartファイルを記述
@@ -12,8 +11,6 @@ class ResultState with _$ResultState {
 
   // プロパティを指定
   const factory ResultState({
-    required int questionNumber,
-    required QuestionType questionType,
-    required GradeType gradeType,
+    required List<QuizClass> quizzes,
   }) = _ResultState;
 }
