@@ -13,7 +13,7 @@ class TopPage extends ConsumerWidget {
     return state.when(
       data: (data) => Scaffold(
         backgroundColor: Colors.white,
-        appBar: const PrimaryAppBar(title: '色彩検定対策アプリ'),
+        appBar: const PrimaryAppBar(title: 'いちょう祭クイズアプリ'),
         body: Column(
           children: [
             const SizedBox(height: 50),

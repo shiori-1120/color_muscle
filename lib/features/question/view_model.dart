@@ -3,7 +3,6 @@ import 'package:mottaina_eat/domain/quiz/domain.dart';
 import 'package:mottaina_eat/domain/quiz/repository.dart';
 import 'package:mottaina_eat/features/question/choice_class.dart';
 import 'package:mottaina_eat/features/question/page/question.dart';
-import 'package:mottaina_eat/features/question/result_class.dart';
 import 'package:mottaina_eat/features/question/state.dart';
 import 'package:mottaina_eat/features/result/page/result.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -15,7 +14,7 @@ class QuestionViewModel extends _$QuestionViewModel {
   QuizRepo get quizRepo => ref.read(quizRepoProvider.notifier);
 
   @override
-  FutureOr<QuestionState> build(int index, List<ResultClass> results) async {
+  FutureOr<QuestionState> build(int index) async {
     final int quizLength = await quizRepo.getQuizLength();
     final QuizClass quiz = await getQuiz();
     final List<ChoiceClass> choices = await getChoices();
@@ -51,16 +50,21 @@ class QuestionViewModel extends _$QuestionViewModel {
   Future<void> addResult(int number) async {
     final data = state.requireValue;
     List<ResultClass> list = [];
+
+    for (int i = 0; i < index + 1; i++) {
+      if (data.resultsState?[i] == null) {
+      } else {
+        list.add(data.resultsState![i]);
+      }
+    }
     if (number == 0) {
-      list.add(ResultClass('$index', true));
+      list.add(ResultClass('${index + 1}', true));
     } else {
-      list.add(ResultClass('$index', false));
+      list.add(ResultClass('${index + 1}', false));
     }
     print('リスト$list');
-    state = AsyncData(data.copyWith(resultsState: list));
-
-    print('あああああああああああああああああああああああああ追加する結果${data.resultsState}');
-  }
+    return list;
+    }
 
   Future<void> showIconAndPopup(
     BuildContext context,
@@ -68,8 +72,6 @@ class QuestionViewModel extends _$QuestionViewModel {
     int index,
   ) async {
     final data = state.requireValue;
-    state = AsyncData(data.copyWith(screenEnabled: false));
-
     if (number == 0) {
       state = AsyncData(data.copyWith(isTrue: true));
     } else {

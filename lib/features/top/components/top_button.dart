@@ -1,6 +1,5 @@
 import 'package:mottaina_eat/components/primary_button.dart';
 import 'package:mottaina_eat/features/question/page/question.dart';
-import 'package:mottaina_eat/features/question/result_class.dart';
 import 'package:mottaina_eat/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

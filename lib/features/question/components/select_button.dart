@@ -25,6 +25,7 @@ class SelectButton extends ConsumerWidget {
             width: MediaQuery.of(context).size.width * 0.9,
             height: MediaQuery.of(context).size.height * 0.07,
             text: text,
+            textColor: Colors.black,
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,
