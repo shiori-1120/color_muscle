@@ -19,13 +19,16 @@ class SelectButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) => Column(
         children: [
           PrimaryButton(
+            borderRaius: 20,
             isCircular: false,
-            backgroundColor: ColorName.greyBase,
+            backgroundColor: Colors.white,
             onPressed: onPressed ?? () {},
-            width: MediaQuery.of(context).size.width * 0.9,
-            height: MediaQuery.of(context).size.height * 0.07,
+            width: MediaQuery.of(context).size.width * 0.92,
+            height: MediaQuery.of(context).size.height * 0.08,
             text: text,
             textColor: Colors.black,
+
+            elevation: 1, // 影の設定
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.01,

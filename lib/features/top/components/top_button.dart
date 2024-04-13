@@ -15,14 +15,14 @@ class TopButton extends ConsumerWidget {
         onPressed: () =>  Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) =>  const QuestionPage(index: 0,results: [],),
+        builder: (context) =>  const QuestionPage(index: 0),
       ),
     ),
         width: MediaQuery.of(context).size.width * 0.8,
         height: MediaQuery.of(context).size.height * 0.07,
         text: '問題を始める',
         borderRaius: 40,
-        backgroundColor: ColorName.greyBase,
+        backgroundColor: const Color.fromARGB(204, 255, 203, 173),
         textColor: ColorName.black2,
       );
 }

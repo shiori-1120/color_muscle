@@ -6,17 +6,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mottaina_eat/features/result/view_model.dart';
 
 class ResultPage extends ConsumerWidget {
-  const ResultPage({required this.results, this.idList, super.key});
-
-  final List<int>? idList;
+  const ResultPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(resultViewModelProvider);
-    for (int i = 0; i < results.length; i++) {
-      final int id = int.parse(results[i].id ?? '0');
-      idList?.add(id);
-    }
     return state.when(
         data: (data) => PopScope(
               canPop: false,

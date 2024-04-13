@@ -21,7 +21,7 @@ class TopViewModel extends _$TopViewModel {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) =>  const QuestionPage(index: 0,results: [],),
+        builder: (context) =>  const QuestionPage(index: 0),
       ),
     );
   }
