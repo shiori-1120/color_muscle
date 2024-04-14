@@ -17,10 +17,11 @@ class QuestionState with _$QuestionState {
     // required List<SubQuizClass> subQuizClass,
     required QuizClass quiz,
     required List<ChoiceClass> choices,
+    @Default(0) int index,
     int? quizLength,
     String? nextText,
     @Default([]) List<bool> resultsBool,
-    @Default([]) List<String> resultsIndex,
+    @Default([]) List<String> resultsId,
     @Default(ColorName.whiteBase) Color? backgroundcolor,
     @Default(true) bool screenEnabled, // デフォルト値を指定
     @Default(false) bool isTrue,

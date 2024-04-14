@@ -19,10 +19,11 @@ mixin _$QuestionState {
 // required List<SubQuizClass> subQuizClass,
   QuizClass get quiz => throw _privateConstructorUsedError;
   List<ChoiceClass> get choices => throw _privateConstructorUsedError;
+  int get index => throw _privateConstructorUsedError;
   int? get quizLength => throw _privateConstructorUsedError;
   String? get nextText => throw _privateConstructorUsedError;
   List<bool> get resultsBool => throw _privateConstructorUsedError;
-  List<String> get resultsIndex => throw _privateConstructorUsedError;
+  List<String> get resultsId => throw _privateConstructorUsedError;
   Color? get backgroundcolor => throw _privateConstructorUsedError;
   bool get screenEnabled => throw _privateConstructorUsedError; // デフォルト値を指定
   bool get isTrue => throw _privateConstructorUsedError;
@@ -42,10 +43,11 @@ abstract class $QuestionStateCopyWith<$Res> {
   $Res call(
       {QuizClass quiz,
       List<ChoiceClass> choices,
+      int index,
       int? quizLength,
       String? nextText,
       List<bool> resultsBool,
-      List<String> resultsIndex,
+      List<String> resultsId,
       Color? backgroundcolor,
       bool screenEnabled,
       bool isTrue,
@@ -69,10 +71,11 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
   $Res call({
     Object? quiz = null,
     Object? choices = null,
+    Object? index = null,
     Object? quizLength = freezed,
     Object? nextText = freezed,
     Object? resultsBool = null,
-    Object? resultsIndex = null,
+    Object? resultsId = null,
     Object? backgroundcolor = freezed,
     Object? screenEnabled = null,
     Object? isTrue = null,
@@ -87,6 +90,10 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
           ? _value.choices
           : choices // ignore: cast_nullable_to_non_nullable
               as List<ChoiceClass>,
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
       quizLength: freezed == quizLength
           ? _value.quizLength
           : quizLength // ignore: cast_nullable_to_non_nullable
@@ -99,9 +106,9 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
           ? _value.resultsBool
           : resultsBool // ignore: cast_nullable_to_non_nullable
               as List<bool>,
-      resultsIndex: null == resultsIndex
-          ? _value.resultsIndex
-          : resultsIndex // ignore: cast_nullable_to_non_nullable
+      resultsId: null == resultsId
+          ? _value.resultsId
+          : resultsId // ignore: cast_nullable_to_non_nullable
               as List<String>,
       backgroundcolor: freezed == backgroundcolor
           ? _value.backgroundcolor
@@ -142,10 +149,11 @@ abstract class _$$QuestionStateImplCopyWith<$Res>
   $Res call(
       {QuizClass quiz,
       List<ChoiceClass> choices,
+      int index,
       int? quizLength,
       String? nextText,
       List<bool> resultsBool,
-      List<String> resultsIndex,
+      List<String> resultsId,
       Color? backgroundcolor,
       bool screenEnabled,
       bool isTrue,
@@ -168,10 +176,11 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
   $Res call({
     Object? quiz = null,
     Object? choices = null,
+    Object? index = null,
     Object? quizLength = freezed,
     Object? nextText = freezed,
     Object? resultsBool = null,
-    Object? resultsIndex = null,
+    Object? resultsId = null,
     Object? backgroundcolor = freezed,
     Object? screenEnabled = null,
     Object? isTrue = null,
@@ -186,6 +195,10 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
           ? _value._choices
           : choices // ignore: cast_nullable_to_non_nullable
               as List<ChoiceClass>,
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
       quizLength: freezed == quizLength
           ? _value.quizLength
           : quizLength // ignore: cast_nullable_to_non_nullable
@@ -198,9 +211,9 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
           ? _value._resultsBool
           : resultsBool // ignore: cast_nullable_to_non_nullable
               as List<bool>,
-      resultsIndex: null == resultsIndex
-          ? _value._resultsIndex
-          : resultsIndex // ignore: cast_nullable_to_non_nullable
+      resultsId: null == resultsId
+          ? _value._resultsId
+          : resultsId // ignore: cast_nullable_to_non_nullable
               as List<String>,
       backgroundcolor: freezed == backgroundcolor
           ? _value.backgroundcolor
@@ -228,17 +241,18 @@ class _$QuestionStateImpl implements _QuestionState {
   _$QuestionStateImpl(
       {required this.quiz,
       required final List<ChoiceClass> choices,
+      this.index = 0,
       this.quizLength,
       this.nextText,
       final List<bool> resultsBool = const [],
-      final List<String> resultsIndex = const [],
+      final List<String> resultsId = const [],
       this.backgroundcolor = ColorName.whiteBase,
       this.screenEnabled = true,
       this.isTrue = false,
       this.isFalse = false})
       : _choices = choices,
         _resultsBool = resultsBool,
-        _resultsIndex = resultsIndex;
+        _resultsId = resultsId;
 
 // required List<SubQuizClass> subQuizClass,
   @override
@@ -252,6 +266,9 @@ class _$QuestionStateImpl implements _QuestionState {
   }
 
   @override
+  @JsonKey()
+  final int index;
+  @override
   final int? quizLength;
   @override
   final String? nextText;
@@ -264,13 +281,13 @@ class _$QuestionStateImpl implements _QuestionState {
     return EqualUnmodifiableListView(_resultsBool);
   }
 
-  final List<String> _resultsIndex;
+  final List<String> _resultsId;
   @override
   @JsonKey()
-  List<String> get resultsIndex {
-    if (_resultsIndex is EqualUnmodifiableListView) return _resultsIndex;
+  List<String> get resultsId {
+    if (_resultsId is EqualUnmodifiableListView) return _resultsId;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_resultsIndex);
+    return EqualUnmodifiableListView(_resultsId);
   }
 
   @override
@@ -289,7 +306,7 @@ class _$QuestionStateImpl implements _QuestionState {
 
   @override
   String toString() {
-    return 'QuestionState(quiz: $quiz, choices: $choices, quizLength: $quizLength, nextText: $nextText, resultsBool: $resultsBool, resultsIndex: $resultsIndex, backgroundcolor: $backgroundcolor, screenEnabled: $screenEnabled, isTrue: $isTrue, isFalse: $isFalse)';
+    return 'QuestionState(quiz: $quiz, choices: $choices, index: $index, quizLength: $quizLength, nextText: $nextText, resultsBool: $resultsBool, resultsId: $resultsId, backgroundcolor: $backgroundcolor, screenEnabled: $screenEnabled, isTrue: $isTrue, isFalse: $isFalse)';
   }
 
   @override
@@ -299,6 +316,7 @@ class _$QuestionStateImpl implements _QuestionState {
             other is _$QuestionStateImpl &&
             (identical(other.quiz, quiz) || other.quiz == quiz) &&
             const DeepCollectionEquality().equals(other._choices, _choices) &&
+            (identical(other.index, index) || other.index == index) &&
             (identical(other.quizLength, quizLength) ||
                 other.quizLength == quizLength) &&
             (identical(other.nextText, nextText) ||
@@ -306,7 +324,7 @@ class _$QuestionStateImpl implements _QuestionState {
             const DeepCollectionEquality()
                 .equals(other._resultsBool, _resultsBool) &&
             const DeepCollectionEquality()
-                .equals(other._resultsIndex, _resultsIndex) &&
+                .equals(other._resultsId, _resultsId) &&
             (identical(other.backgroundcolor, backgroundcolor) ||
                 other.backgroundcolor == backgroundcolor) &&
             (identical(other.screenEnabled, screenEnabled) ||
@@ -320,10 +338,11 @@ class _$QuestionStateImpl implements _QuestionState {
       runtimeType,
       quiz,
       const DeepCollectionEquality().hash(_choices),
+      index,
       quizLength,
       nextText,
       const DeepCollectionEquality().hash(_resultsBool),
-      const DeepCollectionEquality().hash(_resultsIndex),
+      const DeepCollectionEquality().hash(_resultsId),
       backgroundcolor,
       screenEnabled,
       isTrue,
@@ -340,10 +359,11 @@ abstract class _QuestionState implements QuestionState {
   factory _QuestionState(
       {required final QuizClass quiz,
       required final List<ChoiceClass> choices,
+      final int index,
       final int? quizLength,
       final String? nextText,
       final List<bool> resultsBool,
-      final List<String> resultsIndex,
+      final List<String> resultsId,
       final Color? backgroundcolor,
       final bool screenEnabled,
       final bool isTrue,
@@ -354,13 +374,15 @@ abstract class _QuestionState implements QuestionState {
   @override
   List<ChoiceClass> get choices;
   @override
+  int get index;
+  @override
   int? get quizLength;
   @override
   String? get nextText;
   @override
   List<bool> get resultsBool;
   @override
-  List<String> get resultsIndex;
+  List<String> get resultsId;
   @override
   Color? get backgroundcolor;
   @override

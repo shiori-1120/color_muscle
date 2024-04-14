@@ -1,19 +1,17 @@
 import 'package:mottaina_eat/components/secondary_app_bar.dart';
 import 'package:mottaina_eat/features/question/components/select_button.dart';
+import 'package:mottaina_eat/features/question/view_model.dart';
+
 import 'package:mottaina_eat/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mottaina_eat/features/question/view_model.dart';
 
 class QuestionPage extends ConsumerWidget {
-  const QuestionPage({required this.index, super.key});
-
-  final int index;
+  const QuestionPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(questionViewModelProvider(index));
-    final int nowIndex = index + 1;
+    final state = ref.watch(questionViewModelProvider);
     return state.when(
       data: (data) => Container(
         decoration: const BoxDecoration(
@@ -25,8 +23,7 @@ class QuestionPage extends ConsumerWidget {
         child: PopScope(
           canPop: false,
           child: Scaffold(
-           backgroundColor: Colors.transparent,
-        
+            backgroundColor: Colors.transparent,
             appBar: const SecondaryAppBar(),
             body: Stack(
               children: [
@@ -36,7 +33,7 @@ class QuestionPage extends ConsumerWidget {
                     SizedBox(
                       height: 20,
                       child: Text(
-                        '$nowIndex問/${data.quizLength}問',
+                        '${data.index + 1}問/${data.quizLength}問',
                         textAlign: TextAlign.center,
                       ),
                     ),
@@ -48,7 +45,10 @@ class QuestionPage extends ConsumerWidget {
                           height: MediaQuery.of(context).size.height * 0.3,
                           width: MediaQuery.of(context).size.width * 0.9,
                           color: Colors.white,
-                          child: Column(children: [Text('Q.$index'),Text(data.quiz.quizStatement??'エラー')]),
+                          child: Column(children: [
+                            Text('Q.${data.index + 1}'),
+                            Text(data.quiz.quizStatement ?? 'エラー')
+                          ]),
                         ),
                       ],
                     ),
@@ -69,35 +69,31 @@ class QuestionPage extends ConsumerWidget {
                                           ? () async {
                                               await ref
                                                   .read(
-                                                    questionViewModelProvider(
-                                                            index)
+                                                    questionViewModelProvider
                                                         .notifier,
                                                   )
-                                                  .next(index + 1);
+                                                  .next(data.index + 1);
                                               await ref
                                                   .read(
-                                                    questionViewModelProvider(
-                                                            index)
+                                                    questionViewModelProvider
                                                         .notifier,
                                                   )
-                                                  .addResults(
+                                                  .upDateState(
                                                       data.choices[i].number);
 
                                               await ref
                                                   .read(
-                                                    questionViewModelProvider(
-                                                            index)
+                                                    questionViewModelProvider
                                                         .notifier,
                                                   )
                                                   .showIconAndPopup(
                                                       context,
                                                       data.choices[i].number,
-                                                      index + 1);
+                                                      data.index + 1);
                                             }
                                           : null,
                                       data.choices[i].text ?? '',
                                     ),
-                                
                                   }
                                 ],
                               ),
