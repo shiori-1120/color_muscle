@@ -4,15 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SelectButton extends ConsumerWidget {
-  const SelectButton(
-    this.number,
-    this.onPressed,
-    this.text, {
+  const SelectButton({
+    required this.number,
+    required this.onPressed,
+    this.text,
     super.key,
   });
 
   final int number;
-  final String text;
+  final String? text;
   final VoidCallback? onPressed;
 
   @override

@@ -20,8 +20,8 @@ class QuestionState with _$QuestionState {
     @Default(0) int index,
     int? quizLength,
     String? nextText,
-    @Default([]) List<bool> resultsBool,
-    @Default([]) List<String> resultsId,
+    required List<bool> resultsBool,
+    required List<String> resultsId,
     @Default(ColorName.whiteBase) Color? backgroundcolor,
     @Default(true) bool screenEnabled, // デフォルト値を指定
     @Default(false) bool isTrue,

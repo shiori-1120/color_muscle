@@ -3,7 +3,6 @@ import 'package:mottaina_eat/components/primary_button.dart';
 import 'package:mottaina_eat/domain/quiz/domain.dart';
 import 'package:mottaina_eat/domain/quiz/repository.dart';
 import 'package:mottaina_eat/features/question/choice_class.dart';
-import 'package:mottaina_eat/features/question/page/question.dart';
 import 'package:mottaina_eat/features/question/state.dart';
 import 'package:mottaina_eat/features/result/page/result.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -21,6 +20,8 @@ class QuestionViewModel extends _$QuestionViewModel {
     final List<ChoiceClass> choices = await getChoices(0);
 
     final state = QuestionState(
+      resultsBool: [],
+      resultsId: [],
       quiz: quiz,
       choices: choices,
       quizLength: quizLength,
@@ -38,22 +39,20 @@ class QuestionViewModel extends _$QuestionViewModel {
     return choices;
   }
 
-  Future<void> upDateState(int number) async {
+  Future<void> saveResult(int number) async {
     final data = state.requireValue;
-
-    print(data.resultsId);
     final List<bool> newBoolList = [
       ...data.resultsBool,
       number == 0 ? true : false
     ];
-
+    print(data.resultsId);
     final List<String> newIndexList = [...data.resultsId, data.quiz.id];
     print(newIndexList);
     state = AsyncData(
         data.copyWith(resultsId: newIndexList, resultsBool: newBoolList));
 
-    print('新しいリスト${data.resultsId}');
-    print('新しいリスト${data.resultsBool}');
+    print(data.resultsId);
+    print(data.resultsBool);
   }
 
   FutureOr<void> next(int index) async {
@@ -65,6 +64,16 @@ class QuestionViewModel extends _$QuestionViewModel {
     }
   }
 
+
+  FutureOr<void> updateResultCount(int index, int number) async {
+    final data = state.requireValue;
+   if (number == 0) {
+      await quizRepo.updateResultCounts(data.index, true);
+    } else {
+      await quizRepo.updateResultCounts(data.index, false);
+    }
+  }
+
   Future<void> showIconAndPopup(
     BuildContext context,
     int number,
@@ -72,8 +81,10 @@ class QuestionViewModel extends _$QuestionViewModel {
   ) async {
     final data = state.requireValue;
     if (number == 0) {
+      await quizRepo.updateResultCounts(data.index, true);
       state = AsyncData(data.copyWith(isTrue: true));
     } else {
+      await quizRepo.updateResultCounts(data.index, false);
       state = AsyncData(data.copyWith(isFalse: true));
     }
     await Future.delayed(const Duration(seconds: 1), () {
@@ -96,38 +107,42 @@ class QuestionViewModel extends _$QuestionViewModel {
                           Text(data.quiz.quizStatement ?? ''),
                         ],
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
                       color: Colors.white,
                       child: Column(
                         children: [
-                          Text('解説'),
+                          const Text('解説'),
                           Text(data.quiz.explanation ?? ''),
                         ],
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   PrimaryButton(
-                    onPressed: () {
-                      if (index == data.quizLength) {
+                    onPressed: () async {
+                      if (index+1 == data.quizLength) {
+                        saveResult(number);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ResultPage(),
+                            builder: (context) => const ResultPage(),
                           ),
                         );
                       } else {
-                        build();
-
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => QuestionPage(),
-                          ),
-                        );
+                        Navigator.of(context).pop();
+                        final int nextIndex = data.index + 1;
+                        final QuizClass nextQuestion = await getQuiz(nextIndex);
+                        final List<ChoiceClass> nextChoices =
+                            await getChoices(nextIndex);
+                        print(nextChoices);
+                        state = AsyncData(data.copyWith(
+                          index: nextIndex,
+                          quiz: nextQuestion,
+                          choices: nextChoices,
+                        ));
                       }
                     },
                     width: MediaQuery.of(context).size.width * 0.8,
@@ -141,35 +156,7 @@ class QuestionViewModel extends _$QuestionViewModel {
               )),
               actions: <Widget>[
                 TextButton(
-                  onPressed: () async {
-                    upDateState(number);
-                    state = AsyncData(data.copyWith(
-                      isFalse: false,
-                      isTrue: false,
-                    ));
-                    if (index == data.quizLength) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ResultPage(),
-                        ),
-                      );
-                    } else {
-                      Navigator.of(context).pop();
-
-                      final int nextIndex = data.index + 1;
-                      final QuizClass nextQuestion = await getQuiz(nextIndex);
-                      final List<ChoiceClass> nextChoices =
-                          await getChoices(nextIndex);
-                      print(nextChoices);
-
-                      state = AsyncData(data.copyWith(
-                        index: nextIndex,
-                        quiz: nextQuestion,
-                        choices: nextChoices,
-                      ));
-                    }
-                  },
+                  onPressed: () async {},
                   child: Text(data.nextText ?? ''),
                 ),
               ],

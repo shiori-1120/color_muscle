@@ -1,7 +1,8 @@
 import 'package:mottaina_eat/components/secondary_app_bar.dart';
+import 'package:mottaina_eat/domain/quiz/repository.dart';
 import 'package:mottaina_eat/features/question/components/select_button.dart';
 import 'package:mottaina_eat/features/question/view_model.dart';
-
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mottaina_eat/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -64,35 +65,35 @@ class QuestionPage extends ConsumerWidget {
                                 children: [
                                   for (int i = 0; i < 4; i++) ...{
                                     SelectButton(
-                                      data.choices[i].number,
-                                      data.screenEnabled
+                                      number: data.choices[i].number,
+                                      onPressed: data.screenEnabled
                                           ? () async {
                                               await ref
                                                   .read(
                                                     questionViewModelProvider
                                                         .notifier,
                                                   )
-                                                  .next(data.index + 1);
-                                              await ref
-                                                  .read(
-                                                    questionViewModelProvider
-                                                        .notifier,
-                                                  )
-                                                  .upDateState(
-                                                      data.choices[i].number);
-
-                                              await ref
-                                                  .read(
-                                                    questionViewModelProvider
-                                                        .notifier,
-                                                  )
-                                                  .showIconAndPopup(
-                                                      context,
-                                                      data.choices[i].number,
-                                                      data.index + 1);
+                                                  .saveResult(
+                                                      data.choices[i].number)
+                                                  .then((value) => ref
+                                                      .read(
+                                                        questionViewModelProvider
+                                                            .notifier,
+                                                      )
+                                                      .next(data.index + 1))
+                                                  .then((value) => ref
+                                                      .read(
+                                                        questionViewModelProvider
+                                                            .notifier,
+                                                      )
+                                                      .showIconAndPopup(
+                                                          context,
+                                                          data.choices[i]
+                                                              .number,
+                                                          data.index));
                                             }
                                           : null,
-                                      data.choices[i].text ?? '',
+                                      text: data.choices[i].text ?? '',
                                     ),
                                   }
                                 ],

@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mottaina_eat/domain/quiz/domain.dart';
 import 'package:mottaina_eat/features/question/choice_class.dart';
-import 'package:mottaina_eat/features/question/sub_quiz_class.dart';
 import 'package:mottaina_eat/firebase/firebase.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -39,13 +38,13 @@ class QuizRepo extends _$QuizRepo {
   }
 
   Future<QuizClass> getQuiz(int index) async {
-    final List<QuizClass> quizzes = [
-      ...await collection
-          .get()
-          .then((value) => value.docs.map((e) => e.data()).toList()),
-    ];
-    final quiz = quizzes[index];
-    return quiz;
+    final int questionId = index + 100;
+    return collection.doc(questionId.toString()).get().then((value) {
+      if (value.data() == null) {
+        throw ArgumentError('データが存在しません');
+      }
+      return value.data()!;
+    });
   }
 
   Future<int> getQuizLength() async {
@@ -54,7 +53,7 @@ class QuizRepo extends _$QuizRepo {
           .get()
           .then((value) => value.docs.map((e) => e.data()).toList()),
     ];
-    final int  quizLength = quizList.length;
+    final int quizLength = quizList.length;
     return quizLength;
   }
 
@@ -75,5 +74,20 @@ class QuizRepo extends _$QuizRepo {
     choices.shuffle(Random());
 
     return choices;
+  }
+
+  Future<void> updateResultCounts(int index, bool isCorrect) async {
+    await db.runTransaction((t) async {
+      final int questionId = index + 100;
+      final DocumentReference quizDocRef =
+          collection.doc(questionId.toString());
+      isCorrect
+          ? t.update(quizDocRef, {
+              'correctCount': FieldValue.increment(1),
+            })
+          : t.update(quizDocRef, {
+              'incorrectCount': FieldValue.increment(1),
+            });
+    });
   }
 }

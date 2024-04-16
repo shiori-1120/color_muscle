@@ -244,8 +244,8 @@ class _$QuestionStateImpl implements _QuestionState {
       this.index = 0,
       this.quizLength,
       this.nextText,
-      final List<bool> resultsBool = const [],
-      final List<String> resultsId = const [],
+      required final List<bool> resultsBool,
+      required final List<String> resultsId,
       this.backgroundcolor = ColorName.whiteBase,
       this.screenEnabled = true,
       this.isTrue = false,
@@ -274,7 +274,6 @@ class _$QuestionStateImpl implements _QuestionState {
   final String? nextText;
   final List<bool> _resultsBool;
   @override
-  @JsonKey()
   List<bool> get resultsBool {
     if (_resultsBool is EqualUnmodifiableListView) return _resultsBool;
     // ignore: implicit_dynamic_type
@@ -283,7 +282,6 @@ class _$QuestionStateImpl implements _QuestionState {
 
   final List<String> _resultsId;
   @override
-  @JsonKey()
   List<String> get resultsId {
     if (_resultsId is EqualUnmodifiableListView) return _resultsId;
     // ignore: implicit_dynamic_type
@@ -362,8 +360,8 @@ abstract class _QuestionState implements QuestionState {
       final int index,
       final int? quizLength,
       final String? nextText,
-      final List<bool> resultsBool,
-      final List<String> resultsId,
+      required final List<bool> resultsBool,
+      required final List<String> resultsId,
       final Color? backgroundcolor,
       final bool screenEnabled,
       final bool isTrue,
