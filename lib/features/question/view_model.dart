@@ -45,14 +45,10 @@ class QuestionViewModel extends _$QuestionViewModel {
       ...data.resultsBool,
       number == 0 ? true : false
     ];
-    print(data.resultsId);
-    final List<String> newIndexList = [...data.resultsId, data.quiz.id];
-    print(newIndexList);
+    final List<int> newIndexList = [...data.resultsId, data.index + 1];
     state = AsyncData(
-        data.copyWith(resultsId: newIndexList, resultsBool: newBoolList));
-
-    print(data.resultsId);
-    print(data.resultsBool);
+      data.copyWith(resultsId: newIndexList, resultsBool: newBoolList),
+    );
   }
 
   FutureOr<void> next(int index) async {
@@ -64,14 +60,10 @@ class QuestionViewModel extends _$QuestionViewModel {
     }
   }
 
-
-  FutureOr<void> updateResultCount(int index, int number) async {
+  FutureOr<void> updateResultCount() async {
     final data = state.requireValue;
-   if (number == 0) {
-      await quizRepo.updateResultCounts(data.index, true);
-    } else {
-      await quizRepo.updateResultCounts(data.index, false);
-    }
+    await quizRepo.updateResultCounts(
+        data.quizLength ?? 0, data.resultsBool, data.resultsId);
   }
 
   Future<void> showIconAndPopup(
@@ -79,12 +71,11 @@ class QuestionViewModel extends _$QuestionViewModel {
     int number,
     int index,
   ) async {
+    print('showIconPopup$index');
     final data = state.requireValue;
     if (number == 0) {
-      await quizRepo.updateResultCounts(data.index, true);
       state = AsyncData(data.copyWith(isTrue: true));
     } else {
-      await quizRepo.updateResultCounts(data.index, false);
       state = AsyncData(data.copyWith(isFalse: true));
     }
     await Future.delayed(const Duration(seconds: 1), () {
@@ -103,7 +94,7 @@ class QuestionViewModel extends _$QuestionViewModel {
                       color: Colors.white,
                       child: Column(
                         children: [
-                          Text('Q.$index'),
+                          Text('Q.${index + 1}'),
                           Text(data.quiz.quizStatement ?? ''),
                         ],
                       )),
@@ -123,14 +114,31 @@ class QuestionViewModel extends _$QuestionViewModel {
                   ),
                   PrimaryButton(
                     onPressed: () async {
-                      if (index+1 == data.quizLength) {
+                      state = AsyncData(
+                          data.copyWith(isFalse: false, isTrue: false));
+                      if (index + 1 == data.quizLength) {
                         saveResult(number);
+                        updateResultCount();
+                        final QuizClass nextQuestion = await getQuiz(0);
+                        final List<ChoiceClass> nextChoices =
+                            await getChoices(0);
+                        print(data.resultsBool);
+                        print(data.resultsId);
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const ResultPage(),
+                            builder: (context) => ResultPage(
+                                resultsBool: data.resultsBool,
+                                resultsId: data.resultsId,
+                                quizLength: data.quizLength!),
                           ),
                         );
+                        state = AsyncData(data.copyWith(
+                            index: 0,
+                            quiz: nextQuestion,
+                            choices: nextChoices,
+                            resultsBool: [],
+                            resultsId: []));
                       } else {
                         Navigator.of(context).pop();
                         final int nextIndex = data.index + 1;
@@ -154,12 +162,6 @@ class QuestionViewModel extends _$QuestionViewModel {
                   ),
                 ],
               )),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () async {},
-                  child: Text(data.nextText ?? ''),
-                ),
-              ],
             ),
           );
         },

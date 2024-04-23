@@ -15,8 +15,8 @@ _$QuizClassImpl _$$QuizClassImplFromJson(Map<String, dynamic> json) =>
       falseChoice1: json['falseChoice1'] as String?,
       falseChoice2: json['falseChoice2'] as String?,
       falseChoice3: json['falseChoice3'] as String?,
-      correctCounts: json['correctCounts'] as int?,
-      incorrectCounts: json['incorrectCounts'] as int?,
+      correctCount: json['correctCount'] as int?,
+      incorrectCount: json['incorrectCount'] as int?,
     );
 
 Map<String, dynamic> _$$QuizClassImplToJson(_$QuizClassImpl instance) =>
@@ -28,6 +28,6 @@ Map<String, dynamic> _$$QuizClassImplToJson(_$QuizClassImpl instance) =>
       'falseChoice1': instance.falseChoice1,
       'falseChoice2': instance.falseChoice2,
       'falseChoice3': instance.falseChoice3,
-      'correctCounts': instance.correctCounts,
-      'incorrectCounts': instance.incorrectCounts,
+      'correctCount': instance.correctCount,
+      'incorrectCount': instance.incorrectCount,
     };

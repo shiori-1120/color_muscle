@@ -6,7 +6,7 @@ part of 'view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$questionViewModelHash() => r'cabe15ac64f56b238ce76044ac238a103e31b6ed';
+String _$questionViewModelHash() => r'444699039ea4d07e84a7bed79568db835c5372bc';
 
 /// See also [QuestionViewModel].
 @ProviderFor(QuestionViewModel)

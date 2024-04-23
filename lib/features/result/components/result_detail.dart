@@ -21,7 +21,7 @@ class ResultDetail extends ConsumerWidget {
           padding: const EdgeInsets.all(10),
           height: 100,
           width: MediaQuery.of(context).size.width * 0.9,
-          backgroundColor: ColorName.whiteBase,
+          backgroundColor: ColorName.white,
           onPressed: () => ref
               .read(resultViewModelProvider.notifier)
               .navigateToResultDetailPage(context, quiz),
@@ -30,7 +30,7 @@ class ResultDetail extends ConsumerWidget {
             children: [
               const Text(
                 'サックスブルー',
-                style: TextStyle(color: ColorName.whiteBase, fontSize: 20),
+                style: TextStyle(color: ColorName.white, fontSize: 20),
               ),
               Container(
                 alignment: Alignment.centerRight,

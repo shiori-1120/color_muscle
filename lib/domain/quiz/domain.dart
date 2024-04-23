@@ -21,8 +21,8 @@ class QuizClass with _$QuizClass {
     String? falseChoice1,
     String? falseChoice2,
     String? falseChoice3,
-    int? correctCounts,
-    int? incorrectCounts, 
+    int? correctCount,
+    int? incorrectCount, 
   }) = _QuizClass;
   factory QuizClass.fromJson(Map<String, dynamic> json) =>
       _$QuizClassFromJson(json);

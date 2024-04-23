@@ -27,8 +27,8 @@ mixin _$QuizClass {
   String? get falseChoice1 => throw _privateConstructorUsedError;
   String? get falseChoice2 => throw _privateConstructorUsedError;
   String? get falseChoice3 => throw _privateConstructorUsedError;
-  int? get correctCounts => throw _privateConstructorUsedError;
-  int? get incorrectCounts => throw _privateConstructorUsedError;
+  int? get correctCount => throw _privateConstructorUsedError;
+  int? get incorrectCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,8 +49,8 @@ abstract class $QuizClassCopyWith<$Res> {
       String? falseChoice1,
       String? falseChoice2,
       String? falseChoice3,
-      int? correctCounts,
-      int? incorrectCounts});
+      int? correctCount,
+      int? incorrectCount});
 }
 
 /// @nodoc
@@ -73,8 +73,8 @@ class _$QuizClassCopyWithImpl<$Res, $Val extends QuizClass>
     Object? falseChoice1 = freezed,
     Object? falseChoice2 = freezed,
     Object? falseChoice3 = freezed,
-    Object? correctCounts = freezed,
-    Object? incorrectCounts = freezed,
+    Object? correctCount = freezed,
+    Object? incorrectCount = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -105,13 +105,13 @@ class _$QuizClassCopyWithImpl<$Res, $Val extends QuizClass>
           ? _value.falseChoice3
           : falseChoice3 // ignore: cast_nullable_to_non_nullable
               as String?,
-      correctCounts: freezed == correctCounts
-          ? _value.correctCounts
-          : correctCounts // ignore: cast_nullable_to_non_nullable
+      correctCount: freezed == correctCount
+          ? _value.correctCount
+          : correctCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      incorrectCounts: freezed == incorrectCounts
-          ? _value.incorrectCounts
-          : incorrectCounts // ignore: cast_nullable_to_non_nullable
+      incorrectCount: freezed == incorrectCount
+          ? _value.incorrectCount
+          : incorrectCount // ignore: cast_nullable_to_non_nullable
               as int?,
     ) as $Val);
   }
@@ -133,8 +133,8 @@ abstract class _$$QuizClassImplCopyWith<$Res>
       String? falseChoice1,
       String? falseChoice2,
       String? falseChoice3,
-      int? correctCounts,
-      int? incorrectCounts});
+      int? correctCount,
+      int? incorrectCount});
 }
 
 /// @nodoc
@@ -155,8 +155,8 @@ class __$$QuizClassImplCopyWithImpl<$Res>
     Object? falseChoice1 = freezed,
     Object? falseChoice2 = freezed,
     Object? falseChoice3 = freezed,
-    Object? correctCounts = freezed,
-    Object? incorrectCounts = freezed,
+    Object? correctCount = freezed,
+    Object? incorrectCount = freezed,
   }) {
     return _then(_$QuizClassImpl(
       id: null == id
@@ -187,13 +187,13 @@ class __$$QuizClassImplCopyWithImpl<$Res>
           ? _value.falseChoice3
           : falseChoice3 // ignore: cast_nullable_to_non_nullable
               as String?,
-      correctCounts: freezed == correctCounts
-          ? _value.correctCounts
-          : correctCounts // ignore: cast_nullable_to_non_nullable
+      correctCount: freezed == correctCount
+          ? _value.correctCount
+          : correctCount // ignore: cast_nullable_to_non_nullable
               as int?,
-      incorrectCounts: freezed == incorrectCounts
-          ? _value.incorrectCounts
-          : incorrectCounts // ignore: cast_nullable_to_non_nullable
+      incorrectCount: freezed == incorrectCount
+          ? _value.incorrectCount
+          : incorrectCount // ignore: cast_nullable_to_non_nullable
               as int?,
     ));
   }
@@ -210,8 +210,8 @@ class _$QuizClassImpl implements _QuizClass {
       this.falseChoice1,
       this.falseChoice2,
       this.falseChoice3,
-      this.correctCounts,
-      this.incorrectCounts});
+      this.correctCount,
+      this.incorrectCount});
 
   factory _$QuizClassImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuizClassImplFromJson(json);
@@ -231,13 +231,13 @@ class _$QuizClassImpl implements _QuizClass {
   @override
   final String? falseChoice3;
   @override
-  final int? correctCounts;
+  final int? correctCount;
   @override
-  final int? incorrectCounts;
+  final int? incorrectCount;
 
   @override
   String toString() {
-    return 'QuizClass(id: $id, explanation: $explanation, quizStatement: $quizStatement, trueChoice: $trueChoice, falseChoice1: $falseChoice1, falseChoice2: $falseChoice2, falseChoice3: $falseChoice3, correctCounts: $correctCounts, incorrectCounts: $incorrectCounts)';
+    return 'QuizClass(id: $id, explanation: $explanation, quizStatement: $quizStatement, trueChoice: $trueChoice, falseChoice1: $falseChoice1, falseChoice2: $falseChoice2, falseChoice3: $falseChoice3, correctCount: $correctCount, incorrectCount: $incorrectCount)';
   }
 
   @override
@@ -258,10 +258,10 @@ class _$QuizClassImpl implements _QuizClass {
                 other.falseChoice2 == falseChoice2) &&
             (identical(other.falseChoice3, falseChoice3) ||
                 other.falseChoice3 == falseChoice3) &&
-            (identical(other.correctCounts, correctCounts) ||
-                other.correctCounts == correctCounts) &&
-            (identical(other.incorrectCounts, incorrectCounts) ||
-                other.incorrectCounts == incorrectCounts));
+            (identical(other.correctCount, correctCount) ||
+                other.correctCount == correctCount) &&
+            (identical(other.incorrectCount, incorrectCount) ||
+                other.incorrectCount == incorrectCount));
   }
 
   @JsonKey(ignore: true)
@@ -275,8 +275,8 @@ class _$QuizClassImpl implements _QuizClass {
       falseChoice1,
       falseChoice2,
       falseChoice3,
-      correctCounts,
-      incorrectCounts);
+      correctCount,
+      incorrectCount);
 
   @JsonKey(ignore: true)
   @override
@@ -301,8 +301,8 @@ abstract class _QuizClass implements QuizClass {
       final String? falseChoice1,
       final String? falseChoice2,
       final String? falseChoice3,
-      final int? correctCounts,
-      final int? incorrectCounts}) = _$QuizClassImpl;
+      final int? correctCount,
+      final int? incorrectCount}) = _$QuizClassImpl;
 
   factory _QuizClass.fromJson(Map<String, dynamic> json) =
       _$QuizClassImpl.fromJson;
@@ -322,9 +322,9 @@ abstract class _QuizClass implements QuizClass {
   @override
   String? get falseChoice3;
   @override
-  int? get correctCounts;
+  int? get correctCount;
   @override
-  int? get incorrectCounts;
+  int? get incorrectCount;
   @override
   @JsonKey(ignore: true)
   _$$QuizClassImplCopyWith<_$QuizClassImpl> get copyWith =>

@@ -27,7 +27,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: '色彩検定筋トレサークル（仮）',
+        title: 'いちょう祭クイズアプリ',
         theme: ThemeData(
           fontFamily: 'MPLUS',
           useMaterial3: false,

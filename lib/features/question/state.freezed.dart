@@ -23,8 +23,7 @@ mixin _$QuestionState {
   int? get quizLength => throw _privateConstructorUsedError;
   String? get nextText => throw _privateConstructorUsedError;
   List<bool> get resultsBool => throw _privateConstructorUsedError;
-  List<String> get resultsId => throw _privateConstructorUsedError;
-  Color? get backgroundcolor => throw _privateConstructorUsedError;
+  List<int> get resultsId => throw _privateConstructorUsedError;
   bool get screenEnabled => throw _privateConstructorUsedError; // デフォルト値を指定
   bool get isTrue => throw _privateConstructorUsedError;
   bool get isFalse => throw _privateConstructorUsedError;
@@ -47,8 +46,7 @@ abstract class $QuestionStateCopyWith<$Res> {
       int? quizLength,
       String? nextText,
       List<bool> resultsBool,
-      List<String> resultsId,
-      Color? backgroundcolor,
+      List<int> resultsId,
       bool screenEnabled,
       bool isTrue,
       bool isFalse});
@@ -76,7 +74,6 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
     Object? nextText = freezed,
     Object? resultsBool = null,
     Object? resultsId = null,
-    Object? backgroundcolor = freezed,
     Object? screenEnabled = null,
     Object? isTrue = null,
     Object? isFalse = null,
@@ -109,11 +106,7 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
       resultsId: null == resultsId
           ? _value.resultsId
           : resultsId // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      backgroundcolor: freezed == backgroundcolor
-          ? _value.backgroundcolor
-          : backgroundcolor // ignore: cast_nullable_to_non_nullable
-              as Color?,
+              as List<int>,
       screenEnabled: null == screenEnabled
           ? _value.screenEnabled
           : screenEnabled // ignore: cast_nullable_to_non_nullable
@@ -153,8 +146,7 @@ abstract class _$$QuestionStateImplCopyWith<$Res>
       int? quizLength,
       String? nextText,
       List<bool> resultsBool,
-      List<String> resultsId,
-      Color? backgroundcolor,
+      List<int> resultsId,
       bool screenEnabled,
       bool isTrue,
       bool isFalse});
@@ -181,7 +173,6 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
     Object? nextText = freezed,
     Object? resultsBool = null,
     Object? resultsId = null,
-    Object? backgroundcolor = freezed,
     Object? screenEnabled = null,
     Object? isTrue = null,
     Object? isFalse = null,
@@ -214,11 +205,7 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
       resultsId: null == resultsId
           ? _value._resultsId
           : resultsId // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      backgroundcolor: freezed == backgroundcolor
-          ? _value.backgroundcolor
-          : backgroundcolor // ignore: cast_nullable_to_non_nullable
-              as Color?,
+              as List<int>,
       screenEnabled: null == screenEnabled
           ? _value.screenEnabled
           : screenEnabled // ignore: cast_nullable_to_non_nullable
@@ -245,8 +232,7 @@ class _$QuestionStateImpl implements _QuestionState {
       this.quizLength,
       this.nextText,
       required final List<bool> resultsBool,
-      required final List<String> resultsId,
-      this.backgroundcolor = ColorName.whiteBase,
+      required final List<int> resultsId,
       this.screenEnabled = true,
       this.isTrue = false,
       this.isFalse = false})
@@ -280,17 +266,14 @@ class _$QuestionStateImpl implements _QuestionState {
     return EqualUnmodifiableListView(_resultsBool);
   }
 
-  final List<String> _resultsId;
+  final List<int> _resultsId;
   @override
-  List<String> get resultsId {
+  List<int> get resultsId {
     if (_resultsId is EqualUnmodifiableListView) return _resultsId;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_resultsId);
   }
 
-  @override
-  @JsonKey()
-  final Color? backgroundcolor;
   @override
   @JsonKey()
   final bool screenEnabled;
@@ -304,7 +287,7 @@ class _$QuestionStateImpl implements _QuestionState {
 
   @override
   String toString() {
-    return 'QuestionState(quiz: $quiz, choices: $choices, index: $index, quizLength: $quizLength, nextText: $nextText, resultsBool: $resultsBool, resultsId: $resultsId, backgroundcolor: $backgroundcolor, screenEnabled: $screenEnabled, isTrue: $isTrue, isFalse: $isFalse)';
+    return 'QuestionState(quiz: $quiz, choices: $choices, index: $index, quizLength: $quizLength, nextText: $nextText, resultsBool: $resultsBool, resultsId: $resultsId, screenEnabled: $screenEnabled, isTrue: $isTrue, isFalse: $isFalse)';
   }
 
   @override
@@ -323,8 +306,6 @@ class _$QuestionStateImpl implements _QuestionState {
                 .equals(other._resultsBool, _resultsBool) &&
             const DeepCollectionEquality()
                 .equals(other._resultsId, _resultsId) &&
-            (identical(other.backgroundcolor, backgroundcolor) ||
-                other.backgroundcolor == backgroundcolor) &&
             (identical(other.screenEnabled, screenEnabled) ||
                 other.screenEnabled == screenEnabled) &&
             (identical(other.isTrue, isTrue) || other.isTrue == isTrue) &&
@@ -341,7 +322,6 @@ class _$QuestionStateImpl implements _QuestionState {
       nextText,
       const DeepCollectionEquality().hash(_resultsBool),
       const DeepCollectionEquality().hash(_resultsId),
-      backgroundcolor,
       screenEnabled,
       isTrue,
       isFalse);
@@ -361,8 +341,7 @@ abstract class _QuestionState implements QuestionState {
       final int? quizLength,
       final String? nextText,
       required final List<bool> resultsBool,
-      required final List<String> resultsId,
-      final Color? backgroundcolor,
+      required final List<int> resultsId,
       final bool screenEnabled,
       final bool isTrue,
       final bool isFalse}) = _$QuestionStateImpl;
@@ -380,9 +359,7 @@ abstract class _QuestionState implements QuestionState {
   @override
   List<bool> get resultsBool;
   @override
-  List<String> get resultsId;
-  @override
-  Color? get backgroundcolor;
+  List<int> get resultsId;
   @override
   bool get screenEnabled;
   @override // デフォルト値を指定

@@ -76,18 +76,25 @@ class QuizRepo extends _$QuizRepo {
     return choices;
   }
 
-  Future<void> updateResultCounts(int index, bool isCorrect) async {
+  Future<void> updateResultCounts(
+      int quizLength, List<bool> resultsBool, List<int> resultsId) async {
+    print('quizLength$quizLength resultsBool.length ${resultsBool.length}');
+    print('$resultsBool$resultsBool');
     await db.runTransaction((t) async {
-      final int questionId = index + 100;
-      final DocumentReference quizDocRef =
-          collection.doc(questionId.toString());
-      isCorrect
-          ? t.update(quizDocRef, {
-              'correctCount': FieldValue.increment(1),
-            })
-          : t.update(quizDocRef, {
-              'incorrectCount': FieldValue.increment(1),
-            });
+      for (int i = 0; i < quizLength; i++) {
+        final int questionId = resultsId[i] + 99;
+        final DocumentReference quizDocRef =
+            collection.doc(questionId.toString());
+        if (resultsBool[i] == true) {
+          t.update(quizDocRef, {
+            'correctCount': FieldValue.increment(1),
+          });
+        } else if (resultsBool[i] == false) {
+          t.update(quizDocRef, {
+            'incorrectCount': FieldValue.increment(1),
+          });
+        }
+      }
     });
   }
 }
