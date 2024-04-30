@@ -18,7 +18,7 @@ class Quiz extends ConsumerWidget {
             children: const Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text('「もったいないーと」さんとのコラボ企画！食品ロスやもったいない―とについてのクイズに答えよう！なんとクイズに答えた人は模擬店のトッピング無料！！'),
+                Text('「もったいないーと」さんとのコラボ企画！\n食品ロスやもったいない―とについてのクイズに答えて、ドーナッツのトッピングを無料にしちゃおう！！'),
                 Padding(
                   padding: EdgeInsets.all(15),
                   child: TopButton(),

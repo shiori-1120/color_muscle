@@ -54,7 +54,7 @@ class QuestionPage extends ConsumerWidget {
                               children: [
                                 Text(
                                   data.quiz.quizStatement ?? 'エラー',
-                                  style: Styles.twentysix,
+                                  style: Styles.twenty,
                                   maxLines: 7,
                                 )
                               ]),
@@ -78,27 +78,31 @@ class QuestionPage extends ConsumerWidget {
                                           ? () async {
                                               await ref
                                                   .read(
+                                                      questionViewModelProvider
+                                                          .notifier)
+                                                  .changeScreenEnabled();
+                                              await ref
+                                                  .read(
                                                     questionViewModelProvider
                                                         .notifier,
                                                   )
                                                   .saveResult(
-                                                      data.choices[i].number)
-                                                  .then((value) => ref
-                                                      .read(
-                                                        questionViewModelProvider
-                                                            .notifier,
-                                                      )
-                                                      .next(data.index + 1))
-                                                  .then((value) => ref
-                                                      .read(
-                                                        questionViewModelProvider
-                                                            .notifier,
-                                                      )
-                                                      .showIconAndPopup(
-                                                          context,
-                                                          data.choices[i]
-                                                              .number,
-                                                          data.index));
+                                                      data.choices[i].number);
+                                              await ref
+                                                  .read(
+                                                    questionViewModelProvider
+                                                        .notifier,
+                                                  )
+                                                  .next(data.index + 1);
+                                              await ref
+                                                  .read(
+                                                    questionViewModelProvider
+                                                        .notifier,
+                                                  )
+                                                  .showIconAndPopup(
+                                                      context,
+                                                      data.choices[i].number,
+                                                      data.index);
                                             }
                                           : null,
                                       text: data.choices[i].text ?? '',
@@ -116,6 +120,7 @@ class QuestionPage extends ConsumerWidget {
                     ),
                   ],
                 ),
+                if (data.screenEnabled) Container(),
                 if (data.isTrue) // 画面が無効の場合にのみアイコンを表示
                   const Center(
                     child: Icon(

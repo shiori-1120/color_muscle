@@ -27,6 +27,8 @@ mixin _$QuizClass {
   String? get falseChoice1 => throw _privateConstructorUsedError;
   String? get falseChoice2 => throw _privateConstructorUsedError;
   String? get falseChoice3 => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
+  String? get photoUrl => throw _privateConstructorUsedError;
   int? get correctCount => throw _privateConstructorUsedError;
   int? get incorrectCount => throw _privateConstructorUsedError;
 
@@ -49,6 +51,8 @@ abstract class $QuizClassCopyWith<$Res> {
       String? falseChoice1,
       String? falseChoice2,
       String? falseChoice3,
+      String? url,
+      String? photoUrl,
       int? correctCount,
       int? incorrectCount});
 }
@@ -73,6 +77,8 @@ class _$QuizClassCopyWithImpl<$Res, $Val extends QuizClass>
     Object? falseChoice1 = freezed,
     Object? falseChoice2 = freezed,
     Object? falseChoice3 = freezed,
+    Object? url = freezed,
+    Object? photoUrl = freezed,
     Object? correctCount = freezed,
     Object? incorrectCount = freezed,
   }) {
@@ -105,6 +111,14 @@ class _$QuizClassCopyWithImpl<$Res, $Val extends QuizClass>
           ? _value.falseChoice3
           : falseChoice3 // ignore: cast_nullable_to_non_nullable
               as String?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoUrl: freezed == photoUrl
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       correctCount: freezed == correctCount
           ? _value.correctCount
           : correctCount // ignore: cast_nullable_to_non_nullable
@@ -133,6 +147,8 @@ abstract class _$$QuizClassImplCopyWith<$Res>
       String? falseChoice1,
       String? falseChoice2,
       String? falseChoice3,
+      String? url,
+      String? photoUrl,
       int? correctCount,
       int? incorrectCount});
 }
@@ -155,6 +171,8 @@ class __$$QuizClassImplCopyWithImpl<$Res>
     Object? falseChoice1 = freezed,
     Object? falseChoice2 = freezed,
     Object? falseChoice3 = freezed,
+    Object? url = freezed,
+    Object? photoUrl = freezed,
     Object? correctCount = freezed,
     Object? incorrectCount = freezed,
   }) {
@@ -187,6 +205,14 @@ class __$$QuizClassImplCopyWithImpl<$Res>
           ? _value.falseChoice3
           : falseChoice3 // ignore: cast_nullable_to_non_nullable
               as String?,
+      url: freezed == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String?,
+      photoUrl: freezed == photoUrl
+          ? _value.photoUrl
+          : photoUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       correctCount: freezed == correctCount
           ? _value.correctCount
           : correctCount // ignore: cast_nullable_to_non_nullable
@@ -210,6 +236,8 @@ class _$QuizClassImpl implements _QuizClass {
       this.falseChoice1,
       this.falseChoice2,
       this.falseChoice3,
+      this.url,
+      this.photoUrl,
       this.correctCount,
       this.incorrectCount});
 
@@ -231,13 +259,17 @@ class _$QuizClassImpl implements _QuizClass {
   @override
   final String? falseChoice3;
   @override
+  final String? url;
+  @override
+  final String? photoUrl;
+  @override
   final int? correctCount;
   @override
   final int? incorrectCount;
 
   @override
   String toString() {
-    return 'QuizClass(id: $id, explanation: $explanation, quizStatement: $quizStatement, trueChoice: $trueChoice, falseChoice1: $falseChoice1, falseChoice2: $falseChoice2, falseChoice3: $falseChoice3, correctCount: $correctCount, incorrectCount: $incorrectCount)';
+    return 'QuizClass(id: $id, explanation: $explanation, quizStatement: $quizStatement, trueChoice: $trueChoice, falseChoice1: $falseChoice1, falseChoice2: $falseChoice2, falseChoice3: $falseChoice3, url: $url, photoUrl: $photoUrl, correctCount: $correctCount, incorrectCount: $incorrectCount)';
   }
 
   @override
@@ -258,6 +290,9 @@ class _$QuizClassImpl implements _QuizClass {
                 other.falseChoice2 == falseChoice2) &&
             (identical(other.falseChoice3, falseChoice3) ||
                 other.falseChoice3 == falseChoice3) &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.photoUrl, photoUrl) ||
+                other.photoUrl == photoUrl) &&
             (identical(other.correctCount, correctCount) ||
                 other.correctCount == correctCount) &&
             (identical(other.incorrectCount, incorrectCount) ||
@@ -275,6 +310,8 @@ class _$QuizClassImpl implements _QuizClass {
       falseChoice1,
       falseChoice2,
       falseChoice3,
+      url,
+      photoUrl,
       correctCount,
       incorrectCount);
 
@@ -301,6 +338,8 @@ abstract class _QuizClass implements QuizClass {
       final String? falseChoice1,
       final String? falseChoice2,
       final String? falseChoice3,
+      final String? url,
+      final String? photoUrl,
       final int? correctCount,
       final int? incorrectCount}) = _$QuizClassImpl;
 
@@ -321,6 +360,10 @@ abstract class _QuizClass implements QuizClass {
   String? get falseChoice2;
   @override
   String? get falseChoice3;
+  @override
+  String? get url;
+  @override
+  String? get photoUrl;
   @override
   int? get correctCount;
   @override

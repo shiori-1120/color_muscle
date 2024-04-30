@@ -28,7 +28,7 @@ class ClubDetail extends ConsumerWidget {
                       title: 'ぽちぽちのつどい',
                       photoUrl:
                           'https://lh3.googleusercontent.com/pw/AP1GczMj1cq2im7y0Icnpo0AgvbniOy672ppgj6YBJBwJaoLRYmot58_1hxZl5NAqc1kpXpzCjPqD5owFpty0yUSgLB9Mg99jlY-H1UYSKHEUV1i-Dd9MxFJ1vVLUYYCykJOMhciAWFatL__-_FdAT00V8mxMA=w384-h384-s-no-gm?authuser=0',
-                      explanation: 'アプリ開発サークルflutterを通して、ものづくり・コミュニケーションを楽しみ個人・プロジェクト活動に活かしていく!'),
+                      explanation: 'flutterを通してアプリ開発をし、チームでのコミュニケーションを楽しむサークル'),
                   Text(
                     '✕',
                     style:
@@ -39,7 +39,7 @@ class ClubDetail extends ConsumerWidget {
                       title: 'もったいない―と',
                       photoUrl:
                           'https://lh3.googleusercontent.com/pw/AP1GczNRSSd5Ue1xb-A60ZZGOfKAMXhchq7kuQht9g1TM9qY-xn2-taXYAzE8Fgt_g6wR4uT-1osRYnDkfBd0q_aibiTIezc9fGHBEJKmjAHWt7KMkdFRUfc1nuiRM1lLMzcT4b9MEoQqRsQ9w17QoEz9ewS0g=w400-h400-s-no-gm?authuser=0',
-                      explanation: '「食」を通して社会をちょっとよくしたい「身近なところからフードロスを減らす」ことを目標に立ち上がったサークル！'),
+                      explanation: '「身近なところからフードロスを減らす」ことを目標に立ち上がったサークル！'),
                 ],
               ),
             ),

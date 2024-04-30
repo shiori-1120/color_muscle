@@ -4,6 +4,8 @@ import 'package:mottaina_eat/components/primary_button.dart';
 import 'package:mottaina_eat/domain/quiz/domain.dart';
 import 'package:mottaina_eat/domain/quiz/repository.dart';
 import 'package:mottaina_eat/features/question/choice_class.dart';
+import 'package:mottaina_eat/features/question/components/explanation_photo_part.dart';
+import 'package:mottaina_eat/features/question/components/explanation_url_part.dart';
 import 'package:mottaina_eat/features/question/state.dart';
 import 'package:mottaina_eat/features/result/page/result.dart';
 import 'package:mottaina_eat/features/top/page/top.dart';
@@ -61,6 +63,7 @@ class QuestionViewModel extends _$QuestionViewModel {
   }
 
   Future<void> saveResult(int number) async {
+    print('saveResult');
     final data = state.requireValue;
     final List<bool> newBoolList = [
       ...data.resultsBool,
@@ -70,9 +73,13 @@ class QuestionViewModel extends _$QuestionViewModel {
     state = AsyncData(
       data.copyWith(resultsId: newIndexList, resultsBool: newBoolList),
     );
+    print('結果をセーブしました');
+    print(data.resultsBool);
+    print(data.resultsId);
   }
 
   FutureOr<void> next(int index) async {
+    print('next');
     final data = state.requireValue;
     if (index == data.quizLength) {
       state = AsyncData(data.copyWith(nextText: '結果を見る'));
@@ -87,6 +94,12 @@ class QuestionViewModel extends _$QuestionViewModel {
         data.quizLength ?? 0, data.resultsBool, data.resultsId);
   }
 
+  Future<void> changeScreenEnabled() async {
+    print('changeScreenEnabled');
+    final data = state.requireValue;
+    state = AsyncData(data.copyWith(screenEnabled: false));
+  }
+
   Future<void> showIconAndPopup(
     BuildContext context,
     int number,
@@ -99,7 +112,7 @@ class QuestionViewModel extends _$QuestionViewModel {
     } else {
       state = AsyncData(data.copyWith(isFalse: true));
     }
-    await Future.delayed(const Duration(seconds: 1), () {
+    await Future.delayed(const Duration(milliseconds: 500), () {
       showDialog(
         context: context,
         barrierDismissible: false,
@@ -112,150 +125,188 @@ class QuestionViewModel extends _$QuestionViewModel {
               ),
               insetPadding: const EdgeInsets.only(left: 15, right: 15),
               backgroundColor: const Color.fromARGB(204, 255, 203, 173),
-              content: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                height: MediaQuery.of(context).size.height * 0.5,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    mainContainer(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        height: MediaQuery.of(context).size.height * 0.2,
-                        children: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              Row(
+              content: ConstrainedBox(
+                constraints: const BoxConstraints(minHeight: 420),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: MediaQuery.of(context).size.height * 0.5,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(minHeight: 170),
+                        child: mainContainer(
+                            width: MediaQuery.of(context).size.width * 0.8,
+                            height: MediaQuery.of(context).size.height * 0.2,
+                            children: Padding(
+                              padding: const EdgeInsets.only(left: 8, right: 8),
+                              child: Column(
                                 children: [
-                                  Text(
-                                    'Q.${index + 1}',
-                                    style: const TextStyle(
-                                        color: ColorName.black2,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                data.quiz.quizStatement ?? '',
-                                maxLines: 3,
-                                style: const TextStyle(
-                                  color: ColorName.black2,
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Row(
-                                children: [
-                                  const Text(
-                                    '正解',
-                                    style: TextStyle(
-                                        color: ColorName.black2,
-                                        fontWeight: FontWeight.bold,
-                                       )
-                                      ,
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'Q.${index + 1}',
+                                        style: const TextStyle(
+                                            color: ColorName.black2,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
                                   ),
                                   const SizedBox(
-                                    width: 10,
+                                    height: 5,
                                   ),
-                                  Column(
+                                  Text(
+                                    data.quiz.quizStatement ?? '',
+                                    maxLines: 3,
+                                    style: const TextStyle(
+                                      color: ColorName.black2,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
                                     children: [
-                                      SizedBox(
-                                        width: MediaQuery.of(context).size.width * 0.5,
-                                        child: Text(
-                                          data.quiz.trueChoice ?? '',
-                                          maxLines: 2,
-                                          style: const TextStyle(
-                                              color: ColorName.black2,
-                                              fontWeight: FontWeight.bold,
-                                               overflow: TextOverflow.ellipsis,),
+                                      const Text(
+                                        '正解',
+                                        style: TextStyle(
+                                          color: ColorName.black2,
+                                          fontWeight: FontWeight.bold,
                                         ),
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Column(
+                                        children: [
+                                          SizedBox(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.5,
+                                            child: Text(
+                                              data.quiz.trueChoice ?? '',
+                                              maxLines: 2,
+                                              style: const TextStyle(
+                                                color: ColorName.black2,
+                                                fontWeight: FontWeight.bold,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
-                        )),
-                    mainContainer(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        height: MediaQuery.of(context).size.height * 0.2,
-                        children: Padding(
-                          padding: const EdgeInsets.only(left: 8, right: 8),
-                          child: Column(
-                            children: [
-                              const Row(
-                                children: [
-                                  Text(
-                                    '解説',
-                                    style: TextStyle(
-                                        color: ColorName.black2,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                data.quiz.explanation ?? '',
-                                style: const TextStyle(color: ColorName.black2),
-                              ),
-                            ],
-                          ),
-                        )),
-                    PrimaryButton(
-                      onPressed: () async {
-                        state = AsyncData(
-                            data.copyWith(isFalse: false, isTrue: false));
-                        if (index + 1 == data.quizLength) {
-                          saveResult(number);
-                          updateResultCount();
-                          final QuizClass nextQuestion = await getQuiz(0);
-                          final List<ChoiceClass> nextChoices =
-                              await getChoices(0);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ResultPage(
-                                  resultsBool: data.resultsBool,
-                                  resultsId: data.resultsId,
-                                  quizLength: data.quizLength!),
+                            )),
+                      ),
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(minHeight: 170),
+                        child: mainContainer(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          height: MediaQuery.of(context).size.height * 0.2,
+                          children: Padding(
+                            padding: const EdgeInsets.only(left: 8, right: 8),
+                            child: Column(
+                              children: [
+                                const Row(
+                                  children: [
+                                    Text(
+                                      '解説',
+                                      style: TextStyle(
+                                          color: ColorName.black2,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 5,
+                                ),
+                                Text(
+                                  data.quiz.explanation ?? '',
+                                  style:
+                                      const TextStyle(color: ColorName.black2),
+                                ),
+                                explanationUrlPart(
+                                  url: data.quiz.url,
+                                ),
+                                explanationPhotoPart(
+                                  photoUrl: data.quiz.photoUrl,
+                                ),
+                              ],
                             ),
-                          );
+                          ),
+                        ),
+                      ),
+                      PrimaryButton(
+                        onPressed: () async {
                           state = AsyncData(data.copyWith(
-                              index: 0,
+                            isFalse: false,
+                            isTrue: false,
+                          ));
+                          if (index + 1 == data.quizLength) {
+                            print('最後のボタン');
+                            final List<bool> newBoolList = [
+                              ...data.resultsBool,
+                          
+                            ];
+                            final List<int> newIndexList = [
+                              ...data.resultsId,
+                      
+                            ];
+                            state = await AsyncData(
+                              data.copyWith(
+                                  resultsId: newIndexList,
+                                  resultsBool: newBoolList),
+                            );
+                            print(newIndexList);
+                            print(newBoolList);
+                            await updateResultCount();
+                            final QuizClass nextQuestion = await getQuiz(0);
+                            final List<ChoiceClass> nextChoices =
+                                await getChoices(0);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ResultPage(
+                                    resultsBool: newBoolList,
+                                    resultsId: newIndexList,
+                                    quizLength: data.quizLength!),
+                              ),
+                            );
+                            state = AsyncData(data.copyWith(
+                                index: 0,
+                                quiz: nextQuestion,
+                                choices: nextChoices,
+                                resultsBool: [],
+                                resultsId: [],
+                                screenEnabled: true));
+                          } else {
+                            Navigator.of(context).pop();
+                            final int nextIndex = data.index + 1;
+                            final QuizClass nextQuestion =
+                                await getQuiz(nextIndex);
+                            final List<ChoiceClass> nextChoices =
+                                await getChoices(nextIndex);
+                            state = AsyncData(data.copyWith(
+                              index: nextIndex,
                               quiz: nextQuestion,
                               choices: nextChoices,
-                              resultsBool: [],
-                              resultsId: []));
-                        } else {
-                          Navigator.of(context).pop();
-                          final int nextIndex = data.index + 1;
-                          final QuizClass nextQuestion =
-                              await getQuiz(nextIndex);
-                          final List<ChoiceClass> nextChoices =
-                              await getChoices(nextIndex);
-                          print(nextChoices);
-                          state = AsyncData(data.copyWith(
-                            index: nextIndex,
-                            quiz: nextQuestion,
-                            choices: nextChoices,
-                          ));
-                        }
-                      },
-                      width: 150,
-                      height: 30,
-                      text: data.nextText ?? '',
-                      textColor: ColorName.black2,
-                      borderRaius: 20,
-                      backgroundColor: Colors.white.withOpacity(0.8),
-                    ),
-                  ],
+                              screenEnabled: true,
+                            ));
+                          }
+                        },
+                        width: 150,
+                        height: 30,
+                        text: data.nextText ?? '',
+                        textColor: ColorName.black2,
+                        borderRaius: 20,
+                        backgroundColor: Colors.white.withOpacity(0.8),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

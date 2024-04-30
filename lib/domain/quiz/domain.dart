@@ -21,6 +21,8 @@ class QuizClass with _$QuizClass {
     String? falseChoice1,
     String? falseChoice2,
     String? falseChoice3,
+    String? url,
+    String? photoUrl,
     int? correctCount,
     int? incorrectCount, 
   }) = _QuizClass;

@@ -27,7 +27,7 @@ class ResultPage extends ConsumerWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: NetworkImage(
-              'https://lh3.googleusercontent.com/pw/AP1GczP6EbprN0oQZbyhWUx5P5lix3vQyUc_CN6LgsTfcc0mHWdBwdK6wNKcbUMu8Yy6wlu3sGkJVQHYTGheaj5SJo3f0L8GEEA8-8fQ-ODUlZi7wna1Sefri3ne2IBBFTaI1wTcuKulzKA5CaeVFIy4qUTPeQ=w598-h846-s-no-gm?authuser=0'),
+                'https://lh3.googleusercontent.com/pw/AP1GczP6EbprN0oQZbyhWUx5P5lix3vQyUc_CN6LgsTfcc0mHWdBwdK6wNKcbUMu8Yy6wlu3sGkJVQHYTGheaj5SJo3f0L8GEEA8-8fQ-ODUlZi7wna1Sefri3ne2IBBFTaI1wTcuKulzKA5CaeVFIy4qUTPeQ=w598-h846-s-no-gm?authuser=0'),
             fit: BoxFit.cover,
           ),
         ),
@@ -41,67 +41,70 @@ class ResultPage extends ConsumerWidget {
             ),
             body: Column(
               children: [
-                const SizedBox(height: 60),
+                const SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    mainContainer(
-                      height: MediaQuery.of(context).size.height * 0.3,
-                      children: Column(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(top: 10, left: 20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(minHeight: 240),
+                      child: mainContainer(
+                        height: MediaQuery.of(context).size.height * 0.3,
+                        children: Column(
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.only(left: 20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '10問中',
+                                    style: TextStyle(fontSize: 24),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  '10問中',
-                                  style: TextStyle(fontSize: 25),
+                                  '問正解',
+                                  style: TextStyle(
+                                    fontSize: 50,
+                                    fontWeight: FontWeight.bold,
+                                    color: ColorName.black2,
+                                  ),
                                 ),
                               ],
                             ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                '問正解',
-                                style: TextStyle(
-                                  fontSize: 50,
-                                  fontWeight: FontWeight.bold,
-                                  color: ColorName.black2,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          const Text(
-                            '正答率 %',
-                            style: TextStyle(
-                              color: ColorName.black2,
+                            const SizedBox(
+                              height: 5,
                             ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          PrimaryButton(
-                            backgroundColor:
-                                ColorName.eatOrange.withOpacity(0.8),
-                            onPressed: () => ref
-                                .read(resultViewModelProvider.notifier)
-                                .navigateToTopPage(context),
-                            text: 'ホームに戻る',
-                            width: MediaQuery.of(context).size.width * 0.8,
-                            borderRaius: 30,
-                            height: 50,
-                            elevation: 0,
-                          ),
-                        ],
+                            const Text(
+                              '正答率 %',
+                              style: TextStyle(
+                                color: ColorName.black2,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            PrimaryButton(
+                              backgroundColor:
+                                  ColorName.eatOrange.withOpacity(0.8),
+                              onPressed: () => ref
+                                  .read(resultViewModelProvider.notifier)
+                                  .navigateToTopPage(context),
+                              text: 'ホームに戻る',
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              borderRaius: 30,
+                              height: 40,
+                              elevation: 0,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -236,12 +239,14 @@ class ResultPage extends ConsumerWidget {
                                           sections: [
                                             PieChartSectionData(
                                               showTitle: false,
-                                              value: (correctPercent).toDouble(),
+                                              value:
+                                                  (correctPercent).toDouble(),
                                               color: Colors.deepOrangeAccent,
                                             ),
                                             PieChartSectionData(
                                               showTitle: false,
-                                              value: (incorrectPercent).toDouble(),
+                                              value:
+                                                  (incorrectPercent).toDouble(),
                                               color: ColorName.greyBase,
                                             ),
                                           ],

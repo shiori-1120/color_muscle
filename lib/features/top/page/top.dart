@@ -6,6 +6,7 @@ import 'package:mottaina_eat/features/top/view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:mottaina_eat/components/primary_app_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mottaina_eat/style/colors.dart';
 
 class TopPage extends ConsumerWidget {
   const TopPage({Key? key}) : super(key: key);
@@ -40,6 +41,9 @@ class TopPage extends ConsumerWidget {
                     mainContainer(
                       children: Column(
                         children: [
+                          Text('↓ ぽちぽちのつどいのアプリ紹介 ↓',
+                          style: TextStyle(color: ColorName.black2,fontWeight: FontWeight.bold,fontSize: 18),),
+                          SizedBox(height: 10),
                           appContainer(
                             title: '石橋ごはんルーレット',
                             explanation: 'ここにはアプリの簡単な説明が入ります',
@@ -53,24 +57,22 @@ class TopPage extends ConsumerWidget {
                           SizedBox(height: 5),
                           appContainer(
                             title: '大学と大学院の授業過去問シェアアプリ',
-                            explanation: 'フェアな大学生活を送れるようにしたいと思いこのアプリを作りました。より多くの人に過去問を!!自分の所属の大学のみログインすることができて自分の大学の過去問を投稿閲覧することができます。',
+                            explanation:
+                                'フェアな大学生活を送れるようにしたいと思いこのアプリを作りました。より多くの人に過去問を!!自分の所属の大学のみログインすることができて自分の大学の過去問を投稿閲覧することができます。',
                             iconUrl:
                                 'https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/e9/40/a5/e940a5a6-7a74-32c8-c3bf-4a9458f7adc8/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/217x0w.webp',
                             iosUrl:
                                 'https://apps.apple.com/jp/app/%E5%A4%A7%E5%AD%A6%E3%81%A8%E5%A4%A7%E5%AD%A6%E9%99%A2%E3%81%AE%E6%8E%88%E6%A5%AD%E9%81%8E%E5%8E%BB%E5%95%8F%E3%82%B7%E3%82%A7%E3%82%A2%E3%82%A2%E3%83%97%E3%83%AA/id6476320248',
-                            androidUrl:
-                                'https://zenn.dev/k9i/articles/e95423b1542a7c',
                           ),
                           SizedBox(height: 5),
                           appContainer(
                             title: 'みそしるbot',
-                            explanation: '「今日のみそしる」の具材と隠し味を決めるアプリです。Twitterを始めとしたSNSで「今日のみそしる」を共有できます。',
+                            explanation:
+                                '「今日のみそしる」の具材と隠し味を決めるアプリです。Twitterを始めとしたSNSで「今日のみそしる」を共有できます。',
                             iconUrl:
                                 'https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/ae/de/c8/aedec8ca-ca45-07c0-cc10-7e60d23291a4/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/217x0w.webp',
                             iosUrl:
                                 'https://apps.apple.com/jp/app/%E3%81%BF%E3%81%9D%E3%81%97%E3%82%8Bbot/id6447541935',
-                            androidUrl:
-                                'https://zenn.dev/k9i/articles/e95423b1542a7c',
                           ),
                           SizedBox(height: 5),
                           appContainer(
@@ -78,21 +80,17 @@ class TopPage extends ConsumerWidget {
                             explanation: 'ここにはアプリの簡単な説明が入ります',
                             iconUrl:
                                 'https://stv-tech.co.jp/wp-content/uploads/2023/08/1_5-aoK8IBmXve5whBQM90GA.png',
-                            iosUrl:
-                                'https://praiseapp3.web.app/',
-                            androidUrl:
-                                'https://zenn.dev/k9i/articles/e95423b1542a7c',
+                            webUrl: 'https://praiseapp3.web.app/',
                           ),
                           SizedBox(height: 5),
                           appContainer(
                             title: 'ブクピク',
-                            explanation: 'ブクピクは、「本とのホントの巡り合い」を実現するアプリです。【機能】・ランダムに１冊の本を選びます。・読みたい本をブックリストとしてまとめておくことができます。',
+                            explanation:
+                                'ブクピクは、「本とのホントの巡り合い」を実現するアプリです。【機能】・ランダムに１冊の本を選びます。・読みたい本をブックリストとしてまとめておくことができます。',
                             iconUrl:
                                 'https://is1-ssl.mzstatic.com/image/thumb/Purple112/v4/2c/90/ea/2c90ea28-86b4-31c6-6d3e-de352aa55ec1/AppIcon-0-0-1x_U007emarketing-0-7-0-0-85-220.png/230x0w.webp',
                             iosUrl:
                                 'https://apps.apple.com/in/app/%E3%83%96%E3%82%AF%E3%83%94%E3%82%AF/id6478705476',
-                            androidUrl:
-                                'https://zenn.dev/k9i/articles/e95423b1542a7c',
                           ),
                         ],
                       ),

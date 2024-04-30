@@ -5,41 +5,37 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mottaina_eat/style/styles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class linkButton extends ConsumerWidget {
-  const linkButton({
-    required this.url,
-    this.text,
-    this.width,
+class explanationUrlPart extends ConsumerWidget {
+  const explanationUrlPart({
+    this.url,
     super.key,
   });
 
-  final String url;
-  final String? text;
-  final double? width;
+  final String? url;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Widget buttonWidget;
-    if (url.isNotEmpty) {
-      buttonWidget = Row(
+    if (url != null && url!.isNotEmpty) {
+      buttonWidget = Column(
         children: [
+          const SizedBox(
+            height: 10,
+          ),
           PrimaryButton(
+            width: 230,
+            height: 30,
             onPressed: () {
-              final webUrl = Uri.parse(url);
+              final webUrl = Uri.parse(url!);
               launchUrl(webUrl);
             },
             elevation: 0,
-            width: MediaQuery.of(context).size.width * 0.29,
-            height: 50,
-            text: text,
+            text: 'サイトで詳しく見る！',
             style: Styles.twentyEight,
             borderRaius: 20,
             backgroundColor: ColorName.eatOrange.withOpacity(0.8),
             textColor: ColorName.black2,
           ),
-          SizedBox(
-            width: width ?? MediaQuery.of(context).size.width * 0.02,
-          )
         ],
       );
     } else {

@@ -29,8 +29,8 @@ class Styles {
     color: ColorName.black2,
     overflow: TextOverflow.ellipsis,
   );
-  static const twentysix = TextStyle(
-    fontSize: 26,
+  static const twentyFour = TextStyle(
+    fontSize: 24,
     color: ColorName.black2,
     overflow: TextOverflow.ellipsis,
   );

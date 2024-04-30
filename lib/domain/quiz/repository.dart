@@ -78,8 +78,6 @@ class QuizRepo extends _$QuizRepo {
 
   Future<void> updateResultCounts(
       int quizLength, List<bool> resultsBool, List<int> resultsId) async {
-    print('quizLength$quizLength resultsBool.length ${resultsBool.length}');
-    print('$resultsBool$resultsBool');
     await db.runTransaction((t) async {
       for (int i = 0; i < quizLength; i++) {
         final int questionId = resultsId[i] + 99;

@@ -11,6 +11,7 @@ class appContainer extends ConsumerWidget {
     this.iconUrl,
     this.iosUrl,
     this.androidUrl,
+    this.webUrl,
     super.key,
   });
 
@@ -19,6 +20,7 @@ class appContainer extends ConsumerWidget {
   final String? iconUrl;
   final String? iosUrl;
   final String? androidUrl;
+  final String? webUrl;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) => Column(
@@ -68,9 +70,9 @@ class appContainer extends ConsumerWidget {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.6,
                 child: Padding(
-                  padding: EdgeInsets.only(top: 10, bottom: 10),
+                  padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       linkButton(
                         url: iosUrl ?? '',
@@ -79,6 +81,11 @@ class appContainer extends ConsumerWidget {
                       linkButton(
                         url: androidUrl ?? '',
                         text: 'android',
+                        width: 0,
+                      ),
+                        linkButton(
+                        url: webUrl ?? '',
+                        text: 'Web',
                       ),
                     ],
                   ),
