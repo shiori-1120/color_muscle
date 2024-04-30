@@ -14,7 +14,6 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
         iconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: const Color(0xFFCFD8FF),
         centerTitle: true,
-        elevation: 1,
         title: const Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -28,23 +27,7 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ],
         ),
-        actions: [
-          IconButton(
-            onPressed: () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => TopPage(),
-                ),
-              );
-            },
-            icon: const FaIcon(
-              FontAwesomeIcons.magnifyingGlass,
-              color: ColorName.black2,
-              size: 30,
-            ),
-          )
-        ],
+       
       );
 
   @override

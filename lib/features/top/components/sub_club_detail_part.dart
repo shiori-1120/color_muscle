@@ -1,6 +1,7 @@
 import 'package:mottaina_eat/components/mainContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mottaina_eat/style/colors.dart';
 import 'package:mottaina_eat/style/styles.dart';
 
 class SubClubDetail extends ConsumerWidget {
@@ -25,20 +26,29 @@ class SubClubDetail extends ConsumerWidget {
             width: MediaQuery.of(context).size.width * 0.3,
             child: Image.network(photoUrl),
           ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Text(
-              title,
-              style: Styles.sixteen,
-            ),
+          const SizedBox(
+            height: 5,
+          ),
+          Text(
+            title,
+            style: Styles.fourteen,
           ),
           const SizedBox(
             height: 5,
           ),
           mainContainer(
+            borderRadius: 10,
             width: MediaQuery.of(context).size.width * 0.3,
             color: color,
-            text: explanation,
+            padding: 5,
+            children: Text(
+              explanation,
+              style: const TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.bold,
+                color: ColorName.black2,
+              ),
+            ),
           ),
         ],
       );

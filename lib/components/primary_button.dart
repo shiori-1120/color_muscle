@@ -10,7 +10,7 @@ class PrimaryButton extends StatelessWidget {
       this.height,
       this.width,
       this.circularSize,
-      this.backgroundColor = ColorName.greySecondary,
+      this.backgroundColor,
       this.foregroundColor,
       this.textColor,
       this.side = BorderSide.none,
@@ -77,7 +77,7 @@ class PrimaryButton extends StatelessWidget {
                         TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: isMini ? 14 : 16,
-                          color: textColor,
+                          color: ColorName.black2,
                         ),
                     textAlign: TextAlign.center,
                   ),

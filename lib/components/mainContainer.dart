@@ -28,12 +28,11 @@ class mainContainer extends StatelessWidget {
       ),
       width: width??MediaQuery.of(context).size.width * 0.93,
       height: height,
-      padding: EdgeInsets.all(padding ?? 10),
+      padding: EdgeInsets.all(padding ?? 20),
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(text ?? ''),
             children ?? const SizedBox(),
           ]));
 }

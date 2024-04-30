@@ -21,7 +21,7 @@ class SelectButton extends ConsumerWidget {
           PrimaryButton(
             borderRaius: 20,
             isCircular: false,
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.white.withOpacity(0.8),
             onPressed: onPressed ?? () {},
             width: MediaQuery.of(context).size.width * 0.92,
             height: MediaQuery.of(context).size.height * 0.08,

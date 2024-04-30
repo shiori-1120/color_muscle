@@ -1,11 +1,12 @@
+import 'package:mottaina_eat/components/mainContainer.dart';
 import 'package:mottaina_eat/components/secondary_app_bar.dart';
-import 'package:mottaina_eat/domain/quiz/repository.dart';
 import 'package:mottaina_eat/features/question/components/select_button.dart';
 import 'package:mottaina_eat/features/question/view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:mottaina_eat/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mottaina_eat/style/styles.dart';
 
 class QuestionPage extends ConsumerWidget {
   const QuestionPage({super.key});
@@ -30,30 +31,37 @@ class QuestionPage extends ConsumerWidget {
               children: [
                 Column(
                   children: [
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 15),
                     SizedBox(
                       height: 20,
                       child: Text(
                         '${data.index + 1}問/${data.quizLength}問',
                         textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 20),
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 15),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(
+                        mainContainer(
                           height: MediaQuery.of(context).size.height * 0.3,
                           width: MediaQuery.of(context).size.width * 0.9,
-                          color: Colors.white,
-                          child: Column(children: [
-                            Text('Q.${data.index + 1}'),
-                            Text(data.quiz.quizStatement ?? 'エラー')
-                          ]),
+                          children: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  data.quiz.quizStatement ?? 'エラー',
+                                  style: Styles.twentysix,
+                                  maxLines: 7,
+                                )
+                              ]),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 50),
+                    const SizedBox(height: 30),
                     Column(
                       children: [
                         SizedBox(
@@ -95,6 +103,9 @@ class QuestionPage extends ConsumerWidget {
                                           : null,
                                       text: data.choices[i].text ?? '',
                                     ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
                                   }
                                 ],
                               ),
@@ -116,8 +127,8 @@ class QuestionPage extends ConsumerWidget {
                 if (data.isFalse)
                   const Center(
                     child: Icon(
-                      Icons.cancel_outlined,
-                      size: 100,
+                      Icons.clear,
+                      size: 230,
                       color: ColorName.falseBlue,
                     ),
                   ),
