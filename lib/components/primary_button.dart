@@ -74,9 +74,9 @@ class PrimaryButton extends StatelessWidget {
                   child: Text(
                     text!,
                     style: style ??
-                        TextStyle(
+                        const TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: isMini ? 14 : 16,
+                          fontSize: 16,
                           color: ColorName.black2,
                         ),
                     textAlign: TextAlign.center,

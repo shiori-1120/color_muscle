@@ -24,6 +24,7 @@ mixin _$QuestionState {
   String? get nextText => throw _privateConstructorUsedError;
   List<bool> get resultsBool => throw _privateConstructorUsedError;
   List<int> get resultsId => throw _privateConstructorUsedError;
+  List<int> get indexList => throw _privateConstructorUsedError;
   bool get screenEnabled => throw _privateConstructorUsedError; // デフォルト値を指定
   bool get isTrue => throw _privateConstructorUsedError;
   bool get isFalse => throw _privateConstructorUsedError;
@@ -47,6 +48,7 @@ abstract class $QuestionStateCopyWith<$Res> {
       String? nextText,
       List<bool> resultsBool,
       List<int> resultsId,
+      List<int> indexList,
       bool screenEnabled,
       bool isTrue,
       bool isFalse});
@@ -74,6 +76,7 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
     Object? nextText = freezed,
     Object? resultsBool = null,
     Object? resultsId = null,
+    Object? indexList = null,
     Object? screenEnabled = null,
     Object? isTrue = null,
     Object? isFalse = null,
@@ -106,6 +109,10 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
       resultsId: null == resultsId
           ? _value.resultsId
           : resultsId // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      indexList: null == indexList
+          ? _value.indexList
+          : indexList // ignore: cast_nullable_to_non_nullable
               as List<int>,
       screenEnabled: null == screenEnabled
           ? _value.screenEnabled
@@ -147,6 +154,7 @@ abstract class _$$QuestionStateImplCopyWith<$Res>
       String? nextText,
       List<bool> resultsBool,
       List<int> resultsId,
+      List<int> indexList,
       bool screenEnabled,
       bool isTrue,
       bool isFalse});
@@ -173,6 +181,7 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
     Object? nextText = freezed,
     Object? resultsBool = null,
     Object? resultsId = null,
+    Object? indexList = null,
     Object? screenEnabled = null,
     Object? isTrue = null,
     Object? isFalse = null,
@@ -206,6 +215,10 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
           ? _value._resultsId
           : resultsId // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      indexList: null == indexList
+          ? _value._indexList
+          : indexList // ignore: cast_nullable_to_non_nullable
+              as List<int>,
       screenEnabled: null == screenEnabled
           ? _value.screenEnabled
           : screenEnabled // ignore: cast_nullable_to_non_nullable
@@ -233,12 +246,14 @@ class _$QuestionStateImpl implements _QuestionState {
       this.nextText,
       required final List<bool> resultsBool,
       required final List<int> resultsId,
+      required final List<int> indexList,
       this.screenEnabled = true,
       this.isTrue = false,
       this.isFalse = false})
       : _choices = choices,
         _resultsBool = resultsBool,
-        _resultsId = resultsId;
+        _resultsId = resultsId,
+        _indexList = indexList;
 
 // required List<SubQuizClass> subQuizClass,
   @override
@@ -274,6 +289,14 @@ class _$QuestionStateImpl implements _QuestionState {
     return EqualUnmodifiableListView(_resultsId);
   }
 
+  final List<int> _indexList;
+  @override
+  List<int> get indexList {
+    if (_indexList is EqualUnmodifiableListView) return _indexList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_indexList);
+  }
+
   @override
   @JsonKey()
   final bool screenEnabled;
@@ -287,7 +310,7 @@ class _$QuestionStateImpl implements _QuestionState {
 
   @override
   String toString() {
-    return 'QuestionState(quiz: $quiz, choices: $choices, index: $index, quizLength: $quizLength, nextText: $nextText, resultsBool: $resultsBool, resultsId: $resultsId, screenEnabled: $screenEnabled, isTrue: $isTrue, isFalse: $isFalse)';
+    return 'QuestionState(quiz: $quiz, choices: $choices, index: $index, quizLength: $quizLength, nextText: $nextText, resultsBool: $resultsBool, resultsId: $resultsId, indexList: $indexList, screenEnabled: $screenEnabled, isTrue: $isTrue, isFalse: $isFalse)';
   }
 
   @override
@@ -306,6 +329,8 @@ class _$QuestionStateImpl implements _QuestionState {
                 .equals(other._resultsBool, _resultsBool) &&
             const DeepCollectionEquality()
                 .equals(other._resultsId, _resultsId) &&
+            const DeepCollectionEquality()
+                .equals(other._indexList, _indexList) &&
             (identical(other.screenEnabled, screenEnabled) ||
                 other.screenEnabled == screenEnabled) &&
             (identical(other.isTrue, isTrue) || other.isTrue == isTrue) &&
@@ -322,6 +347,7 @@ class _$QuestionStateImpl implements _QuestionState {
       nextText,
       const DeepCollectionEquality().hash(_resultsBool),
       const DeepCollectionEquality().hash(_resultsId),
+      const DeepCollectionEquality().hash(_indexList),
       screenEnabled,
       isTrue,
       isFalse);
@@ -342,6 +368,7 @@ abstract class _QuestionState implements QuestionState {
       final String? nextText,
       required final List<bool> resultsBool,
       required final List<int> resultsId,
+      required final List<int> indexList,
       final bool screenEnabled,
       final bool isTrue,
       final bool isFalse}) = _$QuestionStateImpl;
@@ -360,6 +387,8 @@ abstract class _QuestionState implements QuestionState {
   List<bool> get resultsBool;
   @override
   List<int> get resultsId;
+  @override
+  List<int> get indexList;
   @override
   bool get screenEnabled;
   @override // デフォルト値を指定

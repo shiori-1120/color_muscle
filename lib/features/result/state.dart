@@ -12,5 +12,6 @@ class ResultState with _$ResultState {
   // プロパティを指定
   const factory ResultState({
     required List<QuizClass> quizzes,
+    required int totalCount,
   }) = _ResultState;
 }

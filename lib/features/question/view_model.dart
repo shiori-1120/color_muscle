@@ -20,9 +20,10 @@ class QuestionViewModel extends _$QuestionViewModel {
 
   @override
   FutureOr<QuestionState> build() async {
-    final int quizLength = await quizRepo.getQuizLength();
-    final QuizClass quiz = await getQuiz(0);
-    final List<ChoiceClass> choices = await getChoices(0);
+    const int quizLength = 3;
+    final List<int> indexList = await getQuizIndex(); // ランダムに5つ取得する
+    final QuizClass quiz = await getQuiz(indexList[0]);
+    final List<ChoiceClass> choices = await getChoices(indexList[0]);
 
     final state = QuestionState(
       resultsBool: [],
@@ -30,8 +31,19 @@ class QuestionViewModel extends _$QuestionViewModel {
       quiz: quiz,
       choices: choices,
       quizLength: quizLength,
+      isTrue: false,
+      isFalse: false,
+      screenEnabled: true,
+      indexList: indexList,
     );
     return state;
+  }
+
+  FutureOr<List<int>> getQuizIndex() async {
+    List<int> numbers = List.generate(10, (index) => index); // 0から9までの数字を生成
+    numbers.shuffle(); // リストをシャッフルする
+    List<int> indexList = numbers.take(3).toList(); // ランダムに5つ取得する
+    return indexList;
   }
 
   FutureOr<QuizClass> getQuiz(index) async {
@@ -73,7 +85,6 @@ class QuestionViewModel extends _$QuestionViewModel {
     state = AsyncData(
       data.copyWith(resultsId: newIndexList, resultsBool: newBoolList),
     );
-    print('結果をセーブしました');
     print(data.resultsBool);
     print(data.resultsId);
   }
@@ -98,6 +109,22 @@ class QuestionViewModel extends _$QuestionViewModel {
     print('changeScreenEnabled');
     final data = state.requireValue;
     state = AsyncData(data.copyWith(screenEnabled: false));
+  }
+
+  Future<void> initialize() async {
+    final data = state.requireValue;
+    final QuizClass nextQuestion = await getQuiz(0);
+
+    final List<ChoiceClass> nextChoices = await getChoices(0);
+    state = AsyncData(data.copyWith(
+        index: 0,
+        quiz: nextQuestion,
+        choices: nextChoices,
+        resultsBool: [],
+        resultsId: [],
+        screenEnabled: true,
+        isTrue: false,
+        isFalse: false));
   }
 
   Future<void> showIconAndPopup(
@@ -183,7 +210,7 @@ class QuestionViewModel extends _$QuestionViewModel {
                                             width: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.5,
+                                                0.4,
                                             child: Text(
                                               data.quiz.trueChoice ?? '',
                                               maxLines: 2,
@@ -242,32 +269,34 @@ class QuestionViewModel extends _$QuestionViewModel {
                       ),
                       PrimaryButton(
                         onPressed: () async {
-                          state = AsyncData(data.copyWith(
-                            isFalse: false,
-                            isTrue: false,
-                          ));
                           if (index + 1 == data.quizLength) {
-                            print('最後のボタン');
+                            // await saveResult(number);
                             final List<bool> newBoolList = [
                               ...data.resultsBool,
-                          
+                              // number == 0 ? true : false
                             ];
                             final List<int> newIndexList = [
                               ...data.resultsId,
-                      
+                              // data.index + 1
                             ];
-                            state = await AsyncData(
-                              data.copyWith(
-                                  resultsId: newIndexList,
-                                  resultsBool: newBoolList),
-                            );
-                            print(newIndexList);
-                            print(newBoolList);
                             await updateResultCount();
-                            final QuizClass nextQuestion = await getQuiz(0);
+                            final List<int> indexList = await getQuizIndex();
+                            final QuizClass nextQuestion =
+                                await getQuiz(indexList[0]);
                             final List<ChoiceClass> nextChoices =
-                                await getChoices(0);
-                            Navigator.push(
+                                await getChoices(indexList[0]);
+                            await initialize();
+                            state = AsyncData(data.copyWith(
+                                index: 0,
+                                quiz: nextQuestion,
+                                choices: nextChoices,
+                                resultsBool: [],
+                                resultsId: [],
+                                screenEnabled: true,
+                                isTrue: false,
+                                isFalse: false,
+                                indexList: indexList));
+                            await Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => ResultPage(
@@ -276,32 +305,26 @@ class QuestionViewModel extends _$QuestionViewModel {
                                     quizLength: data.quizLength!),
                               ),
                             );
-                            state = AsyncData(data.copyWith(
-                                index: 0,
-                                quiz: nextQuestion,
-                                choices: nextChoices,
-                                resultsBool: [],
-                                resultsId: [],
-                                screenEnabled: true));
                           } else {
                             Navigator.of(context).pop();
                             final int nextIndex = data.index + 1;
                             final QuizClass nextQuestion =
-                                await getQuiz(nextIndex);
+                                await getQuiz(data.indexList[nextIndex]);
                             final List<ChoiceClass> nextChoices =
-                                await getChoices(nextIndex);
+                                await getChoices(data.indexList[nextIndex]);
                             state = AsyncData(data.copyWith(
                               index: nextIndex,
                               quiz: nextQuestion,
                               choices: nextChoices,
                               screenEnabled: true,
+                              isTrue: false,
+                              isFalse: false,
                             ));
                           }
                         },
                         width: 150,
                         height: 30,
                         text: data.nextText ?? '',
-                        textColor: ColorName.black2,
                         borderRaius: 20,
                         backgroundColor: Colors.white.withOpacity(0.8),
                       ),

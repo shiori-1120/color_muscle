@@ -40,13 +40,13 @@ class appContainer extends ConsumerWidget {
               mainContainer(
                 padding: 10,
                 height: MediaQuery.of(context).size.width * 0.2,
-                width: MediaQuery.of(context).size.width * 0.6,
+                width: MediaQuery.of(context).size.width * 0.55,
                 color: ColorName.potipotiBlue,
                 children: Text(
                   explanation ?? '',
                   maxLines: 4,
                   style: const TextStyle(
-                    fontSize: 12,
+                    fontSize: 10,
                     color: ColorName.black2,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -68,7 +68,7 @@ class appContainer extends ConsumerWidget {
                 width: 5,
               ),
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.6,
+                width: MediaQuery.of(context).size.width * 0.55,
                 child: Padding(
                   padding: const EdgeInsets.only(top: 10, bottom: 10),
                   child: Row(

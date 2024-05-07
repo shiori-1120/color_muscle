@@ -18,9 +18,12 @@ class explanationPhotoPart extends ConsumerWidget {
           const SizedBox(
             height: 5,
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.width * 0.2,
-            child: Image.network(photoUrl!),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: 110),
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.09,
+              child: Image.network(photoUrl!),
+            ),
           ),
         ],
       );

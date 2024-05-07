@@ -6,19 +6,20 @@ part of 'repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$quizRepoHash() => r'f393fc1852c3c1f18c3079b7441416c6410e777a';
+String _$totalCountRepoHash() => r'd781fd6d96fa65ceb64274fb29f4317c99005495';
 
-/// See also [QuizRepo].
-@ProviderFor(QuizRepo)
-final quizRepoProvider = NotifierProvider<QuizRepo, void>.internal(
-  QuizRepo.new,
-  name: r'quizRepoProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$quizRepoHash,
+/// See also [TotalCountRepo].
+@ProviderFor(TotalCountRepo)
+final totalCountRepoProvider = NotifierProvider<TotalCountRepo, void>.internal(
+  TotalCountRepo.new,
+  name: r'totalCountRepoProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$totalCountRepoHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$QuizRepo = Notifier<void>;
+typedef _$TotalCountRepo = Notifier<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, inference_failure_on_uninitialized_variable, inference_failure_on_function_return_type, inference_failure_on_untyped_parameter

@@ -46,7 +46,7 @@ class TopPage extends ConsumerWidget {
                           SizedBox(height: 10),
                           appContainer(
                             title: '石橋ごはんルーレット',
-                            explanation: 'ここにはアプリの簡単な説明が入ります',
+                            explanation: '石橋の飲食店をランダムに紹介してくれるアプリです！100店舗以上が登録されており、マップやお店のリストなどを見ることができます！',
                             iconUrl:
                                 'https://lh3.googleusercontent.com/pw/AP1GczNmmWEdmdjmoZ4WAGLLXAOTKrf0LNrSOkrxsf8J-_F1SwZ5Yb7mKx89xkVFGn1wva9ocG4HP4xBJdUKWMkdJxwn6yPvaZC6iUNvYOsBnaD0aMUIpppbBBt18ADU-s4N7TWt1D5GJLSaWrIB4PG3vrFc3w=w500-h500-s-no-gm?authuser=0',
                             iosUrl:
@@ -77,7 +77,7 @@ class TopPage extends ConsumerWidget {
                           SizedBox(height: 5),
                           appContainer(
                             title: 'ほめてくれるやつ',
-                            explanation: 'ここにはアプリの簡単な説明が入ります',
+                            explanation: 'flutter初心者が5時間で作ったアプリです！ボタンを押すと誉め言葉(？)を言ってくれます笑',
                             iconUrl:
                                 'https://stv-tech.co.jp/wp-content/uploads/2023/08/1_5-aoK8IBmXve5whBQM90GA.png',
                             webUrl: 'https://praiseapp3.web.app/',

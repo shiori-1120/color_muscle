@@ -29,7 +29,7 @@ class linkButton extends ConsumerWidget {
               launchUrl(webUrl);
             },
             elevation: 0,
-            width: MediaQuery.of(context).size.width * 0.29,
+            width: MediaQuery.of(context).size.width * 0.26,
             height: 50,
             text: text,
             style: Styles.twentyEight,
@@ -38,7 +38,7 @@ class linkButton extends ConsumerWidget {
             textColor: ColorName.black2,
           ),
           SizedBox(
-            width: width ?? MediaQuery.of(context).size.width * 0.02,
+            width: width ?? MediaQuery.of(context).size.width * 0.03,
           )
         ],
       );

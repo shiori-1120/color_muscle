@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ResultState {
   List<QuizClass> get quizzes => throw _privateConstructorUsedError;
+  int get totalCount => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ResultStateCopyWith<ResultState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $ResultStateCopyWith<$Res> {
           ResultState value, $Res Function(ResultState) then) =
       _$ResultStateCopyWithImpl<$Res, ResultState>;
   @useResult
-  $Res call({List<QuizClass> quizzes});
+  $Res call({List<QuizClass> quizzes, int totalCount});
 }
 
 /// @nodoc
@@ -46,12 +47,17 @@ class _$ResultStateCopyWithImpl<$Res, $Val extends ResultState>
   @override
   $Res call({
     Object? quizzes = null,
+    Object? totalCount = null,
   }) {
     return _then(_value.copyWith(
       quizzes: null == quizzes
           ? _value.quizzes
           : quizzes // ignore: cast_nullable_to_non_nullable
               as List<QuizClass>,
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -64,7 +70,7 @@ abstract class _$$ResultStateImplCopyWith<$Res>
       __$$ResultStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<QuizClass> quizzes});
+  $Res call({List<QuizClass> quizzes, int totalCount});
 }
 
 /// @nodoc
@@ -79,12 +85,17 @@ class __$$ResultStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? quizzes = null,
+    Object? totalCount = null,
   }) {
     return _then(_$ResultStateImpl(
       quizzes: null == quizzes
           ? _value._quizzes
           : quizzes // ignore: cast_nullable_to_non_nullable
               as List<QuizClass>,
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -92,7 +103,8 @@ class __$$ResultStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ResultStateImpl implements _ResultState {
-  const _$ResultStateImpl({required final List<QuizClass> quizzes})
+  const _$ResultStateImpl(
+      {required final List<QuizClass> quizzes, required this.totalCount})
       : _quizzes = quizzes;
 
   final List<QuizClass> _quizzes;
@@ -104,8 +116,11 @@ class _$ResultStateImpl implements _ResultState {
   }
 
   @override
+  final int totalCount;
+
+  @override
   String toString() {
-    return 'ResultState(quizzes: $quizzes)';
+    return 'ResultState(quizzes: $quizzes, totalCount: $totalCount)';
   }
 
   @override
@@ -113,12 +128,14 @@ class _$ResultStateImpl implements _ResultState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ResultStateImpl &&
-            const DeepCollectionEquality().equals(other._quizzes, _quizzes));
+            const DeepCollectionEquality().equals(other._quizzes, _quizzes) &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_quizzes));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_quizzes), totalCount);
 
   @JsonKey(ignore: true)
   @override
@@ -128,11 +145,14 @@ class _$ResultStateImpl implements _ResultState {
 }
 
 abstract class _ResultState implements ResultState {
-  const factory _ResultState({required final List<QuizClass> quizzes}) =
-      _$ResultStateImpl;
+  const factory _ResultState(
+      {required final List<QuizClass> quizzes,
+      required final int totalCount}) = _$ResultStateImpl;
 
   @override
   List<QuizClass> get quizzes;
+  @override
+  int get totalCount;
   @override
   @JsonKey(ignore: true)
   _$$ResultStateImplCopyWith<_$ResultStateImpl> get copyWith =>

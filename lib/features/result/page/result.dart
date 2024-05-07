@@ -22,6 +22,7 @@ class ResultPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(resultViewModelProvider);
+    final int count = resultsBool.where((element) => element == true).length;
     return state.when(
       data: (data) => Container(
         decoration: const BoxDecoration(
@@ -51,27 +52,21 @@ class ResultPage extends ConsumerWidget {
                         height: MediaQuery.of(context).size.height * 0.3,
                         children: Column(
                           children: [
-                            const Padding(
-                              padding: EdgeInsets.only(left: 20),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    '10問中',
-                                    style: TextStyle(fontSize: 24),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            const Row(
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Text(
-                                  '問正解',
+                                const Text(
+                                  '3問中',
                                   style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: ColorName.black2,
+                                  ),
+                                ),
+                                Text(
+                                  '$count問正解',
+                                  style: const TextStyle(
                                     fontSize: 50,
                                     fontWeight: FontWeight.bold,
                                     color: ColorName.black2,
@@ -80,10 +75,21 @@ class ResultPage extends ConsumerWidget {
                               ],
                             ),
                             const SizedBox(
-                              height: 5,
+                              height: 10,
+                            ),
+                            Text(
+                              'あなたは${data.totalCount}番目の回答者です！',
+                              style: const TextStyle(
+                                color: Colors.deepOrangeAccent,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
                             ),
                             const Text(
-                              '正答率 %',
+                              'この画面を模擬店で見せると\nトッピングが無料になるよ！',
                               style: TextStyle(
                                 color: ColorName.black2,
                               ),
@@ -158,12 +164,13 @@ class ResultPage extends ConsumerWidget {
                 ),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: quizLength,
+                    itemCount: resultsId.length,
                     itemBuilder: (context, index) {
                       final int incorrectCount =
-                          data.quizzes[resultsId[index]].incorrectCount ?? 0;
+                          data.quizzes[resultsId[index] - 1].incorrectCount ??
+                              0;
                       final int correctCount =
-                          data.quizzes[resultsId[index]].correctCount ?? 0;
+                          data.quizzes[resultsId[index] - 1].correctCount ?? 0;
                       final int totalCount = incorrectCount + correctCount;
                       final int correctPercent = (totalCount != 0)
                           ? (correctCount / totalCount * 100).toInt()
@@ -171,7 +178,6 @@ class ResultPage extends ConsumerWidget {
                       final int incorrectPercent = (totalCount != 0)
                           ? (incorrectCount / totalCount * 100).toInt()
                           : 0;
-
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -217,7 +223,7 @@ class ResultPage extends ConsumerWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(
-                                      '${index + 1}問目 ${data.quizzes[resultsId[index]].quizStatement}',
+                                      '${index + 1}問目 ${data.quizzes[resultsId[index] - 1].quizStatement}',
                                       maxLines: 2,
                                       style: Styles.fourteen,
                                     ),
