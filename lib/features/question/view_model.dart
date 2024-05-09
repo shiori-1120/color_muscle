@@ -85,8 +85,6 @@ class QuestionViewModel extends _$QuestionViewModel {
     state = AsyncData(
       data.copyWith(resultsId: newIndexList, resultsBool: newBoolList),
     );
-    print(data.resultsBool);
-    print(data.resultsId);
   }
 
   FutureOr<void> next(int index) async {
@@ -132,7 +130,6 @@ class QuestionViewModel extends _$QuestionViewModel {
     int number,
     int index,
   ) async {
-    print('showIconPopup$index');
     final data = state.requireValue;
     if (number == 0) {
       state = AsyncData(data.copyWith(isTrue: true));
