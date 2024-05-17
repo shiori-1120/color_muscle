@@ -41,7 +41,7 @@ class TopPage extends ConsumerWidget {
                     mainContainer(
                       children: Column(
                         children: [
-                          Text('↓ ぽちぽちのつどいのアプリ紹介 ↓',
+                          Text('↓ aaaaaaaaaaaaaぽちぽちのつどいのアプリ紹介 ↓',
                           style: TextStyle(color: ColorName.black2,fontWeight: FontWeight.bold,fontSize: 18),),
                           SizedBox(height: 10),
                           appContainer(
