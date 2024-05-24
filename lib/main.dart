@@ -1,10 +1,10 @@
-import 'package:color_muscle/features/top/page/top.dart';
+import 'package:mottaina_eat/features/top/page/top.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:color_muscle/features/init/pages/init.dart';
-import 'package:color_muscle/firebase/firebase_options.dart';
+import 'package:mottaina_eat/firebase/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +27,7 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) => MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: '色彩検定筋トレサークル（仮）',
+        title: 'いちょう祭クイズアプリ',
         theme: ThemeData(
           fontFamily: 'MPLUS',
           useMaterial3: false,

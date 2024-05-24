@@ -16,9 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$TopState {
-  int get questionNumber => throw _privateConstructorUsedError;
-  QuestionType get questionType => throw _privateConstructorUsedError;
-  GradeType get gradeType => throw _privateConstructorUsedError;
+  int get index => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TopStateCopyWith<TopState> get copyWith =>
@@ -30,8 +28,7 @@ abstract class $TopStateCopyWith<$Res> {
   factory $TopStateCopyWith(TopState value, $Res Function(TopState) then) =
       _$TopStateCopyWithImpl<$Res, TopState>;
   @useResult
-  $Res call(
-      {int questionNumber, QuestionType questionType, GradeType gradeType});
+  $Res call({int index});
 }
 
 /// @nodoc
@@ -47,23 +44,13 @@ class _$TopStateCopyWithImpl<$Res, $Val extends TopState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? questionNumber = null,
-    Object? questionType = null,
-    Object? gradeType = null,
+    Object? index = null,
   }) {
     return _then(_value.copyWith(
-      questionNumber: null == questionNumber
-          ? _value.questionNumber
-          : questionNumber // ignore: cast_nullable_to_non_nullable
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
               as int,
-      questionType: null == questionType
-          ? _value.questionType
-          : questionType // ignore: cast_nullable_to_non_nullable
-              as QuestionType,
-      gradeType: null == gradeType
-          ? _value.gradeType
-          : gradeType // ignore: cast_nullable_to_non_nullable
-              as GradeType,
     ) as $Val);
   }
 }
@@ -76,8 +63,7 @@ abstract class _$$TopStateImplCopyWith<$Res>
       __$$TopStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int questionNumber, QuestionType questionType, GradeType gradeType});
+  $Res call({int index});
 }
 
 /// @nodoc
@@ -91,23 +77,13 @@ class __$$TopStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? questionNumber = null,
-    Object? questionType = null,
-    Object? gradeType = null,
+    Object? index = null,
   }) {
     return _then(_$TopStateImpl(
-      questionNumber: null == questionNumber
-          ? _value.questionNumber
-          : questionNumber // ignore: cast_nullable_to_non_nullable
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
               as int,
-      questionType: null == questionType
-          ? _value.questionType
-          : questionType // ignore: cast_nullable_to_non_nullable
-              as QuestionType,
-      gradeType: null == gradeType
-          ? _value.gradeType
-          : gradeType // ignore: cast_nullable_to_non_nullable
-              as GradeType,
     ));
   }
 }
@@ -115,21 +91,15 @@ class __$$TopStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TopStateImpl implements _TopState {
-  const _$TopStateImpl(
-      {required this.questionNumber,
-      required this.questionType,
-      required this.gradeType});
+  const _$TopStateImpl({this.index = 0});
 
   @override
-  final int questionNumber;
-  @override
-  final QuestionType questionType;
-  @override
-  final GradeType gradeType;
+  @JsonKey()
+  final int index;
 
   @override
   String toString() {
-    return 'TopState(questionNumber: $questionNumber, questionType: $questionType, gradeType: $gradeType)';
+    return 'TopState(index: $index)';
   }
 
   @override
@@ -137,17 +107,11 @@ class _$TopStateImpl implements _TopState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TopStateImpl &&
-            (identical(other.questionNumber, questionNumber) ||
-                other.questionNumber == questionNumber) &&
-            (identical(other.questionType, questionType) ||
-                other.questionType == questionType) &&
-            (identical(other.gradeType, gradeType) ||
-                other.gradeType == gradeType));
+            (identical(other.index, index) || other.index == index));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, questionNumber, questionType, gradeType);
+  int get hashCode => Object.hash(runtimeType, index);
 
   @JsonKey(ignore: true)
   @override
@@ -157,17 +121,10 @@ class _$TopStateImpl implements _TopState {
 }
 
 abstract class _TopState implements TopState {
-  const factory _TopState(
-      {required final int questionNumber,
-      required final QuestionType questionType,
-      required final GradeType gradeType}) = _$TopStateImpl;
+  const factory _TopState({final int index}) = _$TopStateImpl;
 
   @override
-  int get questionNumber;
-  @override
-  QuestionType get questionType;
-  @override
-  GradeType get gradeType;
+  int get index;
   @override
   @JsonKey(ignore: true)
   _$$TopStateImplCopyWith<_$TopStateImpl> get copyWith =>

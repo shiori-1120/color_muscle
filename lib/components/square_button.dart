@@ -1,4 +1,4 @@
-import 'package:color_muscle/style/colors.dart';
+import 'package:mottaina_eat/style/colors.dart';
 import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatelessWidget {

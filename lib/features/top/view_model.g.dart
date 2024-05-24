@@ -6,7 +6,7 @@ part of 'view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$topViewModelHash() => r'fdbcf53a24f69cfe4f48409d3f672d8e18a04bb6';
+String _$topViewModelHash() => r'6e7038941d221a16449b22507c61921e7145bc2a';
 
 /// See also [TopViewModel].
 @ProviderFor(TopViewModel)

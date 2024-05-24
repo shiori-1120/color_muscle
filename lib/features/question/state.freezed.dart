@@ -16,10 +16,15 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$QuestionState {
-  int get questionNumber => throw _privateConstructorUsedError;
-  QuestionType get questionType => throw _privateConstructorUsedError;
-  GradeType get gradeType => throw _privateConstructorUsedError;
-  Color get backgroundcolor => throw _privateConstructorUsedError;
+// required List<SubQuizClass> subQuizClass,
+  QuizClass get quiz => throw _privateConstructorUsedError;
+  List<ChoiceClass> get choices => throw _privateConstructorUsedError;
+  int get index => throw _privateConstructorUsedError;
+  int? get quizLength => throw _privateConstructorUsedError;
+  String? get nextText => throw _privateConstructorUsedError;
+  List<bool> get resultsBool => throw _privateConstructorUsedError;
+  List<int> get resultsId => throw _privateConstructorUsedError;
+  List<int> get indexList => throw _privateConstructorUsedError;
   bool get screenEnabled => throw _privateConstructorUsedError; // デフォルト値を指定
   bool get isTrue => throw _privateConstructorUsedError;
   bool get isFalse => throw _privateConstructorUsedError;
@@ -36,13 +41,19 @@ abstract class $QuestionStateCopyWith<$Res> {
       _$QuestionStateCopyWithImpl<$Res, QuestionState>;
   @useResult
   $Res call(
-      {int questionNumber,
-      QuestionType questionType,
-      GradeType gradeType,
-      Color backgroundcolor,
+      {QuizClass quiz,
+      List<ChoiceClass> choices,
+      int index,
+      int? quizLength,
+      String? nextText,
+      List<bool> resultsBool,
+      List<int> resultsId,
+      List<int> indexList,
       bool screenEnabled,
       bool isTrue,
       bool isFalse});
+
+  $QuizClassCopyWith<$Res> get quiz;
 }
 
 /// @nodoc
@@ -58,31 +69,51 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? questionNumber = null,
-    Object? questionType = null,
-    Object? gradeType = null,
-    Object? backgroundcolor = null,
+    Object? quiz = null,
+    Object? choices = null,
+    Object? index = null,
+    Object? quizLength = freezed,
+    Object? nextText = freezed,
+    Object? resultsBool = null,
+    Object? resultsId = null,
+    Object? indexList = null,
     Object? screenEnabled = null,
     Object? isTrue = null,
     Object? isFalse = null,
   }) {
     return _then(_value.copyWith(
-      questionNumber: null == questionNumber
-          ? _value.questionNumber
-          : questionNumber // ignore: cast_nullable_to_non_nullable
+      quiz: null == quiz
+          ? _value.quiz
+          : quiz // ignore: cast_nullable_to_non_nullable
+              as QuizClass,
+      choices: null == choices
+          ? _value.choices
+          : choices // ignore: cast_nullable_to_non_nullable
+              as List<ChoiceClass>,
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
               as int,
-      questionType: null == questionType
-          ? _value.questionType
-          : questionType // ignore: cast_nullable_to_non_nullable
-              as QuestionType,
-      gradeType: null == gradeType
-          ? _value.gradeType
-          : gradeType // ignore: cast_nullable_to_non_nullable
-              as GradeType,
-      backgroundcolor: null == backgroundcolor
-          ? _value.backgroundcolor
-          : backgroundcolor // ignore: cast_nullable_to_non_nullable
-              as Color,
+      quizLength: freezed == quizLength
+          ? _value.quizLength
+          : quizLength // ignore: cast_nullable_to_non_nullable
+              as int?,
+      nextText: freezed == nextText
+          ? _value.nextText
+          : nextText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      resultsBool: null == resultsBool
+          ? _value.resultsBool
+          : resultsBool // ignore: cast_nullable_to_non_nullable
+              as List<bool>,
+      resultsId: null == resultsId
+          ? _value.resultsId
+          : resultsId // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      indexList: null == indexList
+          ? _value.indexList
+          : indexList // ignore: cast_nullable_to_non_nullable
+              as List<int>,
       screenEnabled: null == screenEnabled
           ? _value.screenEnabled
           : screenEnabled // ignore: cast_nullable_to_non_nullable
@@ -97,6 +128,14 @@ class _$QuestionStateCopyWithImpl<$Res, $Val extends QuestionState>
               as bool,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $QuizClassCopyWith<$Res> get quiz {
+    return $QuizClassCopyWith<$Res>(_value.quiz, (value) {
+      return _then(_value.copyWith(quiz: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -108,13 +147,20 @@ abstract class _$$QuestionStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int questionNumber,
-      QuestionType questionType,
-      GradeType gradeType,
-      Color backgroundcolor,
+      {QuizClass quiz,
+      List<ChoiceClass> choices,
+      int index,
+      int? quizLength,
+      String? nextText,
+      List<bool> resultsBool,
+      List<int> resultsId,
+      List<int> indexList,
       bool screenEnabled,
       bool isTrue,
       bool isFalse});
+
+  @override
+  $QuizClassCopyWith<$Res> get quiz;
 }
 
 /// @nodoc
@@ -128,31 +174,51 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? questionNumber = null,
-    Object? questionType = null,
-    Object? gradeType = null,
-    Object? backgroundcolor = null,
+    Object? quiz = null,
+    Object? choices = null,
+    Object? index = null,
+    Object? quizLength = freezed,
+    Object? nextText = freezed,
+    Object? resultsBool = null,
+    Object? resultsId = null,
+    Object? indexList = null,
     Object? screenEnabled = null,
     Object? isTrue = null,
     Object? isFalse = null,
   }) {
     return _then(_$QuestionStateImpl(
-      questionNumber: null == questionNumber
-          ? _value.questionNumber
-          : questionNumber // ignore: cast_nullable_to_non_nullable
+      quiz: null == quiz
+          ? _value.quiz
+          : quiz // ignore: cast_nullable_to_non_nullable
+              as QuizClass,
+      choices: null == choices
+          ? _value._choices
+          : choices // ignore: cast_nullable_to_non_nullable
+              as List<ChoiceClass>,
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
               as int,
-      questionType: null == questionType
-          ? _value.questionType
-          : questionType // ignore: cast_nullable_to_non_nullable
-              as QuestionType,
-      gradeType: null == gradeType
-          ? _value.gradeType
-          : gradeType // ignore: cast_nullable_to_non_nullable
-              as GradeType,
-      backgroundcolor: null == backgroundcolor
-          ? _value.backgroundcolor
-          : backgroundcolor // ignore: cast_nullable_to_non_nullable
-              as Color,
+      quizLength: freezed == quizLength
+          ? _value.quizLength
+          : quizLength // ignore: cast_nullable_to_non_nullable
+              as int?,
+      nextText: freezed == nextText
+          ? _value.nextText
+          : nextText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      resultsBool: null == resultsBool
+          ? _value._resultsBool
+          : resultsBool // ignore: cast_nullable_to_non_nullable
+              as List<bool>,
+      resultsId: null == resultsId
+          ? _value._resultsId
+          : resultsId // ignore: cast_nullable_to_non_nullable
+              as List<int>,
+      indexList: null == indexList
+          ? _value._indexList
+          : indexList // ignore: cast_nullable_to_non_nullable
+              as List<int>,
       screenEnabled: null == screenEnabled
           ? _value.screenEnabled
           : screenEnabled // ignore: cast_nullable_to_non_nullable
@@ -173,23 +239,64 @@ class __$$QuestionStateImplCopyWithImpl<$Res>
 
 class _$QuestionStateImpl implements _QuestionState {
   _$QuestionStateImpl(
-      {required this.questionNumber,
-      required this.questionType,
-      required this.gradeType,
-      this.backgroundcolor = ColorName.whiteBase,
+      {required this.quiz,
+      required final List<ChoiceClass> choices,
+      this.index = 0,
+      this.quizLength,
+      this.nextText,
+      required final List<bool> resultsBool,
+      required final List<int> resultsId,
+      required final List<int> indexList,
       this.screenEnabled = true,
       this.isTrue = false,
-      this.isFalse = false});
+      this.isFalse = false})
+      : _choices = choices,
+        _resultsBool = resultsBool,
+        _resultsId = resultsId,
+        _indexList = indexList;
+
+// required List<SubQuizClass> subQuizClass,
+  @override
+  final QuizClass quiz;
+  final List<ChoiceClass> _choices;
+  @override
+  List<ChoiceClass> get choices {
+    if (_choices is EqualUnmodifiableListView) return _choices;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_choices);
+  }
 
   @override
-  final int questionNumber;
-  @override
-  final QuestionType questionType;
-  @override
-  final GradeType gradeType;
-  @override
   @JsonKey()
-  final Color backgroundcolor;
+  final int index;
+  @override
+  final int? quizLength;
+  @override
+  final String? nextText;
+  final List<bool> _resultsBool;
+  @override
+  List<bool> get resultsBool {
+    if (_resultsBool is EqualUnmodifiableListView) return _resultsBool;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_resultsBool);
+  }
+
+  final List<int> _resultsId;
+  @override
+  List<int> get resultsId {
+    if (_resultsId is EqualUnmodifiableListView) return _resultsId;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_resultsId);
+  }
+
+  final List<int> _indexList;
+  @override
+  List<int> get indexList {
+    if (_indexList is EqualUnmodifiableListView) return _indexList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_indexList);
+  }
+
   @override
   @JsonKey()
   final bool screenEnabled;
@@ -203,7 +310,7 @@ class _$QuestionStateImpl implements _QuestionState {
 
   @override
   String toString() {
-    return 'QuestionState(questionNumber: $questionNumber, questionType: $questionType, gradeType: $gradeType, backgroundcolor: $backgroundcolor, screenEnabled: $screenEnabled, isTrue: $isTrue, isFalse: $isFalse)';
+    return 'QuestionState(quiz: $quiz, choices: $choices, index: $index, quizLength: $quizLength, nextText: $nextText, resultsBool: $resultsBool, resultsId: $resultsId, indexList: $indexList, screenEnabled: $screenEnabled, isTrue: $isTrue, isFalse: $isFalse)';
   }
 
   @override
@@ -211,14 +318,19 @@ class _$QuestionStateImpl implements _QuestionState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$QuestionStateImpl &&
-            (identical(other.questionNumber, questionNumber) ||
-                other.questionNumber == questionNumber) &&
-            (identical(other.questionType, questionType) ||
-                other.questionType == questionType) &&
-            (identical(other.gradeType, gradeType) ||
-                other.gradeType == gradeType) &&
-            (identical(other.backgroundcolor, backgroundcolor) ||
-                other.backgroundcolor == backgroundcolor) &&
+            (identical(other.quiz, quiz) || other.quiz == quiz) &&
+            const DeepCollectionEquality().equals(other._choices, _choices) &&
+            (identical(other.index, index) || other.index == index) &&
+            (identical(other.quizLength, quizLength) ||
+                other.quizLength == quizLength) &&
+            (identical(other.nextText, nextText) ||
+                other.nextText == nextText) &&
+            const DeepCollectionEquality()
+                .equals(other._resultsBool, _resultsBool) &&
+            const DeepCollectionEquality()
+                .equals(other._resultsId, _resultsId) &&
+            const DeepCollectionEquality()
+                .equals(other._indexList, _indexList) &&
             (identical(other.screenEnabled, screenEnabled) ||
                 other.screenEnabled == screenEnabled) &&
             (identical(other.isTrue, isTrue) || other.isTrue == isTrue) &&
@@ -226,8 +338,19 @@ class _$QuestionStateImpl implements _QuestionState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, questionNumber, questionType,
-      gradeType, backgroundcolor, screenEnabled, isTrue, isFalse);
+  int get hashCode => Object.hash(
+      runtimeType,
+      quiz,
+      const DeepCollectionEquality().hash(_choices),
+      index,
+      quizLength,
+      nextText,
+      const DeepCollectionEquality().hash(_resultsBool),
+      const DeepCollectionEquality().hash(_resultsId),
+      const DeepCollectionEquality().hash(_indexList),
+      screenEnabled,
+      isTrue,
+      isFalse);
 
   @JsonKey(ignore: true)
   @override
@@ -238,22 +361,34 @@ class _$QuestionStateImpl implements _QuestionState {
 
 abstract class _QuestionState implements QuestionState {
   factory _QuestionState(
-      {required final int questionNumber,
-      required final QuestionType questionType,
-      required final GradeType gradeType,
-      final Color backgroundcolor,
+      {required final QuizClass quiz,
+      required final List<ChoiceClass> choices,
+      final int index,
+      final int? quizLength,
+      final String? nextText,
+      required final List<bool> resultsBool,
+      required final List<int> resultsId,
+      required final List<int> indexList,
       final bool screenEnabled,
       final bool isTrue,
       final bool isFalse}) = _$QuestionStateImpl;
 
+  @override // required List<SubQuizClass> subQuizClass,
+  QuizClass get quiz;
   @override
-  int get questionNumber;
+  List<ChoiceClass> get choices;
   @override
-  QuestionType get questionType;
+  int get index;
   @override
-  GradeType get gradeType;
+  int? get quizLength;
   @override
-  Color get backgroundcolor;
+  String? get nextText;
+  @override
+  List<bool> get resultsBool;
+  @override
+  List<int> get resultsId;
+  @override
+  List<int> get indexList;
   @override
   bool get screenEnabled;
   @override // デフォルト値を指定

@@ -16,9 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ResultState {
-  int get questionNumber => throw _privateConstructorUsedError;
-  QuestionType get questionType => throw _privateConstructorUsedError;
-  GradeType get gradeType => throw _privateConstructorUsedError;
+  List<QuizClass> get quizzes => throw _privateConstructorUsedError;
+  int get totalCount => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ResultStateCopyWith<ResultState> get copyWith =>
@@ -31,8 +30,7 @@ abstract class $ResultStateCopyWith<$Res> {
           ResultState value, $Res Function(ResultState) then) =
       _$ResultStateCopyWithImpl<$Res, ResultState>;
   @useResult
-  $Res call(
-      {int questionNumber, QuestionType questionType, GradeType gradeType});
+  $Res call({List<QuizClass> quizzes, int totalCount});
 }
 
 /// @nodoc
@@ -48,23 +46,18 @@ class _$ResultStateCopyWithImpl<$Res, $Val extends ResultState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? questionNumber = null,
-    Object? questionType = null,
-    Object? gradeType = null,
+    Object? quizzes = null,
+    Object? totalCount = null,
   }) {
     return _then(_value.copyWith(
-      questionNumber: null == questionNumber
-          ? _value.questionNumber
-          : questionNumber // ignore: cast_nullable_to_non_nullable
+      quizzes: null == quizzes
+          ? _value.quizzes
+          : quizzes // ignore: cast_nullable_to_non_nullable
+              as List<QuizClass>,
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
               as int,
-      questionType: null == questionType
-          ? _value.questionType
-          : questionType // ignore: cast_nullable_to_non_nullable
-              as QuestionType,
-      gradeType: null == gradeType
-          ? _value.gradeType
-          : gradeType // ignore: cast_nullable_to_non_nullable
-              as GradeType,
     ) as $Val);
   }
 }
@@ -77,8 +70,7 @@ abstract class _$$ResultStateImplCopyWith<$Res>
       __$$ResultStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int questionNumber, QuestionType questionType, GradeType gradeType});
+  $Res call({List<QuizClass> quizzes, int totalCount});
 }
 
 /// @nodoc
@@ -92,23 +84,18 @@ class __$$ResultStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? questionNumber = null,
-    Object? questionType = null,
-    Object? gradeType = null,
+    Object? quizzes = null,
+    Object? totalCount = null,
   }) {
     return _then(_$ResultStateImpl(
-      questionNumber: null == questionNumber
-          ? _value.questionNumber
-          : questionNumber // ignore: cast_nullable_to_non_nullable
+      quizzes: null == quizzes
+          ? _value._quizzes
+          : quizzes // ignore: cast_nullable_to_non_nullable
+              as List<QuizClass>,
+      totalCount: null == totalCount
+          ? _value.totalCount
+          : totalCount // ignore: cast_nullable_to_non_nullable
               as int,
-      questionType: null == questionType
-          ? _value.questionType
-          : questionType // ignore: cast_nullable_to_non_nullable
-              as QuestionType,
-      gradeType: null == gradeType
-          ? _value.gradeType
-          : gradeType // ignore: cast_nullable_to_non_nullable
-              as GradeType,
     ));
   }
 }
@@ -117,20 +104,23 @@ class __$$ResultStateImplCopyWithImpl<$Res>
 
 class _$ResultStateImpl implements _ResultState {
   const _$ResultStateImpl(
-      {required this.questionNumber,
-      required this.questionType,
-      required this.gradeType});
+      {required final List<QuizClass> quizzes, required this.totalCount})
+      : _quizzes = quizzes;
+
+  final List<QuizClass> _quizzes;
+  @override
+  List<QuizClass> get quizzes {
+    if (_quizzes is EqualUnmodifiableListView) return _quizzes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_quizzes);
+  }
 
   @override
-  final int questionNumber;
-  @override
-  final QuestionType questionType;
-  @override
-  final GradeType gradeType;
+  final int totalCount;
 
   @override
   String toString() {
-    return 'ResultState(questionNumber: $questionNumber, questionType: $questionType, gradeType: $gradeType)';
+    return 'ResultState(quizzes: $quizzes, totalCount: $totalCount)';
   }
 
   @override
@@ -138,17 +128,14 @@ class _$ResultStateImpl implements _ResultState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ResultStateImpl &&
-            (identical(other.questionNumber, questionNumber) ||
-                other.questionNumber == questionNumber) &&
-            (identical(other.questionType, questionType) ||
-                other.questionType == questionType) &&
-            (identical(other.gradeType, gradeType) ||
-                other.gradeType == gradeType));
+            const DeepCollectionEquality().equals(other._quizzes, _quizzes) &&
+            (identical(other.totalCount, totalCount) ||
+                other.totalCount == totalCount));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, questionNumber, questionType, gradeType);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_quizzes), totalCount);
 
   @JsonKey(ignore: true)
   @override
@@ -159,16 +146,13 @@ class _$ResultStateImpl implements _ResultState {
 
 abstract class _ResultState implements ResultState {
   const factory _ResultState(
-      {required final int questionNumber,
-      required final QuestionType questionType,
-      required final GradeType gradeType}) = _$ResultStateImpl;
+      {required final List<QuizClass> quizzes,
+      required final int totalCount}) = _$ResultStateImpl;
 
   @override
-  int get questionNumber;
+  List<QuizClass> get quizzes;
   @override
-  QuestionType get questionType;
-  @override
-  GradeType get gradeType;
+  int get totalCount;
   @override
   @JsonKey(ignore: true)
   _$$ResultStateImplCopyWith<_$ResultStateImpl> get copyWith =>

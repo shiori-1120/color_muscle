@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "44602318578",
-    "project_id": "colormuscle",
-    "storage_bucket": "colormuscle.appspot.com"
+    "project_number": "404222593905",
+    "project_id": "mottaina-eat-2",
+    "storage_bucket": "mottaina-eat-2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:44602318578:android:b29415bac97ce8d3b03a6b",
+        "mobilesdk_app_id": "1:404222593905:android:e85a3df60fcbf9e5a704d0",
         "android_client_info": {
-          "package_name": "com.potipoti.color_muscle"
+          "package_name": "com.potipoti.mottaina_eat"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCc7MzswYUlr4zUwc9JNBPcQxMOCGMH_jc"
+          "current_key": "AIzaSyCtUWigM1trv78frOZkBJ7hY7SUMExAIBQ"
         }
       ],
       "services": {

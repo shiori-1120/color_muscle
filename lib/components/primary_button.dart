@@ -1,4 +1,4 @@
-import 'package:color_muscle/style/colors.dart';
+import 'package:mottaina_eat/style/colors.dart';
 import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatelessWidget {
@@ -10,7 +10,7 @@ class PrimaryButton extends StatelessWidget {
       this.height,
       this.width,
       this.circularSize,
-      this.backgroundColor = ColorName.greySecondary,
+      this.backgroundColor,
       this.foregroundColor,
       this.textColor,
       this.side = BorderSide.none,
@@ -74,10 +74,10 @@ class PrimaryButton extends StatelessWidget {
                   child: Text(
                     text!,
                     style: style ??
-                        TextStyle(
+                        const TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: isMini ? 14 : 16,
-                          color: textColor,
+                          fontSize: 16,
+                          color: ColorName.black2,
                         ),
                     textAlign: TextAlign.center,
                   ),

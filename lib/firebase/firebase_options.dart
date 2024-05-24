@@ -44,38 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyARwSszqiwrQaIupQVNqb1Y02FajhHs00E',
-    appId: '1:44602318578:web:1ea7da59bc438551b03a6b',
-    messagingSenderId: '44602318578',
-    projectId: 'colormuscle',
-    authDomain: 'colormuscle.firebaseapp.com',
-    storageBucket: 'colormuscle.appspot.com',
-    measurementId: 'G-M5SRHT8HPR',
+    apiKey: 'AIzaSyCYtCYyLxJJ7m7S1Hb7MaajsZEUzNmJnhg',
+    appId: '1:404222593905:web:f2d018db653298f0a704d0',
+    messagingSenderId: '404222593905',
+    projectId: 'mottaina-eat-2',
+    authDomain: 'mottaina-eat-2.firebaseapp.com',
+    storageBucket: 'mottaina-eat-2.appspot.com',
+    measurementId: 'G-7BVSNSNZF4',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCc7MzswYUlr4zUwc9JNBPcQxMOCGMH_jc',
-    appId: '1:44602318578:android:b29415bac97ce8d3b03a6b',
-    messagingSenderId: '44602318578',
-    projectId: 'colormuscle',
-    storageBucket: 'colormuscle.appspot.com',
+    apiKey: 'AIzaSyCtUWigM1trv78frOZkBJ7hY7SUMExAIBQ',
+    appId: '1:404222593905:android:e85a3df60fcbf9e5a704d0',
+    messagingSenderId: '404222593905',
+    projectId: 'mottaina-eat-2',
+    storageBucket: 'mottaina-eat-2.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAdb_z-DTeuSuINCbWqUPLfpxwXX27uUlM',
-    appId: '1:44602318578:ios:1ba553e1e0c79266b03a6b',
-    messagingSenderId: '44602318578',
-    projectId: 'colormuscle',
-    storageBucket: 'colormuscle.appspot.com',
+    apiKey: 'AIzaSyDtee1zRHGPwtktfaLFJwigXkZcnflSP5A',
+    appId: '1:404222593905:ios:03aa640c7abdad71a704d0',
+    messagingSenderId: '404222593905',
+    projectId: 'mottaina-eat-2',
+    storageBucket: 'mottaina-eat-2.appspot.com',
     iosBundleId: 'com.potipoti.colorMuscle',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyAdb_z-DTeuSuINCbWqUPLfpxwXX27uUlM',
-    appId: '1:44602318578:ios:5bf279bb4b6e00dab03a6b',
-    messagingSenderId: '44602318578',
-    projectId: 'colormuscle',
-    storageBucket: 'colormuscle.appspot.com',
+    apiKey: 'AIzaSyDtee1zRHGPwtktfaLFJwigXkZcnflSP5A',
+    appId: '1:404222593905:ios:a4e099906f5a2114a704d0',
+    messagingSenderId: '404222593905',
+    projectId: 'mottaina-eat-2',
+    storageBucket: 'mottaina-eat-2.appspot.com',
     iosBundleId: 'com.potipoti.colorMuscle.RunnerTests',
   );
 }
